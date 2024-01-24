@@ -1,0 +1,327 @@
+#carrusel {
+  background-color: #434242;
+  padding: 15px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+#cards {
+  background-color: #dc0000;
+  padding: 50px;
+  display: flex;
+  justify-content: center;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.plan-card {
+  background: #c8b6a6;
+  width: 15rem;
+  height: 600px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  border-radius: 10px;
+  border-bottom: 4px solid #434242;
+  padding: 30px;
+  box-shadow: 0 6px 30px rgba(207, 212, 222, 0.3);
+  font-family: "Poppins", sans-serif;
+  margin-right: 75px;
+}
+
+.plan-card h2 {
+  margin-bottom: 15px;
+  font-size: 27px;
+  font-weight: 600;
+}
+
+.plan-card h2 span {
+  display: block;
+  margin-top: 4px;
+  color: #4d4d4d;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.etiquet-price {
+  position: relative;
+  background: #fdbd4a;
+  width: 14.46rem;
+  margin-left: -0.65rem;
+  padding: 0.2rem 1.2rem;
+  border-radius: 5px 0 0 5px;
+}
+
+.etiquet-price p {
+  margin: 0;
+  padding-top: 0.4rem;
+  display: flex;
+  font-size: 1.9rem;
+  font-weight: 500;
+}
+
+.etiquet-price p:before {
+  content: "$";
+  margin-right: 5px;
+  font-size: 30px;
+  font-weight: 300;
+}
+
+.etiquet-price p:after {
+  content: "/ por mes";
+  margin-left: 5px;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.etiquet-price div {
+  position: absolute;
+  bottom: -23px;
+  right: 0px;
+  width: 0;
+  height: 0;
+  border-top: 13px solid #c58102;
+  border-bottom: 10px solid transparent;
+  border-right: 13px solid transparent;
+  z-index: -6;
+}
+
+.benefits-list {
+  margin-top: 15px;
+}
+
+.benefits-list p {
+  font-size: 14px;
+  text-align: justify;
+}
+
+.benefits-list ul {
+  padding: 0;
+  font-size: 13px;
+}
+
+.benefits-list ul li {
+  color: #4d4d4d;
+  list-style: none;
+  margin-bottom: 0.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.benefits-list ul li svg {
+  width: 0.9rem;
+  fill: currentColor;
+}
+
+.benefits-list ul li span {
+  font-weight: 300;
+}
+
+.button-get-plan {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.2rem;
+}
+
+.button-get-plan a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #434242;
+  color: #fff;
+  padding: 20px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 0.7rem;
+  letter-spacing: 0.05rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.button-get-plan a:hover {
+  transform: translateY(-3%);
+  box-shadow: 0 3px 10px rgba(207, 212, 222, 0.9);
+}
+
+.button-get-plan .svg-rocket {
+  margin-right: 10px;
+  width: 0.9rem;
+  fill: currentColor;
+}
+
+.plan-card {
+  background: #c8b6a6;
+  width: 15rem;
+  height: 600px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  border-radius: 10px;
+  border-bottom: 4px solid #434242;
+  padding: 30px;
+  box-shadow: 0 6px 30px rgba(207, 212, 222, 0.3);
+  font-family: "Poppins", sans-serif;
+  margin-right: 75px;
+}
+
+.plan-card h2 {
+  margin-bottom: 15px;
+  font-size: 27px;
+  font-weight: 600;
+}
+
+.plan-card h2 span {
+  display: block;
+  margin-top: 4px;
+  color: #4d4d4d;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.etiquet-price {
+  position: relative;
+  background: #fdbd4a;
+  width: 14.46rem;
+  margin-left: -0.65rem;
+  padding: 0.2rem 1.2rem;
+  border-radius: 5px 0 0 5px;
+}
+
+.etiquet-price p {
+  margin: 0;
+  padding-top: 0.4rem;
+  display: flex;
+  font-size: 1.9rem;
+  font-weight: 500;
+}
+
+.etiquet-price p:before {
+  content: "$";
+  margin-right: 5px;
+  font-size: 30px;
+  font-weight: 300;
+}
+
+.etiquet-price p:after {
+  content: "/ por mes";
+  margin-left: 5px;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.etiquet-price div {
+  position: absolute;
+  bottom: -23px;
+  right: 0px;
+  width: 0;
+  height: 0;
+  border-top: 13px solid #c58102;
+  border-bottom: 10px solid transparent;
+  border-right: 13px solid transparent;
+  z-index: -6;
+}
+
+.benefits-list {
+  margin-top: 15px;
+}
+
+.benefits-list p {
+  font-size: 14px;
+  text-align: justify;
+}
+
+.benefits-list ul {
+  padding: 0;
+  font-size: 13px;
+}
+
+.benefits-list ul li {
+  color: #4d4d4d;
+  list-style: none;
+  margin-bottom: 0.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.benefits-list ul li svg {
+  width: 0.9rem;
+  fill: currentColor;
+}
+
+.benefits-list ul li span {
+  font-weight: 300;
+}
+
+.button-get-plan {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.2rem;
+}
+
+.button-get-plan a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #434242;
+  color: #fff;
+  padding: 20px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 0.7rem;
+  letter-spacing: 0.05rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.button-get-plan a:hover {
+  transform: translateY(-3%);
+  box-shadow: 0 3px 10px rgba(207, 212, 222, 0.9);
+}
+
+.button-get-plan .svg-rocket {
+  margin-right: 10px;
+  width: 0.9rem;
+  fill: currentColor;
+}
+
+#divImg {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+#image {
+  margin-right: 10px;
+}
+
+#h6 {
+  margin-top: 15px;
+  color: #dc0000;
+}
+
+#footer {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#divImg {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+#image {
+  margin-right: 10px;
+}
+
+#h6 {
+  margin-top: 15px;
+  color: #dc0000;
+}
+
+#footer {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}

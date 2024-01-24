@@ -1,0 +1,59 @@
+<div id="formulario" class="row-mt-10">
+  <div class="card col-md-4 mx-auto">
+    <div class="card-header">
+      <div class="text-header">Provider Register</div>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="onCreate()" novalidate #f="ngForm">
+        <!--nombre-->
+        <div class="input">
+          <input autocomplete="off" type="text" id="nombre" name="nombre" [(ngModel)]="nombreProvedor" required>
+          <label for="nombreProveedor">Provider Name</label>
+        </div>
+        <!--Logo-->
+        <div class="input">
+          <input autocomplete="off" type="url" id="logo" name="logo" [(ngModel)]="logo" required>
+          <label for="logo">Logo</label>
+        </div>
+        <!--Telefono-->
+        <div class="input">
+          <input autocomplete="off" type="number" id="telefono" name="telefono" [(ngModel)]="telefono" required>
+          <label for="telefono">Phone</label>
+        </div>
+        <!--Email-->
+        <div class="input">
+          <input autocomplete="off" type="email" id="email" name="email" [(ngModel)]="email" required>
+          <label for="email">Email</label>
+        </div>
+        <!--Pais-->
+        <div class="input">
+          <input autocomplete="off" type="text" id="pais" name="pais" [(ngModel)]="pais" required>
+          <label for="pais">Country</label>
+        </div>
+        <!--Estado-->
+        <div class="input">
+          <input autocomplete="off" type="text" id="estado" name="estado" [(ngModel)]="estado" required>
+          <label for="estado">State</label>
+        </div>
+        <!--Municipio-->
+        <div class="input">
+          <input autocomplete="off" type="text" id="municipio" name="municipio" [(ngModel)]="municipio" required>
+          <label for="municipio">Municipality</label>
+        </div>
+        <!--Calle-->
+        <div class="input">
+          <input autocomplete="off" type="text" id="calle" name="calle" [(ngModel)]="calle" required>
+          <label for="calle">Street</label>
+        </div>
+        <br>
+        <div class="botones" style="display: flex;justify-content: space-between;">
+          <!--Crear-->
+          <input type="submit" class="btn" value="Create" id="BootonCrear">
+          <!--Salir-->
+          <input type="submit" class="btn" value="Exit" routerLink="/proveedor/lista">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<br>

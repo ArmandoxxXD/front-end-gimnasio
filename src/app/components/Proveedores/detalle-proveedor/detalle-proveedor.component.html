@@ -1,0 +1,80 @@
+<!--Provedor-->
+<h1 style="text-align: center;">Provider Details</h1>
+<div class="employee-container">
+  <div class="employee-card" *ngIf="proveedor">
+    <img [src]="proveedor.logo">
+    <div id="mapa">
+      <iframe width="450" height="250" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"
+        [src]="Mapa">
+      </iframe>
+    </div>
+  </div>
+  <div class="employee-card2" *ngIf="proveedor">
+    <a class="list-group-item"><b>Name: </b>{{proveedor.nombreProvedor}}</a>
+    <a class="list-group-item"><b>Phone: </b>{{proveedor.telefono}}</a>
+    <a class="list-group-item"><b>Email: </b>{{proveedor.email}}</a>
+    <a class="list-group-item"><b>Country: </b>{{proveedor.pais}}</a>
+    <a class="list-group-item"><b>State: </b>{{proveedor.estado}}</a>
+    <a class="list-group-item"><b>Municipality: </b>{{proveedor.municipio}}</a>
+    <a class="list-group-item"><b>Street: </b>{{proveedor.calle}}</a>
+  </div>
+</div>
+
+<!--Lista de Productos del Proveedor-->
+<div style="margin-top: 5%; margin-bottom: 8%;">
+  <h3 style="text-align: center;">Inventory List</h3>
+  <div style="display: flex;">
+    <!--buscador-->
+    <div class="inputbox">
+      <input required="required" type="text" class="input" name="text" name="filterProductos"
+        [(ngModel)]="filterProductos" (input)="reload()">
+      <span>Search Product</span>
+      <i></i>
+    </div>
+  </div>
+  <!--tabla-->
+  <table class="table table-borderless" style="text-align: center;">
+    <thead>
+      <tr>
+        <th scope="col">Image</th>
+        <th scope="col">Name</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Category</th>
+        <th scope="col">Type</th>
+        <th scope="col">Provider</th>
+        <th scope="col">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let producto of productos | filter:filterProductos">
+        <td><img data-bs-toggle="modal" data-bs-target="#exampleModal"
+            (click)="showImage(producto.imagen,producto.nombreProducto)" [src]="producto.imagen"
+            style="cursor: pointer;" class="card-img-top" width="60px" height="70px"></td>
+        <td>{{producto.nombreProducto}}</td>
+        <td style="vertical-align: middle;" id="stock{{producto.id}}">{{producto.cantidad}}</td>
+        <td>{{producto.categoria}}</td>
+        <td>{{producto.tipo}}</td>
+        <td>{{producto.nombreProvedor}}</td>
+        <td>{{producto.precio | currency}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">{{selectedNombre}}</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <img [src]="selectedImage" class="img-fluid" width="500px" height="400px">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cargando -->
+  <div id="loading"></div>

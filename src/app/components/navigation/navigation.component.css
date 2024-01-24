@@ -1,0 +1,17 @@
+a {
+  color: white;
+  cursor: pointer;
+}
+
+img {
+  border-radius: 50%;
+}
+
+#user {
+  color: #e5e5cb;
+  cursor: pointer;
+}
+
+#home {
+  color: #e5e5cb;
+}

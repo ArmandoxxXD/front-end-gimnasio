@@ -1,0 +1,63 @@
+<div id="formulario" class="row-mt-10">
+  <div class="card col-md-4 mx-auto">
+    <div class="card-header">
+      <div class="text-header">Add Product</div>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="onCreate()" novalidate #f="ngForm">
+        <!--nombre-->
+        <div class="input">
+          <input autocomplete="off" type="text" id="nombre" name="nombre" [(ngModel)]="nombreProducto" required>
+          <label for="nombre">Product Name</label>
+        </div>
+        <!--codeBar-->
+        <div class="input">
+          <input autocomplete="off" type="text" id="codeBar" name="codeBar" [(ngModel)]="codeBar" required>
+          <label for="text">Product Code</label>
+        </div>
+        <!--imagen-->
+        <div class="input">
+          <input autocomplete="off" type="url" id="logo" name="logo" [(ngModel)]="imagen" required>
+          <label for="nombre">Image</label>
+        </div>
+        <!--Cantidad-->
+        <div class="input">
+          <input autocomplete="off" type="number" id="cantidad" name="cantidad" [(ngModel)]="cantidad" required>
+          <label for="number">Quantity</label>
+        </div>
+        <!--Precio-->
+        <div class="input">
+          <input autocomplete="off" type="number" id="precio" name="precio" [(ngModel)]="precio" required>
+          <label for="number">Price</label>
+        </div>
+        <!--Categoria-->
+        <div class="input">
+          <input autocomplete="off" type="text" id="categoria" name="categoria" [(ngModel)]="categoria" required>
+          <label for="text">Category</label>
+        </div>
+        <!--Tipo-->
+        <div class="input">
+          <input autocomplete="off" type="text" id="tipo" name="tipo" [(ngModel)]="tipo" required>
+          <label for="text">Type</label>
+        </div>
+        <!--selector-->
+        <div aria-label="Default select example">
+          <label>Select an Provider:</label>
+          <select style="border-radius: 20px;border: 2px solid rgb(40, 40, 42);" id="nombreProvedor"
+            name="nombreProvedor" [(ngModel)]="nombreProvedor" required>
+            <option class="form-select" value="" disable selected></option>
+            <option class="form-select" *ngFor="let prove of proveedores">{{prove.nombreProvedor}}</option>
+          </select>
+        </div>
+        <br>
+        <div class="botones" style="display: flex;justify-content: space-between;">
+          <!--Crear-->
+          <input type="submit" class="btn" value="Add" id="BootonCrear">
+          <!--Salir-->
+          <input type="submit" class="btn" value="Exit" routerLink="/producto/lista">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<br>

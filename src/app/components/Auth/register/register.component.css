@@ -1,0 +1,49 @@
+.gradient-custom-2 {
+    /* fallback for old browsers */
+    background: #fccb90;
+  
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, #313030, #692f2f, #a3280f, #c01111);
+  
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, #313030, #692f2f, #a3280f, #c01111);
+    }
+  
+  
+    @media (min-width: 769px) {
+    .gradient-custom-2 {
+    border-top-right-radius: .3rem;
+    border-bottom-right-radius: .3rem;
+    }
+    }
+  
+    button{
+      width: 310px;
+      height: 50px;
+    }
+  
+  #loader-container {
+      position: fixed;
+      z-index: 9999;
+      top: 90%;
+      left: 33%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      display: none;
+    }
+  
+    #loader {
+      display: inline-block;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 3px solid rgba(0, 0, 0, 0.2);
+      border-top-color: #db3434;
+      animation: spin 1s ease-in-out infinite;
+    }
+  
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }

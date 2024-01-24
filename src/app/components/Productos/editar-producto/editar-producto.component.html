@@ -1,0 +1,66 @@
+<div id="formulario" class="row-mt-10">
+  <div class="card col-md-4 mx-auto">
+    <div class="card-header">
+      <div class="text-header">Edit Product</div>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="onUpdate()" novalidate #f="ngForm">
+        <!--nombre-->
+        <div class="input">
+          <input autocomplete="off" type="text" id="nombre" name="nombre" [(ngModel)]="producto.nombreProducto"
+            required>
+          <label for="nombre">Name Product</label>
+        </div>
+        <!--nombre-->
+        <div class="input">
+          <input autocomplete="off" type="text" id="codeBar" name="codeBar" [(ngModel)]="producto.codeBar" required>
+          <label for="nombre">Product Code</label>
+        </div>
+        <!--imagen-->
+        <div class="input">
+          <input autocomplete="off" type="url" id="logo" name="logo" [(ngModel)]="producto.imagen" required>
+          <label for="nombre">Image</label>
+        </div>
+        <!--Cantidad-->
+        <div class="input">
+          <input autocomplete="off" type="number" id="cantidad" name="cantidad" [(ngModel)]="producto.cantidad"
+            required>
+          <label for="number">Quantity</label>
+        </div>
+        <!--Precio-->
+        <div class="input">
+          <input autocomplete="off" type="number" id="precio" name="precio" [(ngModel)]="producto.precio" required>
+          <label for="number">Price</label>
+        </div>
+        <!--Categoria-->
+        <div class="input">
+          <input autocomplete="off" type="text" id="categoria" name="categoria" [(ngModel)]="producto.categoria"
+            required>
+          <label for="text">Category</label>
+        </div>
+        <!--Tipo-->
+        <div class="input">
+          <input autocomplete="off" type="text" id="tipo" name="tipo" [(ngModel)]="producto.tipo" required>
+          <label for="text">Type</label>
+        </div>
+        <!--selector-->
+        <div aria-label="Default select example">
+          <label>Select an Provider:</label>
+          <select style="border-radius: 20px;border: 2px solid rgb(40, 40, 42);" id="nombreProvedor"
+            name="nombreProvedor" [(ngModel)]="producto.nombreProvedor" required>
+
+            <option class="form-select" *ngFor="let prove of proveedores">{{prove.nombreProvedor}}</option>
+          </select>
+        </div>
+        <br>
+        <div class="botones" style="display: flex;justify-content: space-between;">
+          <!--actualizar-->
+          <input type="submit" class="btn" value="Update" id="BootonCrear" [disabled]="!f.valid">
+          <!--Salir-->
+          <input type="submit" class="btn" value="Exit" routerLink="/producto/lista">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<br>

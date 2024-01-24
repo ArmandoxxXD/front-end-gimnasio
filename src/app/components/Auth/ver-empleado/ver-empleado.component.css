@@ -1,0 +1,301 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  flex: 1;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+
+header h1 {
+  margin: 0;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.search-container input[type="text"] {
+  background-color: white;
+  padding: 10px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  font-size: 16px;
+  width: 300px;
+  min-width: 200px;
+}
+
+.search-container input[type="text"]:focus {
+  outline: none;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.search-container button {
+  background-color: transparent;
+  color: #007bff;
+  border: 1px solid #007bff;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.search-container button:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.employee-container {
+  width: 90%;
+  padding: 20px 0;
+  margin: 0 auto;
+  max-width: 1200px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  /*border: 1px solid black;*/
+  cursor: pointer;
+}
+.employee-card {
+  display: flex;
+  background-color: #eee;
+  flex: 150px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e6e6e6;
+  padding: 20px;
+  margin: 20px;
+  width: 320px;
+  min-width: 340px;
+  height: 450px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.employee-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.employee-card img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.employee-card h2 {
+  font-size: 24px;
+  margin: 0;
+  margin-bottom: 5px;
+}
+
+.employee-card p {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+.employee-card strong {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+#BotonCrear {
+  border: none;
+  background-color: #434242;
+  color: white;
+  font-size: 1.15rem;
+  font-weight: 500;
+  padding: 0.7rem 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transform: translate(1) translate(0, 0);
+  transition: transform 225ms, box-shadow 225ms;
+}
+
+#BotonCrear:hover {
+  transform: scale(1.05) translate(0, -0.15rem);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.35);
+}
+
+#BotonCrear:active {
+  transform: scale(1) translate(0, 0.15rem);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.noselect {
+  width: 150px;
+  height: 50px;
+  margin-left: 65px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  background: red;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+  background: #e62222;
+  margin-top: 1em;
+}
+
+button,
+button span {
+  transition: 200ms;
+}
+
+button .text {
+  transform: translateX(35px);
+  color: white;
+  font-weight: bold;
+}
+/*Animacion del boton eliminar*/
+button .icon {
+  position: absolute;
+  border-left: 1px solid #c41b1b;
+  transform: translateX(110px);
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button svg {
+  width: 15px;
+  fill: #eee;
+}
+
+button:hover .text {
+  color: transparent;
+}
+
+button:hover .icon {
+  width: 150px;
+  border-left: none;
+  transform: translateX(0);
+}
+
+button:focus {
+  outline: none;
+}
+
+button:active .icon svg {
+  transform: scale(0.8);
+}
+
+/*Pantalla de carga*/
+#loading {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.8)
+    url("https://camaradirecta.com/template/images/loading-full.gif?_=1") center
+    no-repeat;
+}
+
+.cssbuttons-io {
+  position: relative;
+  font-family: inherit;
+  font-weight: 500px;
+  height: 45px;
+  text-align: center;
+  font-size: 18px;
+  letter-spacing: 0.05em;
+  border-radius: 0.8em;
+  border: none;
+  background: linear-gradient(to right, #3b3737, #d50b0b);
+  color: ghostwhite;
+  overflow: hidden;
+}
+
+.cssbuttons-io svg {
+  width: 1.2em;
+  height: 1.2em;
+  margin-right: 0.5em;
+}
+
+.cssbuttons-io span {
+  position: relative;
+  z-index: 10;
+  transition: color 0.4s;
+  display: inline-flex;
+  align-items: center;
+}
+
+.cssbuttons-io::before,
+.cssbuttons-io::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.cssbuttons-io::before {
+  content: "";
+  background: #000;
+  width: 120%;
+  left: -10%;
+  transform: skew(30deg);
+  transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+}
+
+.cssbuttons-io:hover::before {
+  transform: translate3d(100%, 0, 0);
+}
+
+.cssbuttons-io:active {
+  transform: scale(0.95);
+}
+
+button.icon {
+  background-color: rgb(67, 65, 65);
+}
+
+/* .employee-card button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .employee-card .buttons {
+    display: flex;
+    justify-content: center;
+  }
+
+  .employee-card .buttons button:first-child {
+    margin-right: 10px;
+  } */
+#loading {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.8)
+    url("https://camaradirecta.com/template/images/loading-full.gif?_=1") center
+    no-repeat;
+}

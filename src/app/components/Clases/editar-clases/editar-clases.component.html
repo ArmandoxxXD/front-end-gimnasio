@@ -1,0 +1,73 @@
+<div id="formulario" class="row-mt-10">
+  <div class="card col-md-4 mx-auto">
+    <div class="card-header">
+      <div class="text-header">Class Edit</div>
+    </div>
+
+    <div class="card-body">
+      <form (ngSubmit)="onUpdate()" novalidate #f="ngForm">
+        <!--nombre-->
+        <div class="input">
+          <input autocomplete="off" type="text" id="nombreClase" name="nombreClase" [(ngModel)]="clase.nombreClase"
+            required />
+          <label for="nombreClase">Class Name</label>
+        </div>
+        <!--Foto-->
+        <div class="input">
+          <input autocomplete="off" type="text" id="fotoClase" name="fotoClase" [(ngModel)]="clase.fotoClase"
+            required />
+          <label for="fotoClase">Photo</label>
+        </div>
+        <!--Descripción-->
+        <div class="input">
+          <input autocomplete="off" type="text" id="descripcion" name="descripcion" [(ngModel)]="clase.descripcion"
+            required />
+          <label for="descripcion">Description</label>
+        </div>
+        <!--Costo-->
+        <div class="input">
+          <input autocomplete="off" type="number" id="costo" name="costo" [(ngModel)]="clase.costo" required />
+          <label for="costo">Price</label>
+        </div>
+        <!--Instructor-->
+        <!--selector-->
+        <div aria-label="Default select example">
+          <label>Select an instructor:</label>
+          <select style="border-radius: 20px; border: 2px solid rgb(40, 40, 42)" id="nombreInstructor"
+            name="nombreInstructor" [(ngModel)]="clase.nombreInstructor" required>
+            <option class="form-select" value="" disable selected></option>
+            <option class="form-select" *ngFor="let instructor of instructores">
+              {{ instructor.nombreUsuario }}
+            </option>
+          </select>
+        </div>
+        <br />
+        <!--Fecha-->
+        <div class="input">
+          <input type="date" autocomplete="off" value="2023-03-08" class="form-control form-control-lg" id="fecha"
+            name="fecha" [(ngModel)]="clase.fecha" required />
+          <label for="fecha">Date</label>
+        </div>
+        <!--Hora-->
+        <div class="input">
+          <input autocomplete="off" class="form-control form-control-lg" type="time" value="05:00" min="05:00"
+            max="09:00" id="hora" name="hora" [(ngModel)]="clase.hora" required />
+          <label for="hora">Time</label>
+        </div>
+        <!--Cupo-->
+        <div class="input">
+          <input autocomplete="off" type="number" id="cupo" name="cupo" [(ngModel)]="clase.cupo" required />
+          <label for="cupo">Quota</label>
+        </div>
+        <br />
+        <div class="botones" style="display: flex; justify-content: space-between">
+          <!--Crear-->
+          <input type="submit" class="btn" value="Edit" id="BootonCrear" />
+          <!--Salir-->
+          <input type="submit" class="btn" value="Exit" routerLink="/clase/lista" />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<br />

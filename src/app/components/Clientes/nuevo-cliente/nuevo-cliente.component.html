@@ -1,0 +1,59 @@
+<div id="formulario" class="row-mt-10 ">
+  <div class="card col-md-4 mx-auto">
+    <div class="card-header">
+      <div class="text-header">Add Customer</div>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="onCreate()" novalidate #f="ngForm">
+        <!--nombreCliente-->
+        <div class="input">
+          <input autocomplete="off" type="text" id="nombreCliente" name="nombreCliente" [(ngModel)]="nombreCliente"
+            required>
+          <label for="text">Customer Name</label>
+        </div>
+
+        <!--nombreClase-->
+        <label class="input">Class:</label>
+        <div class="form-check">
+          <div *ngFor="let opcion of clases">
+            <input class="form-check-input" type="checkbox" id="flexCheckDefault" [value]="opcion.nombreClase"
+              (change)="onClaseChange(opcion.nombreClase)">
+            <label class="form-check-label" for="flexCheckDefault">
+              {{ opcion.nombreClase }}
+            </label>
+          </div>
+        </div>
+        <br>
+
+        <!--Edad-->
+        <div class="input">
+          <input autocomplete="off" type="number" id="edad" name="edad" [(ngModel)]="edad" required>
+          <label for="text">Age</label>
+        </div>
+        <!--Email-->
+        <div class="input">
+          <input autocomplete="off" type="email" id="email" name="email" [(ngModel)]="email" required>
+          <label for="text">Email</label>
+        </div>
+        <!--Telefono-->
+        <div class="input">
+          <input autocomplete="off" type="number" id="telefono" name="telefono" [(ngModel)]="telefono" required>
+          <label for="number">Phone</label>
+        </div>
+        <!--Subscripcion-->
+        <div class="input">
+          <input autocomplete="off" type="number" id="subcripcion" name="subcripcion" [(ngModel)]="subcripcion"
+            required>
+          <label for="text">Suscription</label>
+        </div>
+        <div class="botones" style="display: flex;justify-content: space-between;">
+          <!--Crear-->
+          <input type="submit" class="btn" value="Create" id="BootonCrear">
+          <!--Salir-->
+          <input type="submit" class="btn" value="Exit" routerLink="/cliente/lista">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<br>

@@ -1,0 +1,130 @@
+.contenedor {
+    padding: 10px;
+}
+.info-employee {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 2%;
+    padding: 10px;;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    /* background-color: #f0f0f0; */
+}
+.info-employee h1 {
+    margin-left: 20px;
+    background-color: transparent;
+}
+.nav-tabs {
+    /*background-color: #e4dfdf;*/
+    margin-bottom: 2%;
+    border-radius: 5px;
+}
+.img-and-text {
+    display: flex; 
+    flex-direction: row;
+    align-items: center;
+}    
+.img-and-text p {
+    margin-left: 20px;
+}
+.info-body {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+.stats-body {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+.tab-content {
+    padding: 10px;
+}
+#regMensual {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+#myChart {
+    max-width: 700px;
+    height: 700px;
+}
+.chart-container {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.calendar {
+    font-family: Arial, sans-serif;
+    width: 450px;
+    margin: 20px auto;
+    /*border: 1px solid #ccc;*/
+    border-radius: 5px;
+    padding: 0;
+}
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+.prev-month-btn, .next-month-btn {
+    background-color: transparent;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #ccc;
+}
+.prev-month-btn:hover, .next-month-btn:hover {
+    color: #1a1a1a;
+}
+.calendar-month {
+  font-size: 1.2em;
+  /*font-weight: bold*/
+  color: #1a1a1a;
+}
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    padding: 10px;
+}
+.calendar-days  {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    background-color: #1a1a1a;
+    height: 50px;
+    padding: 15px;
+    color: white;
+}
+.calendar-day {
+    text-align: center;
+    font-size: 0.8em;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 28px;
+    transition: 0.3s all;
+}
+
+.calendar-day:hover {
+    opacity: 0.5;
+    background-color: #ccc;
+    cursor: pointer;
+}
+
+.calendar-day:active {
+    transform: scale(0.85);
+}
+  
+.calendar-day.today {
+    background-color: #188cfc;
+    color: white;
+}

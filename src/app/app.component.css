@@ -1,0 +1,9 @@
+.header {
+    background-color: rgb(218, 218, 219);
+    background-size: cover;
+    min-height: 100vh;
+  }
+
+  .header .navbar {
+    background-color: transparent !important;
+  }
