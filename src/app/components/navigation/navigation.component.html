@@ -77,7 +77,7 @@
       <!-- Left links -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a *ngIf="isLogged && isAdmin || isInstructor || isRecepcionista " onmouseover="this.style.color='#DC0000'"
+          <a *ngIf="isLogged && isAdmin || isInstructor || isRecepcionista || isUser" onmouseover="this.style.color='#DC0000'"
             onmouseout="this.style.color='white'" class="nav-link" routerLink="/clase/lista">Class</a>
         </li>
         <li class="nav-item">
@@ -90,7 +90,7 @@
             onmouseout="this.style.color='white'" class="nav-link" routerLink="/proveedor/lista">Providers</a>
         </li>
         <li class="nav-item">
-          <a *ngIf="isLogged && isAdmin || isRecepcionista" onmouseover="this.style.color='#DC0000'"
+          <a *ngIf="isLogged && isAdmin || isRecepcionista || isUser" onmouseover="this.style.color='#DC0000'"
             onmouseout="this.style.color='white'" class="nav-link" routerLink="/producto/lista">Inventory</a>
         </li>
         <li *ngIf="isLogged && isAdmin || isRecepcionista" class="nav-item">
