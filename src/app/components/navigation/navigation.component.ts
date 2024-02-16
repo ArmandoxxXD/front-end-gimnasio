@@ -13,6 +13,7 @@ export class NavigationComponent implements OnInit {
   isAdmin: boolean = false;
   isInstructor: boolean = false;
   isRecepcionista: boolean = false;
+  isUser: boolean = false;
   userName: string = '';
   constructor(private token: TokenService, private router: Router) {}
 
@@ -21,6 +22,7 @@ export class NavigationComponent implements OnInit {
     this.isAdmin = this.token.isAdmin();
     this.isInstructor = this.token.isInstructor();
     this.isRecepcionista = this.token.isRecepcionista();
+    this.isUser = this.token.isUser();
     this.userName = this.token.getDatesUser();
   }
 
