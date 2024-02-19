@@ -21,9 +21,12 @@
                     <input type="password" name="password" id="password" placeholder="Password" [(ngModel)]="password"
                       autocomplete="off" required required="required" class="form-control" />
                   </div>
+                  <div class="mb-4">
+                    <re-captcha [siteKey]="keyCaptcha" (resolved)="onCaptchaResolved($event)"></re-captcha>
+                  </div>
                   <div class="text-center pt-1 mb-5 pb-1">
                     <button [disabled]="!f.valid" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
-                      type="button" type="submit" (click)="onLogin()">Login</button>
+                      type="button" type="submit">Login</button>
                   </div>
                 </form>
               </div>

@@ -14,15 +14,29 @@ import * as $ from "jquery";
 export class LoginComponent implements OnInit {
   nombreUsuario!: string;
   password!: string;
+  isCaptchaResolved: boolean = false;
+  keyCaptcha: string = "6Lfer3cpAAAAALCRed8HizQpVzDL5EMcuWz2vQag";
 
-  constructor(private auth:AuthService,private token:TokenService,private toastr:ToastrService,private router:Router) {}
+  constructor(
+    private auth:AuthService,
+    private token:TokenService,
+    private toastr:ToastrService,
+    private router:Router
+    ) {}
 
   ngOnInit(): void {
   }
 
+
+
   onLogin(): void {
     $('#loader-container').css('display', 'block');
     const dto= new LoginUser(this.nombreUsuario,this.password);
+    if (!this.isCaptchaResolved) {
+      this.toastr.error('Please resolve the captcha.', 'Fail', {timeOut: 3000});
+      $('#loader-container').css('display', 'none');
+      return;
+    }
     this.auth.login(dto).subscribe(
       data=>{
         $('#loader-container').css('display', 'none');
@@ -37,5 +51,13 @@ export class LoginComponent implements OnInit {
     );
 
   }
+
+  onCaptchaResolved(captchaResponse: string) {
+    this.isCaptchaResolved = true;
+    if (captchaResponse === null){
+      this.isCaptchaResolved = false;
+    }
+  }
+
 
 }
