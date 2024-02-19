@@ -1,11 +1,18 @@
 <header>
-  <h1>Employees</h1>
+  <h1 class="mt-2">Employees</h1>
   <div class="search-container">
-    <input type="text" class="form-control" placeholder="Search Employee..." name="filterPost" [(ngModel)]="filterPost">
-    <button class="cssbuttons-io me-5 rounded" id="botonNuevo" *ngIf="isAdmin" routerLink="/register">
+    <input type="text" class="form-control mt-2" placeholder="Search Employee..." name="filterPost" [(ngModel)]="filterPost">
+    <button class="cssbuttons-io me-5 rounded mt-2" id="botonNuevo" *ngIf="isAdmin" routerLink="/register">
       <span style="color: aliceblue;"><i class='bx bxs-plus-circle'></i> Add</span></button>
   </div>
 </header>
+
+<nav class="ms-5 mb-2" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page">Empleados</li>
+  </ol>
+</nav>
+
 <div class="employee-container">
   <div class="employee-card" *ngFor="let employee of employees | filterEmployees:filterPost">
     <img [src]="employee.foto" alt="Foto del empleado">

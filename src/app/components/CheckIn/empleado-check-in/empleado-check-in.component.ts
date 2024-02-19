@@ -21,7 +21,7 @@ export class EmpleadoCheckInComponent implements OnInit {
   diasVen: string[] = ['12-2-2023', '13-2-2023', '18-2-2023'];
   @ViewChild('myChart', { static: true }) myChart!: ElementRef;
   chart!: Chart;
-
+  
   private calendar!: HTMLElement;
   private prevBtn!: HTMLElement;
   private nextBtn!: HTMLElement;

@@ -161,6 +161,7 @@ font-family: 'Roboto', sans-serif; */
   z-index: 10;
   font-weight: bold;
   font-size: 75px;
+  text-align: center;
 }
 
 .Content_Pilar_Icono {
@@ -636,7 +637,7 @@ font-family: 'Roboto', sans-serif; */
     height: 715px;
     background-color: #e4190b7e;
   }
-  
+
   .Body__Content__container__content {
     position: absolute;
     display: flex;
@@ -732,37 +733,32 @@ font-family: 'Roboto', sans-serif; */
   }
 
 
-
-
-
-
-
   .Home__Body__Comienza {
     width: 100%;
     height: 615px;
   }
-  
+
   .home__Body__Content__container {
     width: 100%;
     height: 615px;
     position: relative;
     overflow: hidden;
   }
-  
+
   .home__Body__Content__container_img {
     width: 100%;
     height: 915px;
     position: absolute;
     z-index: -10;
   }
-  
+
   .home__Body__Comienza__Img_Filtro {
     position: absolute;
     width: 100%;
     height: 615px;
     background-color: #e4190b7e;
   }
-  
+
   .Body__Content__container__content {
     position: absolute;
     display: flex;
@@ -775,12 +771,12 @@ font-family: 'Roboto', sans-serif; */
     top: 50%;
     bottom: 40%;
   }
-  
+
   .Body__Content__container__content_text {
     font-size: 20px;
     font-weight: lighter;
   }
-  
+
   .Body__Content__container__content_titulo {
     font-size: 50px;
     font-weight: bold;
@@ -799,3 +795,18 @@ font-family: 'Roboto', sans-serif; */
     margin-top: 2em;
   }
 }
+
+
+@media (max-width: 500px) {
+  .home__Body__Content__Img {
+    height: 700px;
+  }
+  
+  .home__Body__Content__Img__Titulo {
+    margin: 90px 80px;
+  }
+
+  .Content__Pilares {
+    width: 100%;
+  }
+}  

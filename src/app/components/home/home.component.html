@@ -2,7 +2,7 @@
 
   <div class="home__Body_Gif_Container">
     <div class="home__Body_Gif">
-      <img class="home__Body_Gif__Gif" src="../../../assets/img/Ejercicio.gif" alt="Ejercicio Gif">
+      <img rel="preload" class="home__Body_Gif__Gif" src="../../../assets/img/Ejercicio.gif" alt="Ejercicio Gif">
 
       <div class="home__Body_Gif__Content">
         <div class="home__Body_Gif__Content__Marco">
@@ -86,13 +86,13 @@
       <div class="Body__Content__container__content">
         <p class="Body__Content__container__content_text">Realiza Tu Suscripción</p>
         <h1 class="Body__Content__container__content_titulo">COMIENZA HOY</h1>
-        <button class="btn_Red_outline mt-5"> CLICK AQUI </button>
+        <button class="btn_Red_outline mt-5" (click)="irCard()"> CLICK AQUI </button>
       </div>
 
     </div>
   </div>
 
-  <div id="cards">
+  <div #card id="cards">
     <div class="plan-card">
       <h2>Student Plant<span>For students of any institution</span></h2>
       <div class="etiquet-price">
@@ -345,11 +345,11 @@
   
               <a href="https://www.facebook.com/spartacusfitnesscenter/" style="margin-right: 5px;"
                 class="btn btn-outline-light btn-floating m-1" class="text-black" role="button"><i
-                  class="fab fa-facebook-f"></i></a>
+                  class="fab fa-facebook-f" style="color: #0863F7; font-size: 1.5em; margin: 5px;"></i></a>
   
               <a href="https://www.instagram.com/spartacusfc_/?igshid=YmMyMTA2M2Y=" style="margin-right: 5px;"
                 class="btn btn-outline-light btn-floating m-1" class="text-black" role="button"><i
-                  class="fab fa-instagram"></i></a>
+                  class="fab fa-instagram" style="color: #bf08f7; font-size: 1.5em; margin: 5px;"></i></a>
             </div>
   
           </div>

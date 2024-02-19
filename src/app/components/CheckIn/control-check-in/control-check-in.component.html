@@ -1,5 +1,12 @@
 <main>
   <h1>Check-in control</h1>
+
+  <nav class="ms-5 mt-3 mb-4" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">Employees Control</li>
+    </ol>
+  </nav>
+  
   <div class="cards-container">
     <div class="card" *ngFor="let employee of employees" routerLink="/checkIn-empleado/{{employee.id}}">
       <!--(click)="toCheck(employee)"-->
