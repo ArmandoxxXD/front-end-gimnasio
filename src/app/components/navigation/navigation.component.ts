@@ -28,7 +28,7 @@ export class NavigationComponent implements OnInit {
 
   logOut(): void {
     this.token.logOut();
-    this.router.navigate(['localhost:4200/home']);
     location.reload();
+    this.router.navigate(['localhost:4200/home']);
   }
 }
