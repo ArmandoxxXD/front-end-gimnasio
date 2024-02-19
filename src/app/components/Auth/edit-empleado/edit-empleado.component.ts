@@ -16,6 +16,7 @@ export class EditEmpleadoComponent implements OnInit {
   isAdmin: boolean = false;
   id!: number;
   empleado!: CreateUser;
+  nombre?: String;
 
   constructor(
     private authService: AuthService,
@@ -47,6 +48,7 @@ export class EditEmpleadoComponent implements OnInit {
     this.authService.detail(this.id).subscribe(
       (data) => {
         this.empleado = data;
+        this.nombre = data.nombreUsuario;
       },
       (err) => {
         this.toast.error(err.error.mensaje, 'Error', { timeOut: 3000 });

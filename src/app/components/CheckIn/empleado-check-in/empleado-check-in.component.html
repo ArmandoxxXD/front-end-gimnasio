@@ -1,3 +1,10 @@
+<nav class="ms-5 mt-5" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/control-checkIn">Employees Control</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{emp.nombreUsuario}}</li>
+  </ol>
+</nav>
+
 <div class="contenedor">
   <div class="info-employee">
     <img [src]="emp.foto" alt="" class="bd-placeholder-img rounded-circle" height="155px" width="155px">
