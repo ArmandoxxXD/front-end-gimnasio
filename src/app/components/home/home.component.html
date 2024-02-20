@@ -2,7 +2,7 @@
 
   <div class="home__Body_Gif_Container">
     <div class="home__Body_Gif">
-      <img class="home__Body_Gif__Gif" src="../../../assets/img/Ejercicio.gif" alt="Ejercicio Gif">
+      <img rel="preload" class="home__Body_Gif__Gif" src="../../../assets/img/Ejercicio.gif" alt="Ejercicio Gif">
 
       <div class="home__Body_Gif__Content">
         <div class="home__Body_Gif__Content__Marco">
@@ -86,13 +86,13 @@
       <div class="Body__Content__container__content">
         <p class="Body__Content__container__content_text">Realiza Tu Suscripción</p>
         <h1 class="Body__Content__container__content_titulo">COMIENZA HOY</h1>
-        <button class="btn_Red_outline mt-5"> CLICK AQUI </button>
+        <button class="btn_Red_outline mt-5" (click)="irCard()"> CLICK AQUI </button>
       </div>
 
     </div>
   </div>
 
-  <div id="cards">
+  <div #card id="cards">
     <div class="plan-card">
       <h2>Student Plant<span>For students of any institution</span></h2>
       <div class="etiquet-price">
@@ -343,13 +343,13 @@
   
             <div class="col-md-12 col-lg-4 ml-lg-5 text-center text-md-end">
   
-              <a href="https://www.facebook.com/spartacusfitnesscenter/" style="margin-right: 5px;"
+              <a href="https://www.facebook.com/spartacusfitnesscenter/" target="_blank" style="margin-right: 5px;"
                 class="btn btn-outline-light btn-floating m-1" class="text-black" role="button"><i
-                  class="fab fa-facebook-f"></i></a>
+                  class="fab fa-facebook-f" style="color: #0863F7; font-size: 1.5em; margin: 5px;"></i></a>
   
-              <a href="https://www.instagram.com/spartacusfc_/?igshid=YmMyMTA2M2Y=" style="margin-right: 5px;"
+              <a href="https://www.instagram.com/spartacusfc_/?igshid=YmMyMTA2M2Y=" target="_blank" style="margin-right: 5px;"
                 class="btn btn-outline-light btn-floating m-1" class="text-black" role="button"><i
-                  class="fab fa-instagram"></i></a>
+                  class="fab fa-instagram" style="color: #bf08f7; font-size: 1.5em; margin: 5px;"></i></a>
             </div>
   
           </div>
@@ -361,102 +361,4 @@
   
   </div>
 
-
 </div>
-
-
-<!-- 
-<div class="my-12" id="footer">
-
-  <footer class="text-center text-lg-start text-white" style="background-color: white;">
-
-    <div class="p-4 pb-0" style="color: black">
-
-      <section class="">
-
-        <div class="row ">
-
-          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-            <div id="divImg">
-              <img src="../../../assets/img/logo.jfif" alt="Bootstrap" width="50" height="50" id="image">
-              <h6 class="text-uppercase mb-4 font-weight-bold" id="h6">
-                Spartacus Fitness Center
-              </h6>
-            </div>
-
-            <p>
-              All in the same space, all connected for your comfort,
-              from extensive cardio to the best machines for your training.
-              And you, what are you waiting for to join us?
-          </div>
-
-
-          <hr class="w-100 clearfix d-md-none" />
-
-          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-            <h6 class="text-uppercase mb-4 font-weight-bold">
-              Menú
-            </h6>
-            <p>
-              <a onmouseover="this.style.color='#DC0000'" onmouseout="this.style.color='black'" class="nav-link"
-                routerLink="/proveedor/lista">Providers</a>
-            </p>
-            <p>
-              <a onmouseover="this.style.color='#DC0000'" onmouseout="this.style.color='black'" class="nav-link"
-                routerLink="/producto/lista">Products</a>
-            </p>
-            <p>
-
-            </p>
-          </div>
-
-          <hr class="w-100 clearfix d-md-none" />
-
-          <hr class="w-100 clearfix d-md-none" />
-
-          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
-            <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
-            <p><i class="fas fa-home mr-3"></i> Nayarit 52B, Dolores Hidalgo Guanajuato</p>
-            <p><i class="fas fa-envelope mr-3"></i> Spartacus@Fitness.com</p>
-            <p><i class="fas fa-phone mr-3"></i> + 52 418 567 88</p>
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <hr class="my-3">
-
-
-      <section class="p-3 pt-0">
-        <div class="row d-flex align-items-center">
-
-          <div class="col-md-7 col-lg-8 text-center text-md-start">
-
-            <div class="p-3">
-              © 2020 Copyright
-
-            </div>
-
-          </div>
-
-          <div class="col-md-12 col-lg-4 ml-lg-5 text-center text-md-end">
-
-            <a href="https://www.facebook.com/spartacusfitnesscenter/" style="margin-right: 5px;"
-              class="btn btn-outline-light btn-floating m-1" class="text-black" role="button"><i
-                class="fab fa-facebook-f"></i></a>
-
-            <a href="https://www.instagram.com/spartacusfc_/?igshid=YmMyMTA2M2Y=" style="margin-right: 5px;"
-              class="btn btn-outline-light btn-floating m-1" class="text-black" role="button"><i
-                class="fab fa-instagram"></i></a>
-          </div>
-
-        </div>
-      </section>
-
-    </div>
-
-  </footer>
-
-</div> -->

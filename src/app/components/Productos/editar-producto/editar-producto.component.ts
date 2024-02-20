@@ -18,6 +18,7 @@ export class EditarProductoComponent implements OnInit {
   proveedores:Proveedor[]=[];
   id!:number;
   producto!:Producto;
+  nombreProducto!: String;
 
   constructor(
     private productoService:ProductoService,
@@ -63,6 +64,7 @@ export class EditarProductoComponent implements OnInit {
     this.productoService.detail(this.id).subscribe(
       data=>{
         this.producto=data;
+        this.nombreProducto = this.producto.nombreProducto;
       },
       err=>{
         this.toast.error(err.error.mensaje,'Error',{timeOut:3000});
