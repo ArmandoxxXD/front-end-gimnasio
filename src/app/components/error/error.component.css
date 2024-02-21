@@ -1,0 +1,16 @@
+.error-container {
+    text-align: center;
+    padding: 40px;
+  }
+  .error-container h1 {
+    color: #a00;
+    font-size: 80px;
+  }
+  .error-container p {
+    color: #000;
+    font-size: 20px;
+  }
+  .btn-back {
+    background-color: #a00;
+    color: #fff;
+  }

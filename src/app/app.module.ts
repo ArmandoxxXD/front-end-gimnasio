@@ -49,6 +49,8 @@ import { DetalleClaseComponent } from './components/Clases/detalle-clase/detalle
 import { ListaClientesComponent } from './components/Clases/lista-clientes/lista-clientes.component';
 import { FilterEmployeesPipe } from './pipes/filter-employees.pipe';
 import { RecaptchaModule } from 'ng-recaptcha';
+import { ErrorComponent } from './components/error/error.component';
+import { ErrorInterceptor } from './interceptors/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -85,6 +87,7 @@ import { RecaptchaModule } from 'ng-recaptcha';
     DetalleClaseComponent,
     ListaClientesComponent,
     FilterEmployeesPipe,
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,
@@ -100,6 +103,7 @@ import { RecaptchaModule } from 'ng-recaptcha';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ClientesInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass:ErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent],
 })
