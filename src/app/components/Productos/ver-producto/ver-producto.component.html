@@ -35,36 +35,38 @@
   </button>
 </div>
 <!--tabla-->
-<table class="table table-borderless table-hover" style="text-align: center;">
-  <thead>
-    <tr>
-      <th scope="col">Image</th>
-      <th scope="col">Name</th>
-      <th scope="col">Quantity</th>
-      <th scope="col">Type</th>
-      <th scope="col">Provider</th>
-      <th scope="col">Price</th>
-      <th scope="col" *ngIf="isAdmin"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let producto of productos | filter:filterProductos">
-      <td><img data-bs-toggle="modal" data-bs-target="#exampleModal"
-          (click)="showImage(producto.imagen,producto.nombreProducto,producto.codeBar)" [src]="producto.imagen"
-          style="cursor: pointer;" class="card-img-top" width="60px" height="70px"></td>
-      <td>{{producto.nombreProducto}}</td>
-      <td style="vertical-align: middle;" id="stock{{producto.id}}">{{producto.cantidad}}</td>
-      <td>{{producto.tipo}}</td>
-      <td>{{producto.nombreProvedor}}</td>
-      <td>${{producto.precio}}</td>
-      <td *ngIf="isAdmin"><button class="btn btn-outline-warning m-2" style="margin-right: 2px; width: 100px;"
-          routerLink="/producto/editar/{{producto.id}}"><i class="fa-solid fa-pen-to-square"></i>Edit</button>
-        <button class="btn btn-outline-danger m-2" (click)="onDelete(producto.id)" style="width: 100px;"><i
-            class="fa-solid fa-trash"></i>Delete</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="table-responsive">
+  <table class="table table-borderless table-hover" style="text-align: center;">
+    <thead>
+      <tr>
+        <th scope="col">Image</th>
+        <th scope="col">Name</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Type</th>
+        <th scope="col">Provider</th>
+        <th scope="col">Price</th>
+        <th scope="col" *ngIf="isAdmin"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let producto of productos | filter:filterProductos">
+        <td><img data-bs-toggle="modal" data-bs-target="#exampleModal"
+            (click)="showImage(producto.imagen,producto.nombreProducto,producto.codeBar)" [src]="producto.imagen"
+            style="cursor: pointer;" class="card-img-top" width="60px" height="70px"></td>
+        <td>{{producto.nombreProducto}}</td>
+        <td style="vertical-align: middle;" id="stock{{producto.id}}">{{producto.cantidad}}</td>
+        <td>{{producto.tipo}}</td>
+        <td>{{producto.nombreProvedor}}</td>
+        <td>${{producto.precio}}</td>
+        <td *ngIf="isAdmin"><button class="btn btn-outline-warning m-2" style="margin-right: 2px; width: 100px;"
+            routerLink="/producto/editar/{{producto.id}}"><i class="fa-solid fa-pen-to-square"></i>Edit</button>
+          <button class="btn btn-outline-danger m-2" (click)="onDelete(producto.id)" style="width: 100px;"><i
+              class="fa-solid fa-trash"></i>Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 <br>
 
 

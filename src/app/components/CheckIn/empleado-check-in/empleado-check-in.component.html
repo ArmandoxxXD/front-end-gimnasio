@@ -10,7 +10,7 @@
     <img [src]="emp.foto" alt="" class="bd-placeholder-img rounded-circle" height="155px" width="155px">
     <h1 *ngIf="emp" style="text-transform: capitalize;">{{emp.nombreUsuario}}</h1>
   </div>
-  <div class="employee-body d-flex flex-row">
+  <div class="employee-body d-flex flex-row" style="flex-wrap: wrap;">
     <div class="info-body flex-fill me-4">
       <p style="text-transform: capitalize;">Name: {{emp.nombreUsuario}}</p>
       <p>Age: {{emp.edad}}</p>
@@ -43,24 +43,26 @@
       <div id="myTabContent" class="tab-content">
         <div class="tab-pane fade active show" id="datos" role="tabpanel">
           <p>Datos</p>
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>Id</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Type</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let ch of checks">
-                <td>{{ch.id}}</td>
-                <td>{{ch.fecha }}</td>
-                <td>{{ch.hora}}</td>
-                <td>{{ch.tipo}}</td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Type</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let ch of checks">
+                  <td>{{ch.id}}</td>
+                  <td>{{ch.fecha }}</td>
+                  <td>{{ch.hora}}</td>
+                  <td>{{ch.tipo}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
         <div class="tab-pane fade" id="horaE" role="tabpanel">
           <div class="img-and-text">
@@ -93,10 +95,10 @@
         <!--<div class="tab-pane fade" id="faltas" role="tabpanel">
                   <p>Faltas</p>
                 </div> -->
-        <div class="tab-pane fade" id="regMensual" role="tabpanel">
-          <p>Chart</p>
-          <div class="chart-container">
-            <canvas Id="myChart" #myChart></canvas>
+        <div class="tab-pane fade" id="regMensual" role="tabpanel" style="display: flex; align-items: center; flex-wrap: wrap; justify-content: center;">
+          <!-- <p>Chart</p> -->
+          <div class="chart-container" style="width: 40vw; height: 40vh;">
+            <canvas Id="myChart" #myChart ></canvas>
           </div>
         </div>
       </div>

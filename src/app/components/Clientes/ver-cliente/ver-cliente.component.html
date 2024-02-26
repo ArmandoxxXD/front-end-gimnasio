@@ -23,36 +23,37 @@
 </div>
 
 <!--tabla-->
-<table class="table table-borderless table-hover" style="text-align: center;">
-  <thead>
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Class</th>
-      <th scope="col">Age</th>
-      <!-- <th scope="col">Email</th> -->
-      <th scope="col">Phone</th>
-      <th scope="col">Suscription</th>
-      <th scope="col">Total payable to month</th>
-      <th scope="col" *ngIf="isAdmin"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let cliente of clientes | filterCliente:filterClientes">
-      <td>{{cliente.nombreCliente}}</td>
-      <td>{{cliente.nombreClase}}</td>
-      <td>{{cliente.edad}}</td>
-      <!-- <td>{{cliente.email}}</td> -->
-      <td>{{cliente.telefono}}</td>
-      <td>{{cliente.subcripcion | currency}}</td>
-      <td>{{cliente.totalPagarAlMes | currency}}</td>
-      <td *ngIf="isAdmin"><button class="btn btn-outline-warning me-2" routerLink="/cliente/editar/{{cliente.id}}">
-          <i class="fa-solid fa-pen-to-square"></i>Edit</button>
-        <button class="btn btn-outline-danger" (click)="onDelete(cliente.id)"><i
-            class="fa-solid fa-trash"></i>Detele</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
+<div class="table-responsive">
+  <table class="table table-borderless table-hover" style="text-align: center;">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Class</th>
+        <th scope="col">Age</th>
+        <!-- <th scope="col">Email</th> -->
+        <th scope="col">Phone</th>
+        <th scope="col">Suscription</th>
+        <th scope="col">Total payable to month</th>
+        <th scope="col" *ngIf="isAdmin"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cliente of clientes | filterCliente:filterClientes">
+        <td>{{cliente.nombreCliente}}</td>
+        <td>{{cliente.nombreClase}}</td>
+        <td>{{cliente.edad}}</td>
+        <!-- <td>{{cliente.email}}</td> -->
+        <td>{{cliente.telefono}}</td>
+        <td>{{cliente.subcripcion | currency}}</td>
+        <td>{{cliente.totalPagarAlMes | currency}}</td>
+        <td *ngIf="isAdmin"><button class="btn btn-outline-warning me-2" routerLink="/cliente/editar/{{cliente.id}}">
+            <i class="fa-solid fa-pen-to-square"></i>Edit</button>
+          <button class="btn btn-outline-danger" (click)="onDelete(cliente.id)"><i
+              class="fa-solid fa-trash"></i>Detele</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 <!-- Cargando -->
 <div id="loading"></div>
