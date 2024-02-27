@@ -48,6 +48,7 @@ import { FilterClasePipe } from './pipes/filter-clase.pipe';
 import { DetalleClaseComponent } from './components/Clases/detalle-clase/detalle-clase.component';
 import { ListaClientesComponent } from './components/Clases/lista-clientes/lista-clientes.component';
 import { FilterEmployeesPipe } from './pipes/filter-employees.pipe';
+import { RecaptchaModule } from 'ng-recaptcha';
 
 @NgModule({
   declarations: [
@@ -94,7 +95,8 @@ import { FilterEmployeesPipe } from './pipes/filter-employees.pipe';
     SweetAlert2Module.forRoot(), //Alertas de confirmacion
     HttpClientModule,
     FormsModule,
-    ZXingScannerModule
+    ZXingScannerModule,
+    RecaptchaModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ClientesInterceptor, multi: true },
