@@ -40,32 +40,34 @@
     </div>
   </div>
   <!--tabla-->
-  <table class="table table-borderless" style="text-align: center;">
-    <thead>
-      <tr>
-        <th scope="col">Image</th>
-        <th scope="col">Name</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">Category</th>
-        <th scope="col">Type</th>
-        <th scope="col">Provider</th>
-        <th scope="col">Price</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let producto of productos | filter:filterProductos">
-        <td><img data-bs-toggle="modal" data-bs-target="#exampleModal"
-            (click)="showImage(producto.imagen,producto.nombreProducto)" [src]="producto.imagen"
-            style="cursor: pointer;" class="card-img-top" width="60px" height="70px"></td>
-        <td>{{producto.nombreProducto}}</td>
-        <td style="vertical-align: middle;" id="stock{{producto.id}}">{{producto.cantidad}}</td>
-        <td>{{producto.categoria}}</td>
-        <td>{{producto.tipo}}</td>
-        <td>{{producto.nombreProvedor}}</td>
-        <td>{{producto.precio | currency}}</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="table-responsive">
+    <table class="table table-borderless" style="text-align: center;">
+      <thead>
+        <tr>
+          <th scope="col">Image</th>
+          <th scope="col">Name</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Category</th>
+          <th scope="col">Type</th>
+          <th scope="col">Provider</th>
+          <th scope="col">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let producto of productos | filter:filterProductos">
+          <td><img data-bs-toggle="modal" data-bs-target="#exampleModal"
+              (click)="showImage(producto.imagen,producto.nombreProducto)" [src]="producto.imagen"
+              style="cursor: pointer;" class="card-img-top" width="60px" height="70px"></td>
+          <td>{{producto.nombreProducto}}</td>
+          <td style="vertical-align: middle;" id="stock{{producto.id}}">{{producto.cantidad}}</td>
+          <td>{{producto.categoria}}</td>
+          <td>{{producto.tipo}}</td>
+          <td>{{producto.nombreProvedor}}</td>
+          <td>{{producto.precio | currency}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   <br>
 
   <!-- Modal -->
