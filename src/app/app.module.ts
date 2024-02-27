@@ -46,7 +46,6 @@ import { EditarClasesComponent } from './components/Clases/editar-clases/editar-
 import { NuevaClaseComponent } from './components/Clases/nueva-clase/nueva-clase.component';
 import { FilterClasePipe } from './pipes/filter-clase.pipe';
 import { DetalleClaseComponent } from './components/Clases/detalle-clase/detalle-clase.component';
-import { ListaClientesComponent } from './components/Clases/lista-clientes/lista-clientes.component';
 import { FilterEmployeesPipe } from './pipes/filter-employees.pipe';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { ErrorComponent } from './components/error/error.component';
@@ -85,7 +84,6 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
     NuevaClaseComponent,
     FilterClasePipe,
     DetalleClaseComponent,
-    ListaClientesComponent,
     FilterEmployeesPipe,
     ErrorComponent,
   ],

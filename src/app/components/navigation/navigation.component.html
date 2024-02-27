@@ -1,63 +1,3 @@
-<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div id="barra" class="container-fluid">
-    <a class="navbar-brand" href="#">
-      <img src="../../../assets/img/logo.jfif" alt="Bootstrap" width="50" height="50">
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        <span id="user" *ngIf="isLogged" class="navbar-text me-5" style="text-transform: capitalize;">
-          User: {{userName}}
-        </span>
-        <li class="nav-item">
-          <a *ngIf="isLogged && isAdmin || isInstructor || isRecepcionista " onmouseover="this.style.color='#DC0000'"
-            onmouseout="this.style.color='white'" class="nav-link" routerLink="/clase/lista">Class</a>
-        </li>
-        <li class="nav-item">
-          <a *ngIf="isLogged && isAdmin || isInstructor || isRecepcionista " class="nav-link"
-            routerLink="/cliente/lista">Customers</a>
-        </li>
-        <li class="nav-item">
-          <a *ngIf="isLogged && isAdmin || isRecepcionista " onmouseover="this.style.color='#DC0000'"
-            onmouseout="this.style.color='white'" class="nav-link" routerLink="/proveedor/lista">Providers</a>
-        </li>
-        <li class="nav-item">
-          <a *ngIf="isLogged && isAdmin || isRecepcionista" onmouseover="this.style.color='#DC0000'"
-            onmouseout="this.style.color='white'" class="nav-link" routerLink="/producto/lista">Inventory</a>
-        </li>
-        <li *ngIf="isLogged && isAdmin || isRecepcionista" class="nav-item">
-          <a class="nav-link" onmouseover="this.style.color='#DC0000'" onmouseout="this.style.color='white'"
-            routerLink="/nuevaVenta">Sale</a>
-        </li>
-        <li class="nav-item">
-          <a *ngIf="isLogged && isAdmin || isRecepcionista" onmouseover="this.style.color='#DC0000'"
-            onmouseout="this.style.color='white'" class="nav-link" routerLink="empelado/lista">Employees</a>
-        </li>
-        <li *ngIf="isLogged && isAdmin || isInstructor || isRecepcionista" class="nav-item">
-          <a class="nav-link" onmouseover="this.style.color='#DC0000'" onmouseout="this.style.color='white'"
-            routerLink="/chekcIn">CheckIn</a>
-        </li>
-        <li *ngIf="isLogged && isAdmin" class="nav-item me-5">
-          <a class="nav-link" onmouseover="this.style.color='#DC0000'" onmouseout="this.style.color='white'"
-            routerLink="/control-checkIn">Employees control</a>
-        </li>
-
-        <li class="nav-item">
-          <a *ngIf="!isLogged" class="nav-link" onmouseover="this.style.color='#DC0000'"
-            onmouseout="this.style.color='white'" routerLink="/login">Login</a>
-        </li>
-        <li>
-          <a *ngIf="isLogged" class="nav-link" onmouseover="this.style.color='#DC0000'"
-            onmouseout="this.style.color='white'" (click)="logOut()">LogOut</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav> -->
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
   <div class="container-fluid">
@@ -117,6 +57,14 @@
       </ul>
 
     </div>
+    <div>
+      <input type="text" [(ngModel)]="searchText" (input)="search()" placeholder="Buscar...">
+      <ul>
+        <li *ngFor="let result of searchResults">
+          <a [routerLink]="result">{{ result }}</a>
+        </li>
+      </ul>
+    </div>
 
     <div class="d-flex align-items-center">
 
@@ -130,70 +78,3 @@
   </div>
 
 </nav>
-
-<!-- <Header id="Header_Container">
-
-  <a id="Header_Link" href="/">
-    <img id="Header_Logo" src="../../../assets/img/LogoSpartacus.png" alt="Logo_Spartacus">
-  </a>
-
-  <nav id="Header_Nav">
-    <button class="Header_Nav_Icon navbar-toggler" type="button" data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-      aria-label="Toggle navigation">
-      <i class="fa-solid fa-bars" style="color: #ffffff; height: 100%; width: auto; margin-right: 2em;"></i>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-      <div id="Header_Nav_Content">
-        <ul id="Header_Nav_List" class="navbar-nav navbar-collapse">
-          <li class="nav-item">
-            <a *ngIf="isLogged && isAdmin || isInstructor || isRecepcionista " onmouseover="this.style.color='#DC0000'"
-              onmouseout="this.style.color='white'" class="nav-link" routerLink="/clase/lista">Class</a>
-          </li>
-          <li class="nav-item">
-            <a *ngIf="isLogged && isAdmin || isInstructor || isRecepcionista " class="nav-link"
-              onmouseover="this.style.color='#DC0000'" onmouseout="this.style.color='white'"
-              routerLink="/cliente/lista">Customers</a>
-          </li>
-          <li class="nav-item">
-            <a *ngIf="isLogged && isAdmin || isRecepcionista " onmouseover="this.style.color='#DC0000'"
-              onmouseout="this.style.color='white'" class="nav-link" routerLink="/proveedor/lista">Providers</a>
-          </li>
-          <li class="nav-item">
-            <a *ngIf="isLogged && isAdmin || isRecepcionista" onmouseover="this.style.color='#DC0000'"
-              onmouseout="this.style.color='white'" class="nav-link" routerLink="/producto/lista">Inventory</a>
-          </li>
-          <li *ngIf="isLogged && isAdmin || isRecepcionista" class="nav-item">
-            <a class="nav-link" onmouseover="this.style.color='#DC0000'" onmouseout="this.style.color='white'"
-              routerLink="/nuevaVenta">Sale</a>
-          </li>
-          <li class="nav-item">
-            <a *ngIf="isLogged && isAdmin || isRecepcionista" onmouseover="this.style.color='#DC0000'"
-              onmouseout="this.style.color='white'" class="nav-link" routerLink="empelado/lista">Employees</a>
-          </li>
-          <li *ngIf="isLogged && isAdmin || isInstructor || isRecepcionista" class="nav-item">
-            <a class="nav-link" onmouseover="this.style.color='#DC0000'" onmouseout="this.style.color='white'"
-              routerLink="/chekcIn">CheckIn</a>
-          </li>
-          <li *ngIf="isLogged && isAdmin" class="nav-item">
-            <a class="nav-link" onmouseover="this.style.color='#DC0000'" onmouseout="this.style.color='white'"
-              routerLink="/control-checkIn">Employees control</a>
-          </li>
-          <span id="user" *ngIf="isLogged" class="navbar-text me-4 mt-2"
-            style="text-transform: capitalize; font-weight: bold;">
-            {{userName}}
-          </span>
-          <a *ngIf="isLogged" class="nav-link me-4" onmouseover="this.style.color='#DC0000'"
-            onmouseout="this.style.color='white'" (click)="logOut()">LogOut</a>
-        </ul>
-      </div>
-
-      <button routerLink="/login" *ngIf="!isLogged" id="Header_ButtonLogin" type="button"
-        class="btn btn-outline-light">Login <i id="Header_ButtonLogin_Icono" class="fa-solid fa-right-to-bracket">
-        </i></button>
-    </div>
-  </nav>
-
-</Header> -->

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenService } from 'src/app/service/token.service';
 import * as $ from 'jquery';
+import { BuscadorService } from 'src/app/service/buscador.service';
 
 @Component({
   selector: 'app-navigation',
@@ -15,7 +16,9 @@ export class NavigationComponent implements OnInit {
   isRecepcionista: boolean = false;
   isUser: boolean = false;
   userName: string = '';
-  constructor(private token: TokenService, private router: Router) {}
+  searchText?: string;
+  searchResults?: string[];
+  constructor(private token: TokenService, private router: Router, private searchService: BuscadorService) {}
 
   ngOnInit(): void {
     this.isLogged = this.token.isLogged();
@@ -31,4 +34,16 @@ export class NavigationComponent implements OnInit {
     location.reload();
     this.router.navigate(['localhost:4200/home']);
   }
+
+  search(): void {
+    if (this.searchText) {
+      this.searchService.search(this.searchText).subscribe(results => {
+        this.searchResults = results;
+      });
+    } else {
+      this.searchResults = [];
+    }
+    console.log(this.searchResults);
+  }
+
 }
