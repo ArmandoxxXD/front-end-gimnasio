@@ -94,20 +94,6 @@ const routes: Routes = [
     canActivate: [ClientesGuard, HomeGuard],
     data: { expectedRoles: ['admin'] },
   },
-  {
-    path: 'listaClientes',
-    component: VerClasesComponent,
-    canActivate: [ClientesGuard, HomeGuard],
-    data: {
-      expectedRoles: [
-        'admin',
-        'user',
-        'instructor',
-        'mantenimiento',
-        'recepcionista',
-      ],
-    },
-  },
 
   //proveedor
   {

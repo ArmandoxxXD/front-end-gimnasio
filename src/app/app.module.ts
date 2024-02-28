@@ -50,6 +50,7 @@ import { FilterEmployeesPipe } from './pipes/filter-employees.pipe';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { ErrorComponent } from './components/error/error.component';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
@@ -86,6 +87,7 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
     DetalleClaseComponent,
     FilterEmployeesPipe,
     ErrorComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,

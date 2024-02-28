@@ -6,18 +6,16 @@ import { Observable, map } from 'rxjs';
   providedIn: 'root'
 })
 export class BuscadorService {
-  private searchUrl = 'assets/json/textos_por_modulos.json'; 
+  private searchUrl = 'assets/json/textos_por_modulo.json'; 
   constructor(
     private http: HttpClient
   ) { }
 
-  search(text: string): Observable<any> {
-    console.log(text);
-    return this.http.get<any>(this.searchUrl).pipe(
+  search(text: string): Observable<any[]> {
+    return this.http.get<any[]>(this.searchUrl).pipe(
       map(data => {
-        // Realizar la búsqueda en el JSON y devolver los resultados
-        // Aquí implementarías la lógica de búsqueda según tus necesidades
-        return Object.keys(data).filter(key => data[key].includes(text));
+        const searchText = text.toLowerCase();
+        return data.filter(item => item.data.some((word: string) => word.toLowerCase().includes(searchText)));
       })
     );
   }

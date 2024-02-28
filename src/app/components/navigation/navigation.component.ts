@@ -16,9 +16,7 @@ export class NavigationComponent implements OnInit {
   isRecepcionista: boolean = false;
   isUser: boolean = false;
   userName: string = '';
-  searchText?: string;
-  searchResults?: string[];
-  constructor(private token: TokenService, private router: Router, private searchService: BuscadorService) {}
+  constructor(private token: TokenService, private router: Router) {}
 
   ngOnInit(): void {
     this.isLogged = this.token.isLogged();
@@ -33,17 +31,6 @@ export class NavigationComponent implements OnInit {
     this.token.logOut();
     location.reload();
     this.router.navigate(['localhost:4200/home']);
-  }
-
-  search(): void {
-    if (this.searchText) {
-      this.searchService.search(this.searchText).subscribe(results => {
-        this.searchResults = results;
-      });
-    } else {
-      this.searchResults = [];
-    }
-    console.log(this.searchResults);
   }
 
 }

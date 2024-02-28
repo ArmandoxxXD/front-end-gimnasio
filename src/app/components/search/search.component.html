@@ -1,0 +1,14 @@
+<div class="search"> 
+  <div class="container-input">
+    <input type="text" class="input" [(ngModel)]="searchText" (input)="search()" placeholder="Search...">
+    <ul *ngIf="searchResults.length > 0" class="search-results">
+      <li *ngFor="let result of searchResults">
+        <a [routerLink]="result.path" class="search-result">
+          <div class="label">{{ result.label }}</div>
+          <div class="text">{{ result.text }}</div>
+        </a>
+      </li>
+    </ul>
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </div>
+</div>
