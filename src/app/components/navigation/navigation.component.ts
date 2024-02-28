@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenService } from 'src/app/service/token.service';
 import * as $ from 'jquery';
+import { BuscadorService } from 'src/app/service/buscador.service';
 
 @Component({
   selector: 'app-navigation',
@@ -31,4 +32,5 @@ export class NavigationComponent implements OnInit {
     location.reload();
     this.router.navigate(['localhost:4200/home']);
   }
+
 }

@@ -28,6 +28,7 @@ import { VerClasesComponent } from './components/Clases/ver-clases/ver-clases.co
 import { NuevaClaseComponent } from './components/Clases/nueva-clase/nueva-clase.component';
 import { EditarClasesComponent } from './components/Clases/editar-clases/editar-clases.component';
 import { DetalleClaseComponent } from './components/Clases/detalle-clase/detalle-clase.component';
+import { ErrorComponent } from './components/error/error.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -92,20 +93,6 @@ const routes: Routes = [
     component: EditarClasesComponent,
     canActivate: [ClientesGuard, HomeGuard],
     data: { expectedRoles: ['admin'] },
-  },
-  {
-    path: 'listaClientes',
-    component: VerClasesComponent,
-    canActivate: [ClientesGuard, HomeGuard],
-    data: {
-      expectedRoles: [
-        'admin',
-        'user',
-        'instructor',
-        'mantenimiento',
-        'recepcionista',
-      ],
-    },
   },
 
   //proveedor
@@ -285,7 +272,9 @@ const routes: Routes = [
     data: { expectedRoles: ['admin'] },
   },
 
-  { path: '**', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'error', component: ErrorComponent },
+
+  { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
 
 @NgModule({
