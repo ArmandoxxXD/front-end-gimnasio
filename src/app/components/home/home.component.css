@@ -124,10 +124,11 @@ font-family: 'Roboto', sans-serif; */
 .home__Body__Content__Img_Filtro {
   position: absolute;
   width: 100%;
-  height: 850px;
+  height: 750px;
 
   /* background-color: #c581025e; */
-  background-color: rgba(0, 0, 0, 0.726);
+  /* background-color: rgba(0, 0, 0, 0.726); */
+  background-color: #e4190b7e;
 }
 
 .Content {
@@ -213,10 +214,11 @@ font-family: 'Roboto', sans-serif; */
 
 .home__Body__Comienza__Img_Filtro {
   position: absolute;
-  top: 100px;
+  top: 0px;
   width: 100%;
   height: 715px;
-  background-color: #e4190b7e;
+  /* background-color: #e4190b7e; */
+  background-color: rgba(0, 0, 0, 0.726);
 }
 
 .Body__Content__container__content {
