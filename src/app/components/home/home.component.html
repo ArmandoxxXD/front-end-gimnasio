@@ -1,11 +1,445 @@
 <div class="Home__Body">
+  <div class="row">
+    <div class="col-12">
+
+      <div class="video__covert position-relative">
+        <video id="Header_video" class="home__Body_Gif__Gif" loop muted rel="preload">
+          <source src="../../../assets/img/Ejercicio.webm">
+        </video>
+        <div class="home__Body_Gif__Filtro"></div>
+      </div>
+
+    </div>
+
+    <div class="row home__Body__Content position-absolute">
+      <div class="col-1"></div>
+      <div class="col-3">
+        <div class="home__Body_Gif__Content">
+          <div class="home__Body_Gif__Content__Marco">
+            <p class="home__Body_Gif__Content__SubTitulo"> SPARTACUS</p>
+          </div>
+
+          <div class="home__Body_Gif__Content__Titulo">
+            <p class="home__Body_Gif__Content__Titulo_Text"> MAKE IT HAPPEN</p>
+          </div>
+
+          <button class="btn_Red"> MORE ABOUT US </button>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div id="carrusel">
+    <div id="carouselExampleSlidesOnly" class="carousel position-absolute" data-bs-ride="carousel">
+      <div class="carousel-inner container ">
+        <div class="carousel-item active text-center">
+          <img src="../../../assets/img/sfc.jfif" id="img" class="w-50" style="align-items: center; border-radius: 5%;"
+            alt="...">
+        </div>
+        <div class="carousel-item text-center" id="img1">
+          <img src="../../../assets/img/sfc2.jfif" class="w-50" style="align-items: center; border-radius: 5%"
+            alt="...">
+        </div>
+        <div class="carousel-item text-center" id="img">
+          <img src="../../../assets/img/sfc3.jfif" class="w-50" style="align-items: center; border-radius: 5%"
+            alt="...">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="home__Body__Content">
+    <!-- <div class="home__Body__Content_container">
+
+
+      <div class="container">
+        <div class="Content">
+          <h1 class="home__Body__Content__Img__Titulo">LOS 3 PILARES</h1>
+
+          <div class="Content__Pilares">
+            <div class="home__Body__Content__Pilar">
+              <i class="fa-solid fa-dumbbell Content_Pilar_Icono"></i>
+              <h2 class="home__Body__Content__Pilar_Titulo">Ejercicio</h2>
+              <p class="home__Body__Content__Pilar_texto">El ejercicio es necesario <br>
+                para mantener una buena salud.</p>
+            </div>
+
+            <div class="home__Body__Content__Pilar">
+              <i class="fa-solid fa-bowl-food Content_Pilar_Icono"></i>
+              <h2 class="home__Body__Content__Pilar_Titulo">Comida</h2>
+              <p class="home__Body__Content__Pilar_texto">La comida es la materia prima <br>
+                para que tu cuerpo se desarrolle.</p>
+            </div>
+
+            <div class="home__Body__Content__Pilar">
+              <i class="fa-regular fa-moon Content_Pilar_Icono"></i>
+              <h2 class="home__Body__Content__Pilar_Titulo">Dormir</h2>
+              <p class="home__Body__Content__Pilar_texto">Dormir es necesario <br>
+                para que el cuerpo se recupere.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+
+    <div class="row position-relative">
+
+      <div class="col-12 home__body__content__pilares position-relative">
+        <img class="home__Body__Content__Img position-absolute" src="../../../assets/img/Pesas.png" alt="Levantar Peso Muerto">
+        <div class="home__Body__Content__Img_Filtro"></div>
+      </div>
+
+      <div class="row position-absolute">
+        <div class="row">
+          <div class="col-12">
+            <h1 class="home__Body__Content__Img__Titulo">THE 3 PILLARS</h1>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-1"></div>
+          <div class="col-3">
+            <div class="home__Body__Content__Pilar">
+              <i class="fa-solid fa-dumbbell Content_Pilar_Icono"></i>
+              <h2 class="home__Body__Content__Pilar_Titulo">Exercise</h2>
+              <p class="home__Body__Content__Pilar_texto">Exercise is necessary <br>
+                to maintain good health.</p>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="home__Body__Content__Pilar">
+              <i class="fa-solid fa-bowl-food Content_Pilar_Icono"></i>
+              <h2 class="home__Body__Content__Pilar_Titulo">Meal</h2>
+              <p class="home__Body__Content__Pilar_texto"> Food is the raw material <br>
+                for your body to develop.</p>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="home__Body__Content__Pilar">
+              <i class="fa-regular fa-moon Content_Pilar_Icono"></i>
+              <h2 class="home__Body__Content__Pilar_Titulo">Sleep</h2>
+              <p class="home__Body__Content__Pilar_texto">Sleep is necessary <br>
+                for the body to recover.</p>
+            </div>
+          </div>
+          <div class="col-1"></div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="row position-relative">
+
+      <div class="col-12 home__body__comienza_comienza position-relative">
+        <img class="home__Body__Content__Img position-absolute" src="../../../assets/img/Levantar_Pesos_Muerto.jpg" alt="Pesas">
+        <div class="home__Body__Comienza__Img_Filtro position-absolute"></div>
+      </div>
+
+      <div class="row position-absolute Comienza__Comienza">
+        <div class="col-3"></div>
+        <div class="col-6 Body__Content__container__content">
+          <p class="Body__Content__container__content_text">Make Your Subscription</p>
+          <h1 class="Body__Content__container__content_titulo">START TODAY</h1>
+          <button class="btn_Red_outline mt-5" (click)="irCard()"> CLICK HERE </button>
+        </div>
+        <div class="col-3"></div>
+      </div>
+
+    </div>
+
+    
+    <div class="row">
+
+      <div #card id="cards">
+        <div class="plan-card">
+          <h2>Student Plant<span>For students of any institution</span></h2>
+          <div class="etiquet-price">
+            <p>349.99</p>
+    
+          </div>
+          <div class="benefits-list">
+            <p>Train in our gym and get exclusive access at a super price for you who are a student</p>
+            <ul>
+              <li><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M243.8 339.8C232.9 350.7 215.1 350.7 204.2 339.8L140.2 275.8C129.3 264.9 129.3 247.1 140.2 236.2C151.1 225.3 168.9 225.3 179.8 236.2L224 280.4L332.2 172.2C343.1 161.3 360.9 161.3 371.8 172.2C382.7 183.1 382.7 200.9 371.8 211.8L243.8 339.8zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 48C141.1 48 48 141.1 48 256C48 370.9 141.1 464 256 464C370.9 464 464 370.9 464 256C464 141.1 370.9 48 256 48z">
+                  </path>
+                </svg><span>Free weight area</span></li>
+              <li><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M243.8 339.8C232.9 350.7 215.1 350.7 204.2 339.8L140.2 275.8C129.3 264.9 129.3 247.1 140.2 236.2C151.1 225.3 168.9 225.3 179.8 236.2L224 280.4L332.2 172.2C343.1 161.3 360.9 161.3 371.8 172.2C382.7 183.1 382.7 200.9 371.8 211.8L243.8 339.8zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 48C141.1 48 48 141.1 48 256C48 370.9 141.1 464 256 464C370.9 464 464 370.9 464 256C464 141.1 370.9 48 256 48z">
+                  </path>
+                </svg><span>Integrated weight area</span></li>
+              <li><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M243.8 339.8C232.9 350.7 215.1 350.7 204.2 339.8L140.2 275.8C129.3 264.9 129.3 247.1 140.2 236.2C151.1 225.3 168.9 225.3 179.8 236.2L224 280.4L332.2 172.2C343.1 161.3 360.9 161.3 371.8 172.2C382.7 183.1 382.7 200.9 371.8 211.8L243.8 339.8zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 48C141.1 48 48 141.1 48 256C48 370.9 141.1 464 256 464C370.9 464 464 370.9 464 256C464 141.1 370.9 48 256 48z">
+                  </path>
+                </svg><span>Unlimited access</span></li>
+              <li><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M243.8 339.8C232.9 350.7 215.1 350.7 204.2 339.8L140.2 275.8C129.3 264.9 129.3 247.1 140.2 236.2C151.1 225.3 168.9 225.3 179.8 236.2L224 280.4L332.2 172.2C343.1 161.3 360.9 161.3 371.8 172.2C382.7 183.1 382.7 200.9 371.8 211.8L243.8 339.8zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 48C141.1 48 48 141.1 48 256C48 370.9 141.1 464 256 464C370.9 464 464 370.9 464 256C464 141.1 370.9 48 256 48z">
+                  </path>
+                </svg><span>No cancellation penalties</span></li>
+              <br>
+              <br>
+            </ul>
+          </div>
+          <div class="button-get-plan mt-5">
+            <a routerLink="/register">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-rocket">
+                <path
+                  d="M156.6 384.9L125.7 353.1C117.2 345.5 114.2 333.1 117.1 321.8C120.1 312.9 124.1 301.3 129.8 288H24C15.38 288 7.414 283.4 3.146 275.9C-1.123 268.4-1.042 259.2 3.357 251.8L55.83 163.3C68.79 141.4 92.33 127.1 117.8 127.1H200C202.4 124 204.8 120.3 207.2 116.7C289.1-4.07 411.1-8.142 483.9 5.275C495.6 7.414 504.6 16.43 506.7 28.06C520.1 100.9 516.1 222.9 395.3 304.8C391.8 307.2 387.1 309.6 384 311.1V394.2C384 419.7 370.6 443.2 348.7 456.2L260.2 508.6C252.8 513 243.6 513.1 236.1 508.9C228.6 504.6 224 496.6 224 488V380.8C209.9 385.6 197.6 389.7 188.3 392.7C177.1 396.3 164.9 393.2 156.6 384.9V384.9zM384 167.1C406.1 167.1 424 150.1 424 127.1C424 105.9 406.1 87.1 384 87.1C361.9 87.1 344 105.9 344 127.1C344 150.1 361.9 167.1 384 167.1z">
+                </path>
+              </svg>
+              <span>Suscribe now</span>
+            </a>
+          </div>
+        </div>
+    
+        <div class="plan-card">
+          <h2>Basic Plan<span>Train with us at any time
+            </span></h2>
+          <div class="etiquet-price">
+            <p>499.99</p>
+    
+          </div>
+          <div class="benefits-list">
+            <p>Train in our gym and get access to the different machines we have</p>
+            <ul>
+              <li><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M243.8 339.8C232.9 350.7 215.1 350.7 204.2 339.8L140.2 275.8C129.3 264.9 129.3 247.1 140.2 236.2C151.1 225.3 168.9 225.3 179.8 236.2L224 280.4L332.2 172.2C343.1 161.3 360.9 161.3 371.8 172.2C382.7 183.1 382.7 200.9 371.8 211.8L243.8 339.8zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 48C141.1 48 48 141.1 48 256C48 370.9 141.1 464 256 464C370.9 464 464 370.9 464 256C464 141.1 370.9 48 256 48z">
+                  </path>
+                </svg><span>Free weight area
+                </span></li>
+              <li><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M243.8 339.8C232.9 350.7 215.1 350.7 204.2 339.8L140.2 275.8C129.3 264.9 129.3 247.1 140.2 236.2C151.1 225.3 168.9 225.3 179.8 236.2L224 280.4L332.2 172.2C343.1 161.3 360.9 161.3 371.8 172.2C382.7 183.1 382.7 200.9 371.8 211.8L243.8 339.8zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 48C141.1 48 48 141.1 48 256C48 370.9 141.1 464 256 464C370.9 464 464 370.9 464 256C464 141.1 370.9 48 256 48z">
+                  </path>
+                </svg><span>Integrated weight area</span></li>
+              <li><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M243.8 339.8C232.9 350.7 215.1 350.7 204.2 339.8L140.2 275.8C129.3 264.9 129.3 247.1 140.2 236.2C151.1 225.3 168.9 225.3 179.8 236.2L224 280.4L332.2 172.2C343.1 161.3 360.9 161.3 371.8 172.2C382.7 183.1 382.7 200.9 371.8 211.8L243.8 339.8zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 48C141.1 48 48 141.1 48 256C48 370.9 141.1 464 256 464C370.9 464 464 370.9 464 256C464 141.1 370.9 48 256 48z">
+                  </path>
+                </svg><span>Unlimited access
+                </span></li>
+              <li><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M243.8 339.8C232.9 350.7 215.1 350.7 204.2 339.8L140.2 275.8C129.3 264.9 129.3 247.1 140.2 236.2C151.1 225.3 168.9 225.3 179.8 236.2L224 280.4L332.2 172.2C343.1 161.3 360.9 161.3 371.8 172.2C382.7 183.1 382.7 200.9 371.8 211.8L243.8 339.8zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 48C141.1 48 48 141.1 48 256C48 370.9 141.1 464 256 464C370.9 464 464 370.9 464 256C464 141.1 370.9 48 256 48z">
+                  </path>
+                </svg><span>Massage chairs
+                </span></li>
+              <li><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M243.8 339.8C232.9 350.7 215.1 350.7 204.2 339.8L140.2 275.8C129.3 264.9 129.3 247.1 140.2 236.2C151.1 225.3 168.9 225.3 179.8 236.2L224 280.4L332.2 172.2C343.1 161.3 360.9 161.3 371.8 172.2C382.7 183.1 382.7 200.9 371.8 211.8L243.8 339.8zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 48C141.1 48 48 141.1 48 256C48 370.9 141.1 464 256 464C370.9 464 464 370.9 464 256C464 141.1 370.9 48 256 48z">
+                  </path>
+                </svg><span>Collagen booth
+                </span></li>
+              <li><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M243.8 339.8C232.9 350.7 215.1 350.7 204.2 339.8L140.2 275.8C129.3 264.9 129.3 247.1 140.2 236.2C151.1 225.3 168.9 225.3 179.8 236.2L224 280.4L332.2 172.2C343.1 161.3 360.9 161.3 371.8 172.2C382.7 183.1 382.7 200.9 371.8 211.8L243.8 339.8zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 48C141.1 48 48 141.1 48 256C48 370.9 141.1 464 256 464C370.9 464 464 370.9 464 256C464 141.1 370.9 48 256 48z">
+                  </path>
+                </svg><span>No cancellation penalties
+                </span></li>
+              <br>
+            </ul>
+          </div>
+          <div class="button-get-plan" style="margin-top: 42px;">
+            <a routerLink="/register">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-rocket">
+                <path
+                  d="M156.6 384.9L125.7 353.1C117.2 345.5 114.2 333.1 117.1 321.8C120.1 312.9 124.1 301.3 129.8 288H24C15.38 288 7.414 283.4 3.146 275.9C-1.123 268.4-1.042 259.2 3.357 251.8L55.83 163.3C68.79 141.4 92.33 127.1 117.8 127.1H200C202.4 124 204.8 120.3 207.2 116.7C289.1-4.07 411.1-8.142 483.9 5.275C495.6 7.414 504.6 16.43 506.7 28.06C520.1 100.9 516.1 222.9 395.3 304.8C391.8 307.2 387.1 309.6 384 311.1V394.2C384 419.7 370.6 443.2 348.7 456.2L260.2 508.6C252.8 513 243.6 513.1 236.1 508.9C228.6 504.6 224 496.6 224 488V380.8C209.9 385.6 197.6 389.7 188.3 392.7C177.1 396.3 164.9 393.2 156.6 384.9V384.9zM384 167.1C406.1 167.1 424 150.1 424 127.1C424 105.9 406.1 87.1 384 87.1C361.9 87.1 344 105.9 344 127.1C344 150.1 361.9 167.1 384 167.1z">
+                </path>
+              </svg>
+              <span>Suscribe Now</span>
+            </a>
+          </div>
+        </div>
+    
+        <div class="plan-card">
+          <h2>Deluxe Plan<span>Get access to all our benefits
+            </span></h2>
+          <div class="etiquet-price">
+            <p>699.99</p>
+    
+          </div>
+          <div class="benefits-list">
+            <p>Train in our gym and get unique exclusive access, plus other surprises</p>
+            <ul>
+              <li><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M243.8 339.8C232.9 350.7 215.1 350.7 204.2 339.8L140.2 275.8C129.3 264.9 129.3 247.1 140.2 236.2C151.1 225.3 168.9 225.3 179.8 236.2L224 280.4L332.2 172.2C343.1 161.3 360.9 161.3 371.8 172.2C382.7 183.1 382.7 200.9 371.8 211.8L243.8 339.8zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 48C141.1 48 48 141.1 48 256C48 370.9 141.1 464 256 464C370.9 464 464 370.9 464 256C464 141.1 370.9 48 256 48z">
+                  </path>
+                </svg><span>Free weight area
+                </span></li>
+              <li><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M243.8 339.8C232.9 350.7 215.1 350.7 204.2 339.8L140.2 275.8C129.3 264.9 129.3 247.1 140.2 236.2C151.1 225.3 168.9 225.3 179.8 236.2L224 280.4L332.2 172.2C343.1 161.3 360.9 161.3 371.8 172.2C382.7 183.1 382.7 200.9 371.8 211.8L243.8 339.8zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 48C141.1 48 48 141.1 48 256C48 370.9 141.1 464 256 464C370.9 464 464 370.9 464 256C464 141.1 370.9 48 256 48z">
+                  </path>
+                </svg><span>Integrated weight area
+                </span></li>
+              <li><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M243.8 339.8C232.9 350.7 215.1 350.7 204.2 339.8L140.2 275.8C129.3 264.9 129.3 247.1 140.2 236.2C151.1 225.3 168.9 225.3 179.8 236.2L224 280.4L332.2 172.2C343.1 161.3 360.9 161.3 371.8 172.2C382.7 183.1 382.7 200.9 371.8 211.8L243.8 339.8zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 48C141.1 48 48 141.1 48 256C48 370.9 141.1 464 256 464C370.9 464 464 370.9 464 256C464 141.1 370.9 48 256 48z">
+                  </path>
+                </svg><span>Unlimited access
+                </span></li>
+              <li><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M243.8 339.8C232.9 350.7 215.1 350.7 204.2 339.8L140.2 275.8C129.3 264.9 129.3 247.1 140.2 236.2C151.1 225.3 168.9 225.3 179.8 236.2L224 280.4L332.2 172.2C343.1 161.3 360.9 161.3 371.8 172.2C382.7 183.1 382.7 200.9 371.8 211.8L243.8 339.8zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 48C141.1 48 48 141.1 48 256C48 370.9 141.1 464 256 464C370.9 464 464 370.9 464 256C464 141.1 370.9 48 256 48z">
+                  </path>
+                </svg><span>No cancellation penalties
+                </span></li>
+              <li><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M243.8 339.8C232.9 350.7 215.1 350.7 204.2 339.8L140.2 275.8C129.3 264.9 129.3 247.1 140.2 236.2C151.1 225.3 168.9 225.3 179.8 236.2L224 280.4L332.2 172.2C343.1 161.3 360.9 161.3 371.8 172.2C382.7 183.1 382.7 200.9 371.8 211.8L243.8 339.8zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 48C141.1 48 48 141.1 48 256C48 370.9 141.1 464 256 464C370.9 464 464 370.9 464 256C464 141.1 370.9 48 256 48z">
+                  </path>
+                </svg><span>Massage chairs
+                </span></li>
+              <li><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M243.8 339.8C232.9 350.7 215.1 350.7 204.2 339.8L140.2 275.8C129.3 264.9 129.3 247.1 140.2 236.2C151.1 225.3 168.9 225.3 179.8 236.2L224 280.4L332.2 172.2C343.1 161.3 360.9 161.3 371.8 172.2C382.7 183.1 382.7 200.9 371.8 211.8L243.8 339.8zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 48C141.1 48 48 141.1 48 256C48 370.9 141.1 464 256 464C370.9 464 464 370.9 464 256C464 141.1 370.9 48 256 48z">
+                  </path>
+                </svg><span>Invite a friend
+                </span></li>
+              <li><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M243.8 339.8C232.9 350.7 215.1 350.7 204.2 339.8L140.2 275.8C129.3 264.9 129.3 247.1 140.2 236.2C151.1 225.3 168.9 225.3 179.8 236.2L224 280.4L332.2 172.2C343.1 161.3 360.9 161.3 371.8 172.2C382.7 183.1 382.7 200.9 371.8 211.8L243.8 339.8zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 48C141.1 48 48 141.1 48 256C48 370.9 141.1 464 256 464C370.9 464 464 370.9 464 256C464 141.1 370.9 48 256 48z">
+                  </path>
+                </svg><span>Collagen booth
+                </span></li>
+              <li><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M243.8 339.8C232.9 350.7 215.1 350.7 204.2 339.8L140.2 275.8C129.3 264.9 129.3 247.1 140.2 236.2C151.1 225.3 168.9 225.3 179.8 236.2L224 280.4L332.2 172.2C343.1 161.3 360.9 161.3 371.8 172.2C382.7 183.1 382.7 200.9 371.8 211.8L243.8 339.8zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 48C141.1 48 48 141.1 48 256C48 370.9 141.1 464 256 464C370.9 464 464 370.9 464 256C464 141.1 370.9 48 256 48z">
+                  </path>
+                </svg><span>Exclusive surprises
+                </span></li>
+            </ul>
+          </div>
+          <div class="button-get-plan">
+            <a routerLink="/register">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-rocket">
+                <path
+                  d="M156.6 384.9L125.7 353.1C117.2 345.5 114.2 333.1 117.1 321.8C120.1 312.9 124.1 301.3 129.8 288H24C15.38 288 7.414 283.4 3.146 275.9C-1.123 268.4-1.042 259.2 3.357 251.8L55.83 163.3C68.79 141.4 92.33 127.1 117.8 127.1H200C202.4 124 204.8 120.3 207.2 116.7C289.1-4.07 411.1-8.142 483.9 5.275C495.6 7.414 504.6 16.43 506.7 28.06C520.1 100.9 516.1 222.9 395.3 304.8C391.8 307.2 387.1 309.6 384 311.1V394.2C384 419.7 370.6 443.2 348.7 456.2L260.2 508.6C252.8 513 243.6 513.1 236.1 508.9C228.6 504.6 224 496.6 224 488V380.8C209.9 385.6 197.6 389.7 188.3 392.7C177.1 396.3 164.9 393.2 156.6 384.9V384.9zM384 167.1C406.1 167.1 424 150.1 424 127.1C424 105.9 406.1 87.1 384 87.1C361.9 87.1 344 105.9 344 127.1C344 150.1 361.9 167.1 384 167.1z">
+                </path>
+              </svg>
+              <span>Suscribe Now</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="my-12" id="footer">
+
+      <footer class="text-center text-lg-start text-white" style="background-color: #212529; color: white;">
+  
+        <div class="p-4 pb-0" style="color: white">
+  
+          <section class="">
+  
+            <div class="row ">
+  
+              <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                <div class="mt-2" id="divImg">
+                  <img src="../../../assets/img/LogoSpartacus.png" alt="Bootstrap" width="250" height="50" id="image">
+                  <h6 class="text-uppercase mb-4 font-weight-bold mt-3" id="h6">
+                    Spartacus Fitness Center
+                  </h6>
+                </div>
+  
+                <p>
+                  All in the same space, all connected for your comfort,
+                  from extensive cardio to the best machines for your training.
+                  And you, what are you waiting for to join us?
+              </div>
+  
+  
+              <hr class="w-100 clearfix d-md-none" />
+  
+              <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                <h6 class="text-uppercase mb-4 font-weight-bold">
+                  Terminos y condiciones
+                </h6>
+                <p>
+                  <a onmouseover="this.style.color='#DC0000'" onmouseout="this.style.color='white'" class="nav-link"
+                    routerLink="/politicas&privacidad">Politicas de privacidad</a>
+                </p>
+              </div>
+  
+              <hr class="w-100 clearfix d-md-none" />
+  
+              <hr class="w-100 clearfix d-md-none" />
+  
+              <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
+                <p><i class="fas fa-home mr-3"></i> Nayarit 52B, Dolores Hidalgo Guanajuato</p>
+                <p><i class="fas fa-envelope mr-3"></i> Spartacus&#64;Fitness.com</p>
+                <p><i class="fas fa-phone mr-3"></i> + 52 418 567 88</p>
+              </div>
+  
+            </div>
+  
+          </section>
+  
+  
+          <hr class="my-3">
+  
+  
+          <section class="p-3 pt-0">
+            <div class="row d-flex align-items-center">
+  
+              <div class="col-md-7 col-lg-8 text-center text-md-start">
+  
+                <div class="p-3">
+                  © 2020 Copyright
+  
+                </div>
+  
+              </div>
+  
+              <div class="col-md-12 col-lg-4 ml-lg-5 text-center text-md-end">
+  
+                <a href="https://www.facebook.com/spartacusfitnesscenter/" target="_blank" style="margin-right: 5px;"
+                  class="btn btn-outline-light btn-floating m-1" class="text-black" role="button"><i
+                    class="fab fa-facebook-f" style="color: #0863F7; font-size: 1.5em; margin: 5px;"></i></a>
+  
+                <a href="https://www.instagram.com/spartacusfc_/?igshid=YmMyMTA2M2Y=" target="_blank"
+                  style="margin-right: 5px;" class="btn btn-outline-light btn-floating m-1" class="text-black"
+                  role="button"><i class="fab fa-instagram"
+                    style="color: #bf08f7; font-size: 1.5em; margin: 5px;"></i></a>
+              </div>
+  
+            </div>
+          </section>
+  
+        </div>
+  
+      </footer>
+  
+    </div>
+
+  </div>
+
+  <!-- <div class="Home__Body">
 
   <div class="home__Body_Gif_Container">
     <div class="home__Body_Gif">
-      <video id="Header_video" class="home__Body_Gif__Gif" loop muted rel="preload" >
-        <source src="../../../assets/img/Ejercicio.webm"
-        alt="Ejercicio webm">
-      </video>
+
+
+      <div class="video__covert">
+        <video id="Header_video" class="home__Body_Gif__Gif" loop muted rel="preload">
+          <source src="../../../assets/img/Ejercicio.webm" alt="Ejercicio webm">
+        </video>
+      </div>
 
       <div class="home__Body_Gif__Content">
         <div class="home__Body_Gif__Content__Marco">
@@ -46,8 +480,7 @@
 
   <div class="Home__Body__Comienza">
     <div class="home__Body__Content__container">
-      <img class="home__Body__Content__container_img" src="../../../assets/img/Pesas.png"
-        alt="Levantar Peso Muerto">
+      <img class="home__Body__Content__container_img" src="../../../assets/img/Pesas.png" alt="Levantar Peso Muerto">
 
       <div class="home__Body__Comienza__Img_Filtro"></div>
 
@@ -347,14 +780,15 @@
             </div>
 
             <div class="col-md-12 col-lg-4 ml-lg-5 text-center text-md-end">
-  
+
               <a href="https://www.facebook.com/spartacusfitnesscenter/" target="_blank" style="margin-right: 5px;"
                 class="btn btn-outline-light btn-floating m-1" class="text-black" role="button"><i
                   class="fab fa-facebook-f" style="color: #0863F7; font-size: 1.5em; margin: 5px;"></i></a>
-  
-              <a href="https://www.instagram.com/spartacusfc_/?igshid=YmMyMTA2M2Y=" target="_blank" style="margin-right: 5px;"
-                class="btn btn-outline-light btn-floating m-1" class="text-black" role="button"><i
-                  class="fab fa-instagram" style="color: #bf08f7; font-size: 1.5em; margin: 5px;"></i></a>
+
+              <a href="https://www.instagram.com/spartacusfc_/?igshid=YmMyMTA2M2Y=" target="_blank"
+                style="margin-right: 5px;" class="btn btn-outline-light btn-floating m-1" class="text-black"
+                role="button"><i class="fab fa-instagram"
+                  style="color: #bf08f7; font-size: 1.5em; margin: 5px;"></i></a>
             </div>
 
           </div>
@@ -366,4 +800,4 @@
 
   </div>
 
-</div>
+</div> -->
