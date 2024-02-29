@@ -1,70 +1,71 @@
-<!-- Elaboro: Juan de Dios, Victor Garay -->
-<nav class="ms-5 mb-2 mt-5" aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a routerLink="/nuevaVenta">Vender</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Ventas</li>
-  </ol>
-</nav>
+<div class="content">
+  <nav class="ms-5 mb-2 mt-5" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="/nuevaVenta">Vender</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Ventas</li>
+    </ol>
+  </nav>
 
-<div class="container mt-4">
-  <!-- <button class="cssbuttons-io mb-5 rounded" id="botonNuevo" routerLink="/nuevaVenta">
-    <span><i class='bx bx-arrow-back me-3'></i>
-      Return</span>
-  </button> -->
-  <!-- Tabla de Ventas -->
-  <table class="table table-striped">
-    <thead id="tablaBg">
-      <tr>
-        <th scope="col" class="text-center">Products</th>
-        <th scope="col">Amount</th>
-        <th scope="col">Payment Type</th>
-        <th scope="col">Date</th>
-        <th scope="col">Total</th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-    <tbody id="buscarTablaVentas">
-      <tr *ngFor="let ventas of ventas;let i = index" class="text-capitalize">
-        <td class="text-center" scope="col"><button class="btn btn-dark" data-bs-toggle="modal"
-            data-bs-target="#VerVenta" (click)="mostrarDetalles(i)"><i class='bx bx-show'></i></button></td>
-        <td scope="col">{{ventas.productos.length}}</td>
-        <td scope="col">{{ventas.tipoPago}}</td>
-        <td scope="col">{{ventas.fecha | date}}</td>
-        <td scope="col">$ {{ventas.total.toFixed(2)}}</td>
-        <td>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+  <div class="container mt-4">
+    <!-- <button class="cssbuttons-io mb-5 rounded" id="botonNuevo" routerLink="/nuevaVenta">
+      <span><i class='bx bx-arrow-back me-3'></i>
+        Return</span>
+    </button> -->
+    <!-- Tabla de Ventas -->
+    <table class="table table-striped">
+      <thead id="tablaBg">
+        <tr>
+          <th scope="col" class="text-center">Products</th>
+          <th scope="col">Amount</th>
+          <th scope="col">Payment Type</th>
+          <th scope="col">Date</th>
+          <th scope="col">Total</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody id="buscarTablaVentas">
+        <tr *ngFor="let ventas of ventas;let i = index" class="text-capitalize">
+          <td class="text-center" scope="col"><button class="btn btn-dark" data-bs-toggle="modal"
+              data-bs-target="#VerVenta" (click)="mostrarDetalles(i)"><i class='bx bx-show'></i></button></td>
+          <td scope="col">{{ventas.productos.length}}</td>
+          <td scope="col">{{ventas.tipoPago}}</td>
+          <td scope="col">{{ventas.fecha | date}}</td>
+          <td scope="col">$ {{ventas.total.toFixed(2)}}</td>
+          <td>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-<!-- Modal de Ver -->
-<div class="modal fade" id="VerVenta" tabindex="-1" aria-labelledby="Ver" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="VerVenta">Products of {{ventaSeleccionadaModal.fecha | date}}</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <table class="table table-striped">
-          <thead id="tablaBg">
-            <tr>
-              <th scope="col" class="text-center">Name</th>
-              <th scope="col" class="text-center">Sold units</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of ventaSeleccionadaModal.productos">
-              <td class="text-capitalize text-center">{{item.nombre}}</td>
-              <td class="text-capitalize text-center">{{item.cantidad}}</td>
-            </tr>
-          </tbody>
-        </table>
+  <!-- Modal de Ver -->
+  <div class="modal fade" id="VerVenta" tabindex="-1" aria-labelledby="Ver" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="VerVenta">Products of {{ventaSeleccionadaModal.fecha | date}}</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-striped">
+            <thead id="tablaBg">
+              <tr>
+                <th scope="col" class="text-center">Name</th>
+                <th scope="col" class="text-center">Sold units</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of ventaSeleccionadaModal.productos">
+                <td class="text-capitalize text-center">{{item.nombre}}</td>
+                <td class="text-capitalize text-center">{{item.cantidad}}</td>
+              </tr>
+            </tbody>
+          </table>
 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" id="BotonCrear" data-bs-dismiss="modal">Close</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="BotonCrear" data-bs-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>
