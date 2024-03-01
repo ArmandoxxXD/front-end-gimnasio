@@ -19,53 +19,78 @@
         <li class="nav-item">
           <a *ngIf="isLogged && isAdmin || isInstructor || isRecepcionista || isUser"
             onmouseover="this.style.color='#DC0000'" onmouseout="this.style.color='white'" class="nav-link"
-            routerLink="/clase/lista">Class</a>
+            routerLink="/clase/lista"><i class="fa-solid fa-person-chalkboard"></i> Class</a>
         </li>
         <li class="nav-item">
           <a *ngIf="isLogged && isAdmin || isInstructor || isRecepcionista " class="nav-link"
             onmouseover="this.style.color='#DC0000'" onmouseout="this.style.color='white'"
-            routerLink="/cliente/lista">Customers</a>
+            routerLink="/cliente/lista"><i class="fa-solid fa-user-group"></i> Customers</a>
         </li>
         <li class="nav-item">
           <a *ngIf="isLogged && isAdmin || isRecepcionista " onmouseover="this.style.color='#DC0000'"
-            onmouseout="this.style.color='white'" class="nav-link" routerLink="/proveedor/lista">Providers</a>
+            onmouseout="this.style.color='white'" class="nav-link" routerLink="/proveedor/lista"><i class="fa-solid fa-truck-field"></i> Providers</a>
         </li>
         <li class="nav-item">
           <a *ngIf="isLogged && isAdmin || isRecepcionista || isUser" onmouseover="this.style.color='#DC0000'"
-            onmouseout="this.style.color='white'" class="nav-link" routerLink="/producto/lista">Inventory</a>
+            onmouseout="this.style.color='white'" class="nav-link" routerLink="/producto/lista"><i class="fa-solid fa-clipboard"></i> Inventory</a>
         </li>
         <li *ngIf="isLogged && isAdmin || isRecepcionista" class="nav-item">
           <a class="nav-link" onmouseover="this.style.color='#DC0000'" onmouseout="this.style.color='white'"
-            routerLink="/nuevaVenta">Sale</a>
+            routerLink="/nuevaVenta"><i class="fa-solid fa-money-check-dollar"></i> Sale</a>
         </li>
         <li class="nav-item">
           <a *ngIf="isLogged && isAdmin || isRecepcionista" onmouseover="this.style.color='#DC0000'"
-            onmouseout="this.style.color='white'" class="nav-link" routerLink="empelado/lista">Employees</a>
+            onmouseout="this.style.color='white'" class="nav-link" routerLink="empelado/lista"><i class="fa-solid fa-users"></i> Employees</a>
         </li>
         <li *ngIf="isLogged && isAdmin || isInstructor || isRecepcionista" class="nav-item">
           <a class="nav-link" onmouseover="this.style.color='#DC0000'" onmouseout="this.style.color='white'"
-            routerLink="/chekcIn">CheckIn</a>
+            routerLink="/chekcIn"><i class="fa-solid fa-user-check"></i> CheckIn</a>
         </li>
         <li *ngIf="isLogged && isAdmin" class="nav-item">
           <a class="nav-link" onmouseover="this.style.color='#DC0000'" onmouseout="this.style.color='white'"
-            routerLink="/control-checkIn">Employees control</a>
+            routerLink="/control-checkIn"><i class="fa-solid fa-address-book"></i> Employees control</a>
         </li>
         <li class="nav-item" >
           <a *ngIf="!isLogged" class="nav-link" onmouseover="this.style.color='#DC0000'"
-            onmouseout="this.style.color='white'" routerLink="/login">Login</a>
+            onmouseout="this.style.color='white'" routerLink="/login"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
         </li>
       </ul>
 
     </div>
 
     <div class="d-flex align-items-center">
-      <span id="user" *ngIf="isLogged" class="navbar-text me-4" style="text-transform: capitalize; font-weight: bold;">
-        {{userName}}
-      </span>
-      <a *ngIf="isLogged" class="nav-link me-4" onmouseover="this.style.color='#DC0000'"
-        onmouseout="this.style.color='white'" (click)="logOut()">LogOut</a>
+      <div class="dropdown" *ngIf="isLogged">
+        <span id="userDropdown" class="navbar-text me-4 dropdown-toggle" style="text-transform: capitalize; font-weight: bold;" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="fa-solid fa-user"></i> {{userName}}
+        </span>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+          <li><a class="dropdown-item" (click)="showModalDialog()"><i class="fa-solid fa-sitemap"></i> Site Map</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="#" (click)="logOut()"><i class="fa-solid fa-power-off"></i> Logout</a></li>
+        </ul>
+      </div>
     </div>
 
   </div>
 
 </nav>
+
+<p-dialog header="Site Map" [(visible)]="displayModal" [modal]="true" [style]="{width: '80vw'}">
+  <div *ngIf="displayModal">
+    <p-organizationChart [value]="data" selectionMode="single" [(selection)]="selectedNode" 
+    (onNodeSelect)="onNodeSelect($event)">
+      <ng-template let-node pTemplate="default">
+        <div class="node-header">{{node.label}}</div>
+        <div class="node-content">
+          <i [ngClass]="node.data.icon"></i>
+        </div>
+      </ng-template>
+      <ng-template let-node pTemplate="leaf">
+        <div class="node-header">{{node.label}}</div>
+        <div class="node-content">
+          <i [ngClass]="node.data.icon"></i>
+        </div>
+      </ng-template>
+    </p-organizationChart>
+  </div>
+</p-dialog>
