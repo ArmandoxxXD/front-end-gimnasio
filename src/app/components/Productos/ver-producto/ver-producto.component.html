@@ -1,39 +1,41 @@
-<h1 class="mt-3" style="text-align: center;">Inventory</h1>
+<div class="content">
+  <h1 class="mt-3" style="text-align: center;">Inventory</h1>
 
 <nav class="ms-5 mb-2" aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item active" aria-current="page">Productos</li>
+    <li class="breadcrumb-item active" aria-current="page">Inventory</li>
   </ol>
 </nav>
 
-<div class="search" style="display: flex;">
-  <div class="input-group">
-    <!--buscador-->
-    <div class="inputbox">
-      <input required="required" type="text" class="input" name="text" name="filterProductos"
-        [(ngModel)]="filterProductos" (input)="reload()">
-      <span>Search Product</span>
-      <i></i>
+  <div class="search" style="display: flex;">
+    <div class="input-group">
+      <!--buscador-->
+      <div class="inputbox">
+        <input required="required" type="text" class="input" name="text" name="filterProductos"
+          [(ngModel)]="filterProductos" (input)="reload()">
+        <span>Search Product</span>
+        <i></i>
+      </div>
+      <!--filtrado-->
+      <div class="dropdown">
+        <button class="btn dropdown-toggle" id="filtrar" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+          style="border-color: transparent;">
+          Filter by...
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" (click)="Ninguno()">None</a></li>
+          <li><a *ngFor="let Categorias of categorias" class="dropdown-item"
+              (click)="filtrarCategorias(Categorias)">{{Categorias}}</a></li>
+        </ul>
+      </div>
     </div>
-    <!--filtrado-->
-    <div class="dropdown">
-      <button class="btn dropdown-toggle" id="filtrar" type="button" data-bs-toggle="dropdown" aria-expanded="false"
-        style="border-color: transparent;">
-        Filter by...
-      </button>
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" (click)="Ninguno()">None</a></li>
-        <li><a *ngFor="let Categorias of categorias" class="dropdown-item"
-            (click)="filtrarCategorias(Categorias)">{{Categorias}}</a></li>
-      </ul>
-    </div>
+    <!--botton nuevo-->
+    <button class="cssbuttons-io" *ngIf="isAdmin" routerLink="/producto/nuevo" id="botonNuevo">
+      <span><i class="fa-solid fa-circle-plus" style="margin-right: 5px;"></i>
+        New</span>
+    </button>
   </div>
-  <!--botton nuevo-->
-  <button class="cssbuttons-io" *ngIf="isAdmin" routerLink="/producto/nuevo" id="botonNuevo">
-    <span><i class="fa-solid fa-circle-plus" style="margin-right: 5px;"></i>
-      New</span>
-  </button>
-</div>
+  
 <!--tabla-->
 <div class="table-responsive" style="overflow:visible;">
   <table class="table table-borderless table-hover" style="text-align: center;">
@@ -70,21 +72,21 @@
 <br>
 
 
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog  modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">{{selectedNombre}}<br>{{selectedcodeBar}}</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <img [src]="selectedImage" class="img-fluid" width="500px" height="400px">
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">{{selectedNombre}}<br>{{selectedcodeBar}}</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <img [src]="selectedImage" class="img-fluid" width="500px" height="400px">
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- Cargando -->
-<div id="loading"></div>
+  <!-- Cargando -->
+  <div id="loading"></div>
+</div>

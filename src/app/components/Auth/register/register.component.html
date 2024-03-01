@@ -1,99 +1,106 @@
 
+
+<div class="content">
 <nav class="ms-5 mt-5" aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a routerLink="/empelado/lista">Empleados</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Registrar</li>
+    <li class="breadcrumb-item"><a routerLink="/empelado/lista">Employees</a></li>
+    <li class="breadcrumb-item active" aria-current="page">add</li>
   </ol>
 </nav>
 
-<section class="h-100 gradient-form">
-  <div class="container py-1 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-xl-10">
-        <div class="card rounded-3 text-black">
-          <div class="row g-0">
-            <div class="col-lg-6">
-              <div class="card-body p-md-5 mx-md-4">
 
-                <form #f="ngForm" novalidate (ngSubmit)="onRegister()">
-                  <div class="form-outline mb-4">
-                    <input type="text" name="nombreUsuario" id="nombreUsuario" class="form-control" placeholder="User"
-                      [(ngModel)]="nombreUsuario" autocomplete="off" />
-                  </div>
+  <section class="h-100 gradient-form">
+    <div class="container py-1 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-xl-10">
+          <div class="card rounded-3 text-black">
+            <div class="row g-0">
+              <div class="col-lg-6">
+                <div class="card-body p-md-5 mx-md-4">
 
-                  <div class="form-outline mb-4">
-                    <input type="text" name="foto" id="foto" class="form-control" placeholder="Picture"
-                      [(ngModel)]="foto" autocomplete="off" />
-                  </div>
+                  <form #f="ngForm" novalidate (ngSubmit)="onRegister()">
+                    <div class="form-outline mb-4">
+                      <input type="text" name="nombreUsuario" id="nombreUsuario" class="form-control" placeholder="User"
+                        [(ngModel)]="nombreUsuario" autocomplete="off" />
+                    </div>
 
-                  <div class="form-outline mb-4">
-                    <input type="number" name="edad" id="edad" class="form-control" placeholder="Age" [(ngModel)]="edad"
-                      autocomplete="off" />
-                  </div>
+                    <div class="form-outline mb-4">
+                      <input type="text" name="foto" id="foto" class="form-control" placeholder="Picture"
+                        [(ngModel)]="foto" autocomplete="off" />
+                    </div>
 
-                  <div class="form-outline mb-4">
-                    <input type="number" name="sueldo" id="sueldo" class="form-control" placeholder="Salary"
-                      [(ngModel)]="sueldo" autocomplete="off" />
-                  </div>
+                    <div class="form-outline mb-4">
+                      <input type="number" name="edad" id="edad" class="form-control" placeholder="Age" [(ngModel)]="edad"
+                        autocomplete="off" />
+                    </div>
 
-                  <div class="form-group" style="margin-top: 20px; margin-bottom: 20px;">
+                    <div class="form-outline mb-4">
+                      <input type="number" name="sueldo" id="sueldo" class="form-control" placeholder="Salary"
+                        [(ngModel)]="sueldo" autocomplete="off" />
+                    </div>
 
-                    <label>Select an Turn:</label>
-                    <select id="roles" name="roles" [(ngModel)]="turno" required>
-                      <option value="Matutino">Morning</option>
-                      <option value="Vespertino">Evening</option>
-                    </select>
-                  </div>
+                    <div class="form-group" style="margin-top: 20px; margin-bottom: 20px;">
 
-                  <div class="form-outline mb-4">
-                    <input type="email" name="email" id="email" class="form-control" placeholder="Email"
-                      [(ngModel)]="email" autocomplete="off" />
-                  </div>
+                      <label>Select an Turn:</label>
+                      <select id="roles" name="roles" [(ngModel)]="turno" required>
+                        <option value="Matutino">Morning</option>
+                        <option value="Vespertino">Evening</option>
+                      </select>
+                    </div>
 
-                  <div class="form-outline mb-4">
-                    <input type="tel" name="telefono" id="telefono" class="form-control" placeholder="Phone"
-                      [(ngModel)]="telefono" autocomplete="off" />
-                  </div>
+                    <div class="form-outline mb-4">
+                      <input type="email" name="email" id="email" class="form-control" placeholder="Email"
+                        [(ngModel)]="email" autocomplete="off" />
+                    </div>
 
-                  <div class="form-outline mb-4">
-                    <input type="password" name="password" id="password" placeholder="Password" [(ngModel)]="password"
-                      autocomplete="off" required required="required" class="form-control" />
-                  </div>
+                    <div class="form-outline mb-4">
+                      <input type="tel" name="telefono" id="telefono" class="form-control" placeholder="Phone"
+                        [(ngModel)]="telefono" autocomplete="off" />
+                    </div>
 
-                  <div class="form-group" style="margin-top: 20px;">
+                    <div class="form-outline mb-4">
+                      <input type="password" name="password" id="password" placeholder="Password" [(ngModel)]="password"
+                        autocomplete="off" required required="required" class="form-control" />
+                    </div>
 
-                    <label>Select an Role:</label>
-                    <select id="roles" name="roles" [(ngModel)]="roles" required>
-                      <option value="ROLE_ADMIN">Admin</option>
-                      <option value="ROLE_INSTRUCTOR">Instructor</option>
-                      <option value="ROLE_RECEPCIONISTA">Recepcionista</option>
-                      <option value="ROLE_USER">User</option>
-                    </select>
-                  </div>
-                  <br>
-                  <div class="text-center pt-1 mb-5 pb-1">
-                    <button [disabled]="!f.valid" class="btn btn-primary
-                        btn-block fa-lg gradient-custom-2 mb-3" type="button" type="submit">Create User</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-            <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+                    <div class="form-group" style="margin-top: 20px;">
 
-              <div class="text-white px-3 py-4 p-md-5 mx-md-4">
-                <div class="text-center">
-                  <img src="../../../../assets/img/logo.jfif" style="width: 185px;" alt="logo">
-                  <h4 class="mt-1 mb-5 pb-1">Spartacus</h4>
+                      <label>Select an Role:</label>
+                      <select id="roles" name="roles" [(ngModel)]="roles" required>
+                        <option value="ROLE_ADMIN">Admin</option>
+                        <option value="ROLE_INSTRUCTOR">Instructor</option>
+                        <option value="ROLE_RECEPCIONISTA">Recepcionista</option>
+                        <option value="ROLE_USER">User</option>
+                      </select>
+                    </div>
+                    <br>
+                    <div class="text-center pt-1 mb-5 pb-1">
+                      <button [disabled]="!f.valid" class="btn btn-primary
+                          btn-block fa-lg gradient-custom-2 mb-3" type="button" type="submit">Create User</button>
+                    </div>
+                  </form>
                 </div>
-                <h4 class="mb-4">Sistema de Proveedores</h4>
-                <p class="small mb-0">Proyecto para la administracion y
-                  la gestion de lo que serian los proveedores de un
-                  gimnacio contando con sus productos y su informacion</p>
+              </div>
+              <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+
+                <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                  <div class="text-center">
+                    <img src="../../../../assets/img/logo.jfif" style="width: 185px;" alt="logo">
+                    <h4 class="mt-1 mb-5 pb-1">Spartacus</h4>
+                  </div>
+                <h4 class="mb-3">Add user for system</h4>
+                <p class="small mb-0"> Admin: Has control of all application modules and all operations</p>
                 <br>
-                <p class="small mb-0">Registro de usuarios para el sistema
-                  donde puedes insertar 4 tipos de roles pero solo el
-                  administrador puede
-                  insertar,borrar y actualizar
+                <p class="small mb-0">
+                  Instructor: Has access to the classes, clients, users and checkin module, with limited operations
+                </p>
+                <br>
+                <p class="small mb-0">
+                 Receptionist: Has access to the clients, classes, inventory, users and check module, with limited operations
+                </p>
+                <br>
+                <p class="small mb-0">
+                  User: has access to the class, sell, inventory module, with limited operations
                 </p>
               </div>
             </div>
@@ -102,4 +109,5 @@
       </div>
     </div>
   </div>
-</section>
+  </section>
+</div>

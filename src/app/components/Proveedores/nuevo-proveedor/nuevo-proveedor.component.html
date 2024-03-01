@@ -1,14 +1,14 @@
 <nav class="ms-5 mb-2 mt-5" aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a routerLink="/proveedor/lista">Suppliers</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Create</li>
+    <li class="breadcrumb-item"><a routerLink="/proveedor/lista">Providers</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Add</li>
   </ol>
 </nav>
 
 <div id="formulario" class="row-mt-10">
   <div class="card col-md-4 mx-auto">
     <div class="card-header">
-      <div class="text-header">Provider Register</div>
+      <div class="text-header">Add Provider</div>
     </div>
     <div class="card-body">
       <form (ngSubmit)="onCreate()" novalidate #f="ngForm">

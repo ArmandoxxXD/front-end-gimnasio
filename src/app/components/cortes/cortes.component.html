@@ -1,3 +1,4 @@
+<div class="content">
 <!-- Elaboro Victor Garay, Alexis Martinez -->
 <nav class="ms-5 mb-2 mt-5" aria-label="breadcrumb">
   <ol class="breadcrumb">
@@ -6,99 +7,100 @@
   </ol>
 </nav>
 
-<div class="container mt-4">
-  <div class="input-group mb-4">
-    <!-- <button class="cssbuttons-io me-5 rounded" id="botonNuevo" routerLink="/nuevaVenta">
-      <span><i class='bx bx-arrow-back me-3'></i>
-        Return</span>
-    </button> -->
-    <div class="dropdown">
-      <a class="btn btn-lg btn-outline-dark" id="opciones" role="button" data-bs-toggle="dropdown"
-        aria-expanded="false">
-        Filter by cuts
-      </a>
+  <div class="container mt-4">
+    <div class="input-group mb-4">
+      <!-- <button class="cssbuttons-io me-5 rounded" id="botonNuevo" routerLink="/nuevaVenta">
+        <span><i class='bx bx-arrow-back me-3'></i>
+          Return</span>
+      </button> -->
+      <div class="dropdown">
+        <a class="btn btn-lg btn-outline-dark" id="opciones" role="button" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          Filter by cuts
+        </a>
 
-      <div class="dropdown-menu">
-        <button class="dropdown-item" (click)="corteDiario()">
-          Show Cut Today
-        </button>
-        <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#mes">
-          Show Cut By Month
-        </button>
-        <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#anio">
-          Show Cut By Year
-        </button>
+        <div class="dropdown-menu">
+          <button class="dropdown-item" (click)="corteDiario()">
+            Show Cut Today
+          </button>
+          <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#mes">
+            Show Cut By Month
+          </button>
+          <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#anio">
+            Show Cut By Year
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Tabla de Cortes -->
+    <table class="table table-striped mb-4">
+      <thead id="tablaBg">
+        <tr>
+          <th scope="col" class="text-center">Total Sold</th>
+          <th scope="col" class="text-center">Total Cash</th>
+          <th scope="col" class="text-center">Total Paypal</th>
+          <th scope="col" class="text-center">Date</th>
+        </tr>
+      </thead>
+      <tbody id="buscarTabla">
+        <tr *ngFor="let item of cortes; let i= index" class="text-capitalize">
+          <td class="text-center">$ {{item.total.toFixed(2)}}</td>
+          <td class="text-center">$ {{item.totalEfectivo.toFixed(2)}}</td>
+          <td class="text-center">$ {{item.totalPaypal.toFixed(2)}}</td>
+          <td class="text-center">{{item.fecha | date}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="pagination">
+
+    </div>
+  </div>
+
+
+  <!-- Modal para Seleccionar Mes -->
+  <div class="modal fade" id="mes" tabindex="-1" aria-labelledby="mes" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="mes">Show Cut By Month</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="">
+            <label class="form-label">Month</label>
+            <input type="month" placeholder="Mes" class="form-control" [(ngModel)]="mes"
+              [ngModelOptions]="{standalone: true}">
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="BotonCrear" (click)="corteMensual()"
+            data-bs-dismiss="modal">Search</button>
+          <button type=" button" class="btn btn-danger noselect" data-bs-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>
-  <!-- Tabla de Cortes -->
-  <table class="table table-striped mb-4">
-    <thead id="tablaBg">
-      <tr>
-        <th scope="col" class="text-center">Total Sold</th>
-        <th scope="col" class="text-center">Total Cash</th>
-        <th scope="col" class="text-center">Total Paypal</th>
-        <th scope="col" class="text-center">Date</th>
-      </tr>
-    </thead>
-    <tbody id="buscarTabla">
-      <tr *ngFor="let item of cortes; let i= index" class="text-capitalize">
-        <td class="text-center">$ {{item.total.toFixed(2)}}</td>
-        <td class="text-center">$ {{item.totalEfectivo.toFixed(2)}}</td>
-        <td class="text-center">$ {{item.totalPaypal.toFixed(2)}}</td>
-        <td class="text-center">{{item.fecha | date}}</td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="pagination">
 
-  </div>
-</div>
-
-
-<!-- Modal para Seleccionar Mes -->
-<div class="modal fade" id="mes" tabindex="-1" aria-labelledby="mes" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="mes">Show Cut By Month</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form action="">
-          <label class="form-label">Month</label>
-          <input type="month" placeholder="Mes" class="form-control" [(ngModel)]="mes"
-            [ngModelOptions]="{standalone: true}">
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" id="BotonCrear" (click)="corteMensual()"
-          data-bs-dismiss="modal">Search</button>
-        <button type=" button" class="btn btn-danger noselect" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal para Seleccionar Año -->
-<div class="modal fade" id="anio" tabindex="-1" aria-labelledby="anio" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="anio">Show Cut By Year</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form action="">
-          <label class="form-label">Year</label>
-          <input type="number" placeholder="Año" class="form-control" [(ngModel)]="anio"
-            [ngModelOptions]="{standalone: true}" min="0">
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" id="BotonCrear" (click)="corteAnual()"
-          data-bs-dismiss="modal">Search</button>
-        <button type=" button" class="btn btn-danger noselect" data-bs-dismiss="modal">Close</button>
+  <!-- Modal para Seleccionar Año -->
+  <div class="modal fade" id="anio" tabindex="-1" aria-labelledby="anio" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="anio">Show Cut By Year</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="">
+            <label class="form-label">Year</label>
+            <input type="number" placeholder="Año" class="form-control" [(ngModel)]="anio"
+              [ngModelOptions]="{standalone: true}" min="0">
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="BotonCrear" (click)="corteAnual()"
+            data-bs-dismiss="modal">Search</button>
+          <button type=" button" class="btn btn-danger noselect" data-bs-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>

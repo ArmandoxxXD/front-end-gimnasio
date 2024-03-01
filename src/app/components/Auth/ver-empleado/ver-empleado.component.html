@@ -1,41 +1,44 @@
-<header>
-  <h1 class="mt-2">Employees</h1>
-  <div class="search-container">
-    <input type="text" class="form-control mt-2" placeholder="Search Employee..." name="filterPost" [(ngModel)]="filterPost">
-    <button class="cssbuttons-io me-5 rounded mt-2" id="botonNuevo" *ngIf="isAdmin" routerLink="/register">
-      <span style="color: aliceblue;"><i class='bx bxs-plus-circle'></i> Add</span></button>
-  </div>
-</header>
+<div class="content">
+  <header>
+    <h1 class="mt-2">Employees</h1>
+    <div class="search-container">
+      <input type="text" class="form-control mt-2" placeholder="Search Employee..." name="filterPost" [(ngModel)]="filterPost">
+      <button class="cssbuttons-io me-5 rounded mt-2" id="botonNuevo" *ngIf="isAdmin" routerLink="/register">
+        <span style="color: aliceblue;"><i class='bx bxs-plus-circle'></i> Add</span></button>
+    </div>
+  </header>
+
 
 <nav class="ms-5 mb-2" aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item active" aria-current="page">Empleados</li>
+    <li class="breadcrumb-item active" aria-current="page">Employees</li>
   </ol>
 </nav>
 
-<div class="employee-container">
-  <div class="employee-card" *ngFor="let employee of employees | filterEmployees:filterPost">
-    <img [src]="employee.foto" alt="Foto del empleado">
+  <div class="employee-container">
+    <div class="employee-card" *ngFor="let employee of employees | filterEmployees:filterPost">
+      <img [src]="employee.foto" alt="Foto del empleado">
 
-    <h2 style="text-transform: capitalize;">{{employee.nombreUsuario}}</h2>
-    <!-- <p>{{employee.Rol[0]}}</p> -->
-    <p><strong>Email:</strong>{{employee.email}}</p>
-    <p><strong>Phone:</strong>{{employee.telefono}}</p>
+      <h2 style="text-transform: capitalize;">{{employee.nombreUsuario}}</h2>
+      <!-- <p>{{employee.Rol[0]}}</p> -->
+      <p><strong>Email:</strong>{{employee.email}}</p>
+      <p><strong>Phone:</strong>{{employee.telefono}}</p>
 
-    <div class="buttons">
-      <a id="BotonCrear" *ngIf="isAdmin" routerLink="/empelado/editar/{{employee.id}}" class="btn btn-outline-primary"
-        style="margin-right: 5px"><i class="fa-solid fa-pen-to-square"></i>
-        Edit</a>
-      <button id="BotonCrear" *ngIf="isAdmin" (click)="showQR(employee)"><i class="fa-solid fa-pen-to-square"></i> View
-        QR</button>
-      <button *ngIf="isAdmin" (click)="deleteEmployee(employee)" class="noselect" style="margin-left: 30%">
-        <span class="text">Delete</span><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24"
-            height="24" viewBox="0 0 24 24">
-            <path
-              d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z">
-            </path>
-          </svg></span>
-      </button>
+      <div class="buttons">
+        <a id="BotonCrear" *ngIf="isAdmin" routerLink="/empelado/editar/{{employee.id}}" class="btn btn-outline-primary"
+          style="margin-right: 5px"><i class="fa-solid fa-pen-to-square"></i>
+          Edit</a>
+        <button id="BotonCrear" *ngIf="isAdmin" (click)="showQR(employee)"><i class="fa-solid fa-pen-to-square"></i> View
+          QR</button>
+        <button *ngIf="isAdmin" (click)="deleteEmployee(employee)" class="noselect" style="margin-left: 30%">
+          <span class="text">Delete</span><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+              height="24" viewBox="0 0 24 24">
+              <path
+                d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z">
+              </path>
+            </svg></span>
+        </button>
+      </div>
     </div>
   </div>
 </div>
