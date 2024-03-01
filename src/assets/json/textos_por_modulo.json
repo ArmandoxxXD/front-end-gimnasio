@@ -13,8 +13,8 @@
     },
     {
         "data": [
-            "Empleados",
-            "Registrar",
+            "Employees",
+            "add",
             "Select an Turn",
             "Morning",
             "Evening",
@@ -25,9 +25,11 @@
             "User",
             "Create User",
             "Spartacus",
-            "Sistema de Proveedores",
-            "Proyecto para la administracion y\n                  la gestion de lo que serian los proveedores de un\n                  gimnacio contando con sus productos y su informacion",
-            "Registro de usuarios para el sistema\n                  donde puedes insertar 4 tipos de roles pero solo el\n                  administrador puede\n                  insertarborrar y actualizar"
+            "Add user for system",
+            "Admin Has control of all application modules and all operations",
+            "Instructor Has access to the classes clients users and checkin module with limited operations",
+            "Receptionist Has access to the clients classes inventory users and check module with limited operations",
+            "User has access to the class sell inventory module with limited operations"
         ],
         "path": "register",
         "Label": "Register"
@@ -36,7 +38,7 @@
         "data": [
             "Employees",
             "Add",
-            "Empleados",
+            "Employees",
             "employeenombreUsuario",
             "Email",
             "employeeemail",
@@ -71,7 +73,7 @@
     {
         "data": [
             "Class",
-            "Clases",
+            "Classes",
             "Search Class",
             "New",
             "classnombreClase",
@@ -88,7 +90,7 @@
     {
         "data": [
             "Customer List",
-            "Clientes",
+            "Customers",
             "Search Clients",
             "New",
             "Name",
@@ -111,8 +113,8 @@
     },
     {
         "data": [
-            "Vender",
-            "Historial de Ventas",
+            "Sell",
+            "Sales History",
             "Filter by cuts",
             "Show Cut Today",
             "Show Cut By Month",
@@ -142,19 +144,19 @@
             "SPARTACUS",
             "MAKE IT HAPPEN",
             "MORE ABOUT US",
-            "LOS 3 PILARES",
-            "Ejercicio",
-            "El ejercicio es necesario",
-            "para mantener una buena salud",
-            "Comida",
-            "La comida es la materia prima",
-            "para que tu cuerpo se desarrolle",
-            "Dormir",
-            "Dormir es necesario",
-            "para que el cuerpo se recupere",
-            "Realiza Tu Suscripcin",
-            "COMIENZA HOY",
-            "CLICK AQUI",
+            "THE 3 PILLARS",
+            "Exercise",
+            "Exercise is necessary",
+            "to maintain good health",
+            "Meal",
+            "Food is the raw material",
+            "for your body to develop",
+            "Sleep",
+            "Sleep is necessary",
+            "for the body to recover",
+            "Make Your Subscription",
+            "START TODAY",
+            "CLICK HERE",
             "Student Plant",
             "For students of any institution",
             "34999",
@@ -165,7 +167,7 @@
             "No cancellation penalties",
             "Suscribe now",
             "Basic Plan",
-            "Train in our gym whenever you want",
+            "Train with us at any time",
             "49999",
             "Train in our gym and get access to the different machines we have",
             "Free weight area",
@@ -189,9 +191,9 @@
             "Exclusive surprises",
             "Suscribe Now",
             "Spartacus Fitness Center",
-            "All in the same space all connected for your comfort\n                from extensive cardio to the best machines for your training\n                And you what are you waiting for to join us",
-            "Terminos y condiciones",
-            "Politicas de privacidad",
+            "All in the same space all connected for your comfort\n                  from extensive cardio to the best machines for your training\n                  And you what are you waiting for to join us",
+            "Terms and Conditions",
+            "Privacy policies",
             "Contact",
             "Nayarit 52B Dolores Hidalgo Guanajuato",
             "SpartacusFitnesscom",
@@ -203,8 +205,8 @@
     },
     {
         "data": [
-            "Vender",
-            "Ventas",
+            "Sell",
+            "Sales",
             "Products",
             "Amount",
             "Payment Type",
@@ -226,7 +228,7 @@
     },
     {
         "data": [
-            "Vender",
+            "Sell",
             "Add Products",
             "Sell",
             "See Sales",
@@ -255,7 +257,7 @@
     {
         "data": [
             "Inventory",
-            "Productos",
+            "Inventory",
             "Search Product",
             "Filter by",
             "None",
@@ -283,7 +285,7 @@
     {
         "data": [
             "Providers",
-            "Proveedores",
+            "Providers",
             "Search Provider",
             "New",
             "provenombreProvedor",

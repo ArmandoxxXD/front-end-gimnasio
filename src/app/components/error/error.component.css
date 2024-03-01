@@ -1,14 +1,14 @@
 .error-container {
     text-align: center;
-    padding: 40px;
+    padding: 5rem;
   }
   .error-container h1 {
     color: #a00;
-    font-size: 80px;
+    font-size: 7.5rem;
   }
   .error-container p {
     color: #000;
-    font-size: 20px;
+    font-size: 1.25rem;
   }
   .btn-back {
     background-color: #a00;
