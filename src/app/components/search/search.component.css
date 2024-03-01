@@ -3,20 +3,20 @@
   padding-top: 10px;
   padding-bottom: 10px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center; 
+  position: relative;
 }
 
 .container-input {
-  position: relative;
-  display: flex;
-  align-items: center;
   width: 90%;
-  max-width: 600px;
+  max-width: 37.5rem;
 }
 
 .input {
   width: 100%;
-  padding: 10px 0px 10px 40px;
+  padding: 0.625rem 2.5rem 0.625rem 2.5rem;
   border-radius: 9999px;
   border: solid 1px #333;
   transition: all .2s ease-in-out;
@@ -25,8 +25,7 @@
 }
 
 .container-input .fa-magnifying-glass {
-  position: absolute;
-  left: 10px;
+  position: relative;
 }
 
 .input:focus {
@@ -34,21 +33,25 @@
 }
 
 .search-results {
-  list-style: none;
-  margin: 0 50px 0;
-  padding: 0;
-  width: 100%;
+  position: relative;
+  top: 100%;
+  background-color: #413f3f; 
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  box-sizing: border-box;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s, visibility 0.5s;
 }
 
 .search-result {
   display: block;
   text-decoration: none;
   color: #fff;
-  background-color: #413f3f;
-  border-radius: 5px;
   padding: 10px;
   margin-bottom: 5px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.5s ease;
 }
 
 .search-result:hover {
@@ -62,4 +65,9 @@
 .text {
   margin-top: 5px;
   font-size: 0.9rem;
+}
+
+.search-results.ng-trigger.ng-trigger-fadeInOut {
+  opacity: 1;
+  visibility: visible;
 }
