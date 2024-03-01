@@ -29,9 +29,11 @@ import { NuevaClaseComponent } from './components/Clases/nueva-clase/nueva-clase
 import { EditarClasesComponent } from './components/Clases/editar-clases/editar-clases.component';
 import { DetalleClaseComponent } from './components/Clases/detalle-clase/detalle-clase.component';
 import { ErrorComponent } from './components/error/error.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
+  { path: 'about', component: AboutUsComponent},
 
   //Cliente
   {

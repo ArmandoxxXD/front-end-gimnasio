@@ -51,6 +51,7 @@ import { RecaptchaModule } from 'ng-recaptcha';
 import { ErrorComponent } from './components/error/error.component';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { SearchComponent } from './components/search/search.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 
 @NgModule({
   declarations: [
@@ -88,6 +89,7 @@ import { SearchComponent } from './components/search/search.component';
     FilterEmployeesPipe,
     ErrorComponent,
     SearchComponent,
+    AboutUsComponent,
   ],
   imports: [
     BrowserModule,
