@@ -52,6 +52,8 @@ import { ErrorComponent } from './components/error/error.component';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { SearchComponent } from './components/search/search.component';
 
+import { OrganizationChartModule } from 'primeng/organizationchart';
+import { DialogModule } from 'primeng/dialog';
 @NgModule({
   declarations: [
     AppComponent,
@@ -99,7 +101,9 @@ import { SearchComponent } from './components/search/search.component';
     HttpClientModule,
     FormsModule,
     ZXingScannerModule,
-    RecaptchaModule
+    RecaptchaModule,
+    OrganizationChartModule,
+    DialogModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ClientesInterceptor, multi: true },

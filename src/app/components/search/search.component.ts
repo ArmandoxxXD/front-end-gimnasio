@@ -1,12 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs';
+import { Router } from '@angular/router';
 import { BuscadorService } from 'src/app/service/buscador.service';
-
+import { trigger, state, style, transition, animate } from '@angular/animations';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css']
+  styleUrls: ['./search.component.css'],
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [ // void => *
+        style({ opacity: 0, visibility: 'hidden' }),
+        animate('0.5s', style({ opacity: 1, visibility: 'visible' })),
+      ]),
+      transition(':leave', [ // * => void
+        animate('0.5s', style({ opacity: 0, visibility: 'hidden' })),
+      ]),
+    ]),
+  ],
 })
 export class SearchComponent implements OnInit {
   searchText: string = "";
