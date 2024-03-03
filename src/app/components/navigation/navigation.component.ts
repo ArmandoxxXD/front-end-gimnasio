@@ -130,16 +130,6 @@ export class NavigationComponent implements OnInit {
               {
                 label: 'CheckIn',
                 data: {route: '/chekcIn', icon: 'fa-solid fa-user-check'}
-              },
-              {
-                label: 'Employees Control',
-                data: {route: '/control-checkIn', icon: 'fa-solid fa-address-book'},
-                children: [
-                  {
-                    label: 'Employee',
-                    data: {icon: 'fa-solid fa-user'}
-                  }
-                ]
               }
             ]
           },
@@ -164,6 +154,30 @@ export class NavigationComponent implements OnInit {
     this.isUser = this.token.isUser();
     this.userName = this.token.getDatesUserName();
     this.userID = this.token.getDatesId();
+    if (this.isUser) {
+      const loginNode = this.data[0].children?.find(node => node.label === 'Login');
+      if (loginNode) {
+        loginNode.children = loginNode.children?.filter(child => 
+          ['Class', 'Inventory', 'Sale'].includes(child.label!)
+        );
+      }
+    }
+    if (this.isInstructor) {
+      const loginNode = this.data[0].children?.find(node => node.label === 'Login');
+      if (loginNode) {
+        loginNode.children = loginNode.children?.filter(child => 
+          ['Class', 'Inventory', 'Sale', 'Customers','Employees','CheckIn'].includes(child.label!)
+        );
+      }
+    }
+    if (this.isRecepcionista) {
+      const loginNode = this.data[0].children?.find(node => node.label === 'Login');
+      if (loginNode) {
+        loginNode.children = loginNode.children?.filter(child => 
+          ['Class', 'Inventory', 'Sale', 'Customers','Employees','CheckIn'].includes(child.label!)
+        );
+      }
+    }
   }
 
   logOut(): void {
