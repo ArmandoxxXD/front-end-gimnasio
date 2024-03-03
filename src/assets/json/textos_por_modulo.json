@@ -1,6 +1,26 @@
 [
     {
         "data": [
+            "SPARTACUS",
+            "Make It Happen",
+            "Spartacus is a gym franchise with a presence in\n                    Tabasco Guanajuato and Tijuana",
+            "We seek to improve the quality of life of our\n                    members and provide quality service",
+            "FOLLOW US ON OUR NETWORKS",
+            "Spartacus Fitness Center",
+            "All in the same space all connected for your comfort\n                            from extensive cardio to the best machines for your training\n                            And you what are you waiting for to join us",
+            "Terms and Conditions",
+            "Privacy policies",
+            "Contact",
+            "Nayarit 52B Dolores Hidalgo Guanajuato",
+            "SpartacusFitnesscom",
+            "52 418 567 88",
+            "2024 Copyright"
+        ],
+        "path": "about",
+        "Label": "More about us"
+    },
+    {
+        "data": [
             "Spartacus",
             "User",
             "Password",
@@ -45,7 +65,7 @@
             "Phone",
             "employeetelefono",
             "Edit",
-            "View\n        QR",
+            "View\n          QR",
             "Delete"
         ],
         "path": "empelado/lista",
@@ -280,7 +300,7 @@
             "selectedcodeBar"
         ],
         "path": "producto/lista",
-        "Label": "Products"
+        "Label": "Inventory"
     },
     {
         "data": [

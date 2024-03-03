@@ -144,7 +144,7 @@ export class NavigationComponent implements OnInit {
           },
           {
             label: 'About Us',
-            data: {route: '/#', icon: 'fa-solid fa-dumbbell'}
+            data: {route: '/about', icon: 'fa-solid fa-dumbbell'}
           },
           {
             label: 'Privacy policies',
