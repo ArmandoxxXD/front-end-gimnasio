@@ -25,6 +25,7 @@ export class NuevaVentaComponent implements OnInit {
   codeBar: string = '';
   cantidad: number = 1;
   isAdmin: boolean = false;
+  isUser: boolean = false;
   isRecepcionista: boolean = false;
   productoSeleccionadoModal: ProductoVentaData = {
     nombre: '',
@@ -47,6 +48,7 @@ export class NuevaVentaComponent implements OnInit {
 
   ngOnInit(): void {
     this.isAdmin = this.token.isAdmin();
+    this.isUser = this.token.isUser();
     this.isRecepcionista = this.token.isRecepcionista();
   }
   // Guarda una venta

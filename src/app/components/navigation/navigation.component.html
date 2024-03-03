@@ -35,8 +35,10 @@
             onmouseout="this.style.color='white'" class="nav-link" routerLink="/producto/lista"><i class="fa-solid fa-clipboard"></i> Inventory</a>
         </li>
         <li *ngIf="isLogged && isAdmin || isRecepcionista || isUser" class="nav-item">
-          <a class="nav-link" onmouseover="this.style.color='#DC0000'" onmouseout="this.style.color='white'"
+          <a *ngIf="!isUser" class="nav-link" onmouseover="this.style.color='#DC0000'" onmouseout="this.style.color='white'"
             routerLink="/nuevaVenta"><i class="fa-solid fa-money-check-dollar"></i> Sale</a>
+          <a  *ngIf="isUser" class="nav-link" onmouseover="this.style.color='#DC0000'" onmouseout="this.style.color='white'"
+            routerLink="/nuevaVenta"><i class="fa-solid fa-money-check-dollar"></i> Buy</a>
         </li>
         <li class="nav-item">
           <a *ngIf="isLogged && isAdmin || isRecepcionista" onmouseover="this.style.color='#DC0000'"

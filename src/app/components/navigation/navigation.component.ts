@@ -160,6 +160,10 @@ export class NavigationComponent implements OnInit {
         loginNode.children = loginNode.children?.filter(child => 
           ['Class', 'Inventory', 'Sale'].includes(child.label!)
         );
+        const saleNode = loginNode.children?.find(child => child.label === 'Sale');
+        if (saleNode) {
+          saleNode.label = 'Buy';
+        }
       }
     }
     if (this.isInstructor) {
