@@ -29,7 +29,7 @@ font-family: 'Roboto', sans-serif; */
 .AboutUs__iconos_contenedor {
     display: flex;
     align-items: center;
-    justify-content: start;
+    justify-content: flex-start;
 }
 
 .AboutUs__iconos {

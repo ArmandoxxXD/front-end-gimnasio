@@ -12,7 +12,7 @@ export class ClientesGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot,state: RouterStateSnapshot):  boolean  {
     const expectedRoles= route.data['expectedRoles'];
-    this.realRol= this.token.isAdmin() ? 'admin': 'user','instructor','mantenimeinto','recepcionista';
+    this.realRol= this.token.isAdmin() ? 'admin': 'user','instructor','recepcionista';
     if(this.token.getToken==null){
       this.router.navigate(['/login'])
     } else if(expectedRoles.indexOf(this.realRol)<0){

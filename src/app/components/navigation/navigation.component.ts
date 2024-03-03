@@ -16,6 +16,7 @@ export class NavigationComponent implements OnInit {
   isRecepcionista: boolean = false;
   isUser: boolean = false;
   userName: string = '';
+  userID?: number| null;
   displayModal: boolean = false;
   data: TreeNode[]; 
   selectedNode?: TreeNode;
@@ -161,7 +162,8 @@ export class NavigationComponent implements OnInit {
     this.isInstructor = this.token.isInstructor();
     this.isRecepcionista = this.token.isRecepcionista();
     this.isUser = this.token.isUser();
-    this.userName = this.token.getDatesUser();
+    this.userName = this.token.getDatesUserName();
+    this.userID = this.token.getDatesId();
   }
 
   logOut(): void {

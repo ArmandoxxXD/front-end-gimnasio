@@ -19,11 +19,11 @@
             Sell</span>
         </button>
       </div>
-      <button class="cssbuttons-io ms-5 rounded" id="botonNuevo" routerLink="/listaVentas" style="height: 60px;">
+      <button *ngIf="isAdmin || isRecepcionista" class="cssbuttons-io ms-5 rounded" id="botonNuevo" routerLink="/listaVentas" style="height: 60px;">
         <span><i class='bx bx-show me-2'></i>
           See Sales</span>
       </button>
-      <button class="cssbuttons-io ms-5 rounded" id="botonNuevo" routerLink="/cortes" style="height: 60px;">
+      <button *ngIf="isAdmin || isRecepcionista" class="cssbuttons-io ms-5 rounded" id="botonNuevo" routerLink="/cortes" style="height: 60px;">
         <span><i class='bx bx-book-bookmark me-2'></i>
           Cuts</span>
       </button>

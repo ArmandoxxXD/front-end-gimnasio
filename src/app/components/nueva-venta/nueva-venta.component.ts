@@ -1,5 +1,5 @@
 // Elaboro Alexis Martinez, Oscar Rojas, Juan de Dios
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ICreateOrderRequest, IPayPalConfig } from 'ngx-paypal';
 import { tap } from 'rxjs';
@@ -11,6 +11,7 @@ import {
 import { PagosService } from 'src/app/service/pagos.service';
 import { ProductosService } from 'src/app/service/productos.service';
 import { ToastrService } from 'ngx-toastr';
+import { TokenService } from 'src/app/service/token.service';
 
 @Component({
   selector: 'app-nueva-venta',
@@ -23,6 +24,8 @@ export class NuevaVentaComponent implements OnInit {
   tipoPago: string = 'Payment Type';
   codeBar: string = '';
   cantidad: number = 1;
+  isAdmin: boolean = false;
+  isRecepcionista: boolean = false;
   productoSeleccionadoModal: ProductoVentaData = {
     nombre: '',
     cantidad: 0,
@@ -38,12 +41,14 @@ export class NuevaVentaComponent implements OnInit {
   constructor(
     private ventaService: PagosService,
     private productoService: ProductosService,
-    private http: HttpClient,
-    private toast: ToastrService
+    private toast: ToastrService,
+    private token: TokenService
   ) {}
 
-  ngOnInit(): void {}
-
+  ngOnInit(): void {
+    this.isAdmin = this.token.isAdmin();
+    this.isRecepcionista = this.token.isRecepcionista();
+  }
   // Guarda una venta
   saveVentas() {
     // Verifica si el tipo de pago es 'Payment Type'

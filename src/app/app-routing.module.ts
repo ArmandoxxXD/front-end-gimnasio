@@ -5,7 +5,6 @@ import { LoginComponent } from './components/Auth/login/login.component';
 import { RegisterComponent } from './components/Auth/register/register.component';
 import { VerEmpleadoComponent } from './components/Auth/ver-empleado/ver-empleado.component';
 import { CheckInComponent } from './components/CheckIn/check-in/check-in.component';
-import { ControlCheckInComponent } from './components/CheckIn/control-check-in/control-check-in.component';
 import { EmpleadoCheckInComponent } from './components/CheckIn/empleado-check-in/empleado-check-in.component';
 import { EditarClienteComponent } from './components/Clientes/editar-cliente/editar-cliente.component';
 import { NuevoClienteComponent } from './components/Clientes/nuevo-cliente/nuevo-cliente.component';
@@ -40,7 +39,7 @@ const routes: Routes = [
     path: 'cliente/lista',
     component: VerClienteComponent,
     canActivate: [ClientesGuard, HomeGuard],
-    data: { expectedRoles: ['admin', 'user', 'instructor', 'mantenimiento'] },
+    data: { expectedRoles: ['admin', 'instructor', 'mantenimiento'] },
   },
   {
     path: 'cliente/nuevo',
@@ -65,7 +64,6 @@ const routes: Routes = [
         'admin',
         'user',
         'instructor',
-        'mantenimiento',
         'recepcionista',
       ],
     },
@@ -79,7 +77,6 @@ const routes: Routes = [
         'admin',
         'user',
         'instructor',
-        'mantenimiento',
         'recepcionista',
       ],
     },
@@ -105,9 +102,7 @@ const routes: Routes = [
     data: {
       expectedRoles: [
         'admin',
-        'user',
         'instructor',
-        'mantenimiento',
         'recepcionista',
       ],
     },
@@ -119,9 +114,7 @@ const routes: Routes = [
     data: {
       expectedRoles: [
         'admin',
-        'user',
         'instructor',
-        'mantenimiento',
         'recepcionista',
       ],
     },
@@ -149,21 +142,6 @@ const routes: Routes = [
         'admin',
         'user',
         'instructor',
-        'mantenimiento',
-        'recepcionista',
-      ],
-    },
-  },
-  {
-    path: 'poducto/lista/:nombreProvedor',
-    component: VerProductoComponent,
-    canActivate: [ClientesGuard, HomeGuard],
-    data: {
-      expectedRoles: [
-        'admin',
-        'user',
-        'instructor',
-        'mantenimiento',
         'recepcionista',
       ],
     },
@@ -189,9 +167,7 @@ const routes: Routes = [
     data: {
       expectedRoles: [
         'admin',
-        'user',
         'instructor',
-        'mantenimiento',
         'recepcionista',
       ],
     },
@@ -218,23 +194,7 @@ const routes: Routes = [
     data: {
       expectedRoles: [
         'admin',
-        'user',
         'instructor',
-        'mantenimiento',
-        'recepcionista',
-      ],
-    },
-  },
-  {
-    path: 'control-checkIn',
-    component: ControlCheckInComponent,
-    canActivate: [ClientesGuard, HomeGuard],
-    data: {
-      expectedRoles: [
-        'admin',
-        'user',
-        'instructor',
-        'mantenimiento',
         'recepcionista',
       ],
     },
@@ -248,7 +208,6 @@ const routes: Routes = [
         'admin',
         'user',
         'instructor',
-        'mantenimiento',
         'recepcionista',
       ],
     },
@@ -259,7 +218,7 @@ const routes: Routes = [
     path: 'nuevaVenta',
     component: NuevaVentaComponent,
     canActivate: [ClientesGuard, HomeGuard],
-    data: { expectedRoles: ['admin'] },
+    data: { expectedRoles: ['admin','user'] },
   },
   {
     path: 'listaVentas',

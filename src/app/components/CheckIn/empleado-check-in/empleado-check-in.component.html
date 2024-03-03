@@ -1,6 +1,7 @@
 <nav class="ms-5 mt-5" aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a routerLink="/control-checkIn">Employees Control</a></li>
+    <li class="breadcrumb-item" *ngIf="!isClient"><a routerLink="/empelado/lista">Employees</a></li>
+    <li class="breadcrumb-item" *ngIf="isClient"><a routerLink="/home">Home</a></li>
     <li class="breadcrumb-item active" aria-current="page">{{emp.nombreUsuario}}</li>
   </ol>
 </nav>
@@ -9,18 +10,20 @@
   <div class="info-employee">
     <img [src]="emp.foto" alt="" class="bd-placeholder-img rounded-circle" height="155px" width="155px">
     <h1 *ngIf="emp" style="text-transform: capitalize;">{{emp.nombreUsuario}}</h1>
+    <button id="BotonCrear" *ngIf="!isClient" (click)="showQR()"><i class="fa-solid fa-pen-to-square"></i> View
+      QR</button>
   </div>
   <div class="employee-body d-flex flex-row" style="flex-wrap: wrap;">
     <div class="info-body flex-fill me-4">
       <p style="text-transform: capitalize;">Name: {{emp.nombreUsuario}}</p>
       <p>Age: {{emp.edad}}</p>
-      <p>Salary: ${{emp.sueldo}}</p>
-      <p>Turn: {{emp.turno}}</p>
+      <p *ngIf="!isClient">Salary: ${{emp.sueldo}}</p>
+      <p *ngIf="!isClient">Turn: {{emp.turno}}</p>
       <p>Email: {{emp.email}}</p>
       <p>Phone: {{emp.telefono}}</p>
-      <p>Employee Number: {{emp.id}}</p>
+      <p>Type of User: {{emp.roles}}</p>
     </div>
-    <div class="stats-body flex-fill">
+    <div *ngIf="!isClient" class="stats-body flex-fill">
       <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item" role="presentation">
           <a class="nav-link active" data-bs-toggle="tab" href="#datos" aria-selected="true" role="tab"

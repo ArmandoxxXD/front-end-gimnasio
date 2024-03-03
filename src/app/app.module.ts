@@ -32,7 +32,6 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 import { VerEmpleadoComponent } from './components/Auth/ver-empleado/ver-empleado.component';
 import { EditEmpleadoComponent } from './components/Auth/edit-empleado/edit-empleado.component';
-import { ControlCheckInComponent } from './components/CheckIn/control-check-in/control-check-in.component';
 import { EmpleadoCheckInComponent } from './components/CheckIn/empleado-check-in/empleado-check-in.component';
 import { CheckInComponent } from './components/CheckIn/check-in/check-in.component';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
@@ -76,7 +75,6 @@ import { DialogModule } from 'primeng/dialog';
     FilterProvedorPipe,
     VerEmpleadoComponent,
     EditEmpleadoComponent,
-    ControlCheckInComponent,
     EmpleadoCheckInComponent,
     CheckInComponent,
     NuevaVentaComponent,
