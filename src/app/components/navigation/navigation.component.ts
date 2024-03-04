@@ -157,12 +157,19 @@ export class NavigationComponent implements OnInit {
     if (this.isUser) {
       const loginNode = this.data[0].children?.find(node => node.label === 'Login');
       if (loginNode) {
-        loginNode.children = loginNode.children?.filter(child => 
-          ['Class', 'Inventory', 'Sale'].includes(child.label!)
-        );
+        loginNode.children = loginNode.children?.filter(child => ['Class', 'Inventory', 'Sale'].includes(child.label!));
+        const classNode = loginNode.children?.find(child => child.label === 'Class');
+        if (classNode) {
+          classNode.children = classNode.children?.filter(subChild => subChild.label === 'Details');
+        }
+        const inventoryNode = loginNode.children?.find(child => child.label === 'Inventory');
+        if (inventoryNode) {
+          delete inventoryNode.children;
+        }
         const saleNode = loginNode.children?.find(child => child.label === 'Sale');
         if (saleNode) {
           saleNode.label = 'Buy';
+          delete saleNode.children;
         }
       }
     }
