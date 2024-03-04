@@ -3,11 +3,11 @@
         "data": [
             "SPARTACUS",
             "Make It Happen",
-            "Spartacus is a gym franchise with a presence in\n                    Tabasco Guanajuato and Tijuana",
-            "We seek to improve the quality of life of our\n                    members and provide quality service",
+            "Spartacus is a gym franchise with a presence in\n                        Tabasco Guanajuato and Tijuana",
+            "We seek to improve the quality of life of our\n                        members and provide quality service",
             "FOLLOW US ON OUR NETWORKS",
             "Spartacus Fitness Center",
-            "All in the same space all connected for your comfort\n                            from extensive cardio to the best machines for your training\n                            And you what are you waiting for to join us",
+            "All in the same space all connected for your comfort\n                                from extensive cardio to the best machines for your training\n                                And you what are you waiting for to join us",
             "Terms and Conditions",
             "Privacy policies",
             "Contact",
@@ -17,6 +17,9 @@
             "2024 Copyright"
         ],
         "path": "about",
+        "permissions": [
+            "ALL"
+        ],
         "Label": "More about us"
     },
     {
@@ -29,6 +32,9 @@
             "Project for the administration and\n                  the management of a gym which has a sale of\n                  products supplier management checkin and class management"
         ],
         "path": "login",
+        "permissions": [
+            "ALL"
+        ],
         "Label": "Login"
     },
     {
@@ -52,23 +58,32 @@
             "User has access to the class sell inventory module with limited operations"
         ],
         "path": "register",
+        "permissions": [
+            "ROLE_ADMIN"
+        ],
         "Label": "Register"
     },
     {
         "data": [
             "Employees",
-            "Add",
             "Employees",
+            "Search Employee",
+            "New",
             "employeenombreUsuario",
             "Email",
             "employeeemail",
             "Phone",
             "employeetelefono",
+            "Details",
             "Edit",
-            "View\n          QR",
             "Delete"
         ],
         "path": "empelado/lista",
+        "permissions": [
+            "ROLE_ADMIN",
+            "ROLE_INSTRUCTOR",
+            "ROLE_RECEPCIONISTA"
+        ],
         "Label": "Employees"
     },
     {
@@ -76,19 +91,12 @@
             "cameralabel"
         ],
         "path": "chekcIn",
-        "Label": "CheckIn"
-    },
-    {
-        "data": [
-            "Checkin control",
-            "Employees Control",
-            "employeenombreUsuario",
-            "ID employeeid",
-            "Turn employeeturno",
-            "Phone employeetelefono"
+        "permissions": [
+            "ROLE_ADMIN",
+            "ROLE_INSTRUCTOR",
+            "ROLE_RECEPCIONISTA"
         ],
-        "path": "control-checkIn",
-        "Label": "CheckIn employee control"
+        "Label": "CheckIn"
     },
     {
         "data": [
@@ -105,6 +113,12 @@
             "Delete"
         ],
         "path": "clase/lista",
+        "permissions": [
+            "ROLE_ADMIN",
+            "ROLE_INSTRUCTOR",
+            "ROLE_RECEPCIONISTA",
+            "ROLE_USER"
+        ],
         "Label": "Classes"
     },
     {
@@ -129,6 +143,11 @@
             "Detele"
         ],
         "path": "cliente/lista",
+        "permissions": [
+            "ROLE_ADMIN",
+            "ROLE_INSTRUCTOR",
+            "ROLE_RECEPCIONISTA"
+        ],
         "Label": "Customers"
     },
     {
@@ -157,6 +176,10 @@
             "Close"
         ],
         "path": "cortes",
+        "permissions": [
+            "ROLE_ADMIN",
+            "ROLE_RECEPCIONISTA"
+        ],
         "Label": "Sales cuts"
     },
     {
@@ -221,6 +244,9 @@
             "2024 Copyright"
         ],
         "path": "home",
+        "permissions": [
+            "ALL"
+        ],
         "Label": "Home"
     },
     {
@@ -244,6 +270,11 @@
             "Close"
         ],
         "path": "listaVentas",
+        "permissions": [
+            "ROLE_ADMIN",
+            "ROLE_INSTRUCTOR",
+            "ROLE_RECEPCIONISTA"
+        ],
         "Label": "Sales"
     },
     {
@@ -272,6 +303,12 @@
             "Close"
         ],
         "path": "nuevaVenta",
+        "permissions": [
+            "ROLE_ADMIN",
+            "ROLE_INSTRUCTOR",
+            "ROLE_RECEPCIONISTA",
+            "ROLE_USER"
+        ],
         "Label": "New Sale"
     },
     {
@@ -300,6 +337,12 @@
             "selectedcodeBar"
         ],
         "path": "producto/lista",
+        "permissions": [
+            "ROLE_ADMIN",
+            "ROLE_INSTRUCTOR",
+            "ROLE_RECEPCIONISTA",
+            "ROLE_USER"
+        ],
         "Label": "Inventory"
     },
     {
@@ -315,6 +358,11 @@
             "Delete"
         ],
         "path": "proveedor/lista",
+        "permissions": [
+            "ROLE_ADMIN",
+            "ROLE_INSTRUCTOR",
+            "ROLE_RECEPCIONISTA"
+        ],
         "Label": "Providers"
     }
 ]

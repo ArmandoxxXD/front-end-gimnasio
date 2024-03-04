@@ -14,6 +14,7 @@ export class VerEmpleadoComponent implements OnInit {
   filterPost = '';
   employees: any = [];
   roles: any = [];
+  loggedUserId:number|null = this.token.getDatesId();
 
   constructor(
     private authService: AuthService,
@@ -22,11 +23,7 @@ export class VerEmpleadoComponent implements OnInit {
   ) {
     this.authService.list().subscribe(
       (resp) => {
-        console.log(resp);
-        this.employees = resp;
-        // this.capyfit.getOneRol(this.employees.IdEmpleado).subscribe(res => {
-        //   console.log(res);
-        // })
+        this.employees =  resp.filter(employee => employee.roles != 'ROLE_USER')
       },
       (err) => console.error(err)
     );
