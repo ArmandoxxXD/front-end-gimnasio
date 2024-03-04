@@ -102,7 +102,7 @@ export class TokenService {
     return true;
   }
 
-  public getDatesUser(): string {
+  public getDatesUserName(): string {
     if (!this.isLogged()) {
       return '';
     }
@@ -111,5 +111,27 @@ export class TokenService {
     const payloadDecoded = atob(payload);
     const values = JSON.parse(payloadDecoded);
     return values.sub;
+  }
+
+  public getDatesId(): number|null {
+    if (!this.isLogged()) {
+      return null;
+    }
+    const token = this.getToken();
+    const payload = token!.split('.')[1];
+    const payloadDecoded = atob(payload);
+    const values = JSON.parse(payloadDecoded);
+    return values.id;
+  }
+
+  public getDatesRol(): string {
+    if (!this.isLogged()) {
+      return '';
+    }
+    const token = this.getToken();
+    const payload = token!.split('.')[1];
+    const payloadDecoded = atob(payload);
+    const values = JSON.parse(payloadDecoded);
+    return values.roles.join(', ');
   }
 }

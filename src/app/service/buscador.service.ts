@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
+import { TokenService } from './token.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,15 +9,24 @@ import { Observable, map } from 'rxjs';
 export class BuscadorService {
   private searchUrl = 'assets/json/textos_por_modulo.json'; 
   private highlightedWord: string = "";
+  private userRole: string = "";
+  private isUserLogged: boolean = false;
   constructor(
-    private http: HttpClient
-  ) { }
+    private http: HttpClient,
+    private token: TokenService
+  ) { 
+    this.userRole=token.getDatesRol();
+    console.log(this.userRole);
+    this.isUserLogged=token.isLogged();
+  }
 
   search(text: string): Observable<any[]> {
     return this.http.get<any[]>(this.searchUrl).pipe(
       map(data => {
         const searchText = text.toLowerCase();
-        return data.filter(item => item.data.some((word: string) => word.toLowerCase().includes(searchText)));
+        return data
+        .filter(item => this.isUserLogged ? item.permissions.includes(this.userRole) || item.permissions.includes("ALL") : item.permissions.includes("ALL"))
+        .filter(item => item.data.some((word: string) => word.toLowerCase().includes(searchText)));
       })
     );
   }
