@@ -55,6 +55,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 
 import { OrganizationChartModule } from 'primeng/organizationchart';
 import { DialogModule } from 'primeng/dialog';
+import { PrivacyPoliciesComponent } from './components/privacy-policies/privacy-policies.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -92,6 +93,7 @@ import { DialogModule } from 'primeng/dialog';
     ErrorComponent,
     SearchComponent,
     AboutUsComponent,
+    PrivacyPoliciesComponent,
   ],
   imports: [
     BrowserModule,

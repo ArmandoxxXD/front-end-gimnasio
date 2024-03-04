@@ -30,10 +30,12 @@ import { EditarClasesComponent } from './components/Clases/editar-clases/editar-
 import { DetalleClaseComponent } from './components/Clases/detalle-clase/detalle-clase.component';
 import { ErrorComponent } from './components/error/error.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { PrivacyPoliciesComponent } from './components/privacy-policies/privacy-policies.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutUsComponent},
+  { path: 'privacity_polices', component: PrivacyPoliciesComponent},
 
   //Cliente
   {
