@@ -7,7 +7,7 @@
             "We seek to improve the quality of life of our\n                        members and provide quality service",
             "FOLLOW US ON OUR NETWORKS",
             "Spartacus Fitness Center",
-            "All in the same space all connected for your comfort\n                                from extensive cardio to the best machines for your training\n                                And you what are you waiting for to join us",
+            "All in the same space all connected for your comfort\n                    from extensive cardio to the best machines for your training\n                    And you what are you waiting for to join us",
             "Terms and Conditions",
             "Privacy policies",
             "Contact",
@@ -88,6 +88,7 @@
     },
     {
         "data": [
+            "CheckIn",
             "cameralabel"
         ],
         "path": "chekcIn",
@@ -152,7 +153,7 @@
     },
     {
         "data": [
-            "Sell",
+            "Sale",
             "Sales History",
             "Filter by cuts",
             "Show Cut Today",
@@ -251,7 +252,7 @@
     },
     {
         "data": [
-            "Sell",
+            "Sale",
             "Sales",
             "Products",
             "Amount",
@@ -279,7 +280,10 @@
     },
     {
         "data": [
-            "Sell",
+            "Sale",
+            "Buy",
+            "Sale",
+            "Buy",
             "Add Products",
             "Sell",
             "See Sales",
@@ -310,6 +314,53 @@
             "ROLE_USER"
         ],
         "Label": "New Sale"
+    },
+    {
+        "data": [
+            "PRIVACY POLICIES",
+            "The SGAG website is owned by Gimnasio Spartacus which is a data controller of your data\n            personal",
+            "We have adopted this Privacy Policy which governs how we process information collected by\n            SGAG\n            which also provides the reasons why we need to collect certain personal data about you For the\n            Therefore you should read this Privacy Policy before using the SGAG website",
+            "We take care of your personal data and are committed to guaranteeing its confidentiality and security",
+            "Personal information we collect",
+            "When you visit SGAG we automatically collect certain information about your device including\n            information\n            about your web browser IP address time zone and some of the cookies installed on your device\n            Additionally as you navigate through the site we collect information about individual web pages or\n            products you view what websites or search terms referred you to the site and how you interact with it\n            Us\n            We refer to this automatically collected information as Device Information Furthermore we can\n            collect the personal data that you provide to us including but not limited to first name last name address\n            payment information etc during registration in order to fulfill the agreement",
+            "Why do we process your data",
+            "Our top priority is the security of customer data and as such we may process only those\n            data\n            user minimums only to the extent absolutely necessary to maintain the website The\n            Information collected automatically is used only to identify potential cases of abuse and\n            establish\n            statistical information about the use of the website This statistical information is not aggregated in such a way\n            that\n            identify any particular user of the system",
+            "You can visit the site without telling us who you are or revealing any information by which someone could\n            identify you as a specific person However if you want to use some of the functions of the\n            place\n            website or you wish to receive our newsletter or provide other details by completing a form\n            You can provide us with personal data such as your email first name last name city of residence\n            organization and telephone number You can choose not to provide your personal data but it is possible\n            no\n            you can take advantage of some of the websites features For example you will not be able to receive our newsletter or\n            contact us directly from the website Users who are not sure what information is\n            mandatory you can contact us through SpartacusGimnasiogmailcom",
+            "Your rights",
+            "If you are a European resident you have the following rights related to your personal data",
+            "The right to be informed",
+            "The right of access",
+            "The right to rectification",
+            "The right to erase",
+            "The right to restrict processing",
+            "The right to data portability",
+            "The right to object",
+            "Rights in relation to automated decision making and profiling",
+            "If you wish to exercise this right please contact us using the contact information at\n            continuation",
+            "Additionally if you are a European resident we emphasize that we are processing your information to comply with the\n            contracts we may have with you for example if you place an order through the site or otherwise\n            manner\n            to pursue our legitimate business interests listed above Also keep in mind that you\n            Information may be transferred outside of Europe including Canada and the United States",
+            "Links to other websites",
+            "Our site may contain links to other websites that are not owned or controlled by us\n            by\n            us Please be aware that we are not responsible for such websites or the privacy practices of\n            third parties We recommend that you be aware when you leave our website and read the statements of\n            privacy of each site that may collect personal information",
+            "Security of the information",
+            "We secure the information you provide on computer servers in a controlled and secure environment\n            protected from unauthorized access use or disclosure We maintain administrative security measures\n            reasonable technical and physical measures to protect against unauthorized access use modification and\n            disclosure of personal data under your control and custody However the\n            transmission\n            data over the Internet or wireless networks",
+            "Legal Disclosure",
+            "We will disclose any information we collect use or receive if required or permitted by the\n            law\n            to comply with a subpoena or similar legal process and when we believe in good faith that the\n            divulgation\n            is necessary to protect our rights protect your safety or the safety of others investigate\n            he\n            fraud or respond to a government request",
+            "Contact information",
+            "If you wish to contact us to understand more about this Policy or wish to contact us\n            in\n            In relation to any matter regarding individual rights and your personal information you can send us a\n            email to SpartacusGimnasiogmailcom",
+            "Spartacus Fitness Center",
+            "All in the same space all connected for your comfort\n                            from extensive cardio to the best machines for your training\n                            And you what are you waiting for to join us",
+            "Terms and Conditions",
+            "Privacy policies",
+            "Contact",
+            "Nayarit 52B Dolores Hidalgo Guanajuato",
+            "SpartacusFitnesscom",
+            "52 418 567 88",
+            "2024 Copyright"
+        ],
+        "path": "privacity_polices",
+        "permissions": [
+            "ALL"
+        ],
+        "Label": "Privacity polices"
     },
     {
         "data": [
