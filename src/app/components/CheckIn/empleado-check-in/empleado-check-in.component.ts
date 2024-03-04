@@ -5,6 +5,7 @@ import { CheckInService } from 'src/app/service/check-in.service';
 import Chart from 'chart.js/auto';
 import { CheckIn } from 'src/app/models/check-in';
 import Swal from 'sweetalert2';
+import { TokenService } from 'src/app/service/token.service';
 
 @Component({
   selector: 'app-empleado-check-in',
@@ -21,7 +22,8 @@ export class EmpleadoCheckInComponent implements OnInit {
   diasVen: string[] = ['12-2-2023', '13-2-2023', '18-2-2023'];
   @ViewChild('myChart', { static: true }) myChart!: ElementRef;
   chart!: Chart;
-  
+  isClient: boolean = false;
+
   private calendar!: HTMLElement;
   private prevBtn!: HTMLElement;
   private nextBtn!: HTMLElement;
@@ -40,13 +42,15 @@ export class EmpleadoCheckInComponent implements OnInit {
   constructor(
     private capyfit: AuthService,
     private route: ActivatedRoute,
-    private checkin: CheckInService
+    private checkin: CheckInService,
+    private token : TokenService
   ) {
     const params = this.route.snapshot.params;
     this.p = params;
     this.capyfit.detail(params['id']).subscribe(
       (res) => {
         this.emp = res;
+        console.log(res);
       },
       (err) => console.log(err)
     );
@@ -90,6 +94,7 @@ export class EmpleadoCheckInComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isClient = this.token.isUser();
     this.calendar = document.querySelector('.calendar')!;
     this.prevBtn = this.calendar.querySelector('.prev-month-btn')!;
     this.nextBtn = this.calendar.querySelector('.next-month-btn')!;
@@ -321,6 +326,31 @@ export class EmpleadoCheckInComponent implements OnInit {
           },
         },
       },
+    });
+  }
+
+  showQR() {
+    delete this.emp.password;
+    let data = JSON.stringify(this.emp);
+    let encodedData = encodeURIComponent(data);
+    let api =
+      'https://api.qrserver.com/v1/create-qr-code/?data=' +
+      encodedData +
+      '&size=250x250';
+    console.log(api);
+
+    console.log(data);
+    Swal.fire({
+      title: 'Employee QR',
+      html:
+        '<p>' +
+        this.emp.nombreUsuario +
+        '</p><img src="' +
+        api +
+        '" height="250px" width="250px">', // height="50px" width="50px"
+      icon: 'info',
+      confirmButtonText: 'OK',
+      confirmButtonColor: '#1a1a1a',
     });
   }
 }

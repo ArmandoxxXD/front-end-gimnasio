@@ -16,6 +16,7 @@ export class NavigationComponent implements OnInit {
   isRecepcionista: boolean = false;
   isUser: boolean = false;
   userName: string = '';
+  userID?: number| null;
   displayModal: boolean = false;
   data: TreeNode[]; 
   selectedNode?: TreeNode;
@@ -129,16 +130,6 @@ export class NavigationComponent implements OnInit {
               {
                 label: 'CheckIn',
                 data: {route: '/chekcIn', icon: 'fa-solid fa-user-check'}
-              },
-              {
-                label: 'Employees Control',
-                data: {route: '/control-checkIn', icon: 'fa-solid fa-address-book'},
-                children: [
-                  {
-                    label: 'Employee',
-                    data: {icon: 'fa-solid fa-user'}
-                  }
-                ]
               }
             ]
           },
@@ -161,7 +152,43 @@ export class NavigationComponent implements OnInit {
     this.isInstructor = this.token.isInstructor();
     this.isRecepcionista = this.token.isRecepcionista();
     this.isUser = this.token.isUser();
-    this.userName = this.token.getDatesUser();
+    this.userName = this.token.getDatesUserName();
+    this.userID = this.token.getDatesId();
+    if (this.isUser) {
+      const loginNode = this.data[0].children?.find(node => node.label === 'Login');
+      if (loginNode) {
+        loginNode.children = loginNode.children?.filter(child => ['Class', 'Inventory', 'Sale'].includes(child.label!));
+        const classNode = loginNode.children?.find(child => child.label === 'Class');
+        if (classNode) {
+          classNode.children = classNode.children?.filter(subChild => subChild.label === 'Details');
+        }
+        const inventoryNode = loginNode.children?.find(child => child.label === 'Inventory');
+        if (inventoryNode) {
+          delete inventoryNode.children;
+        }
+        const saleNode = loginNode.children?.find(child => child.label === 'Sale');
+        if (saleNode) {
+          saleNode.label = 'Buy';
+          delete saleNode.children;
+        }
+      }
+    }
+    if (this.isInstructor) {
+      const loginNode = this.data[0].children?.find(node => node.label === 'Login');
+      if (loginNode) {
+        loginNode.children = loginNode.children?.filter(child => 
+          ['Class', 'Inventory', 'Sale', 'Customers','Employees','CheckIn'].includes(child.label!)
+        );
+      }
+    }
+    if (this.isRecepcionista) {
+      const loginNode = this.data[0].children?.find(node => node.label === 'Login');
+      if (loginNode) {
+        loginNode.children = loginNode.children?.filter(child => 
+          ['Class', 'Inventory', 'Sale', 'Customers','Employees','CheckIn'].includes(child.label!)
+        );
+      }
+    }
   }
 
   logOut(): void {

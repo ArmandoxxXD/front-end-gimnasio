@@ -34,9 +34,11 @@
           <a *ngIf="isLogged && isAdmin || isRecepcionista || isUser" onmouseover="this.style.color='#DC0000'"
             onmouseout="this.style.color='white'" class="nav-link" routerLink="/producto/lista"><i class="fa-solid fa-clipboard"></i> Inventory</a>
         </li>
-        <li *ngIf="isLogged && isAdmin || isRecepcionista" class="nav-item">
-          <a class="nav-link" onmouseover="this.style.color='#DC0000'" onmouseout="this.style.color='white'"
+        <li *ngIf="isLogged && isAdmin || isRecepcionista || isUser" class="nav-item">
+          <a *ngIf="!isUser" class="nav-link" onmouseover="this.style.color='#DC0000'" onmouseout="this.style.color='white'"
             routerLink="/nuevaVenta"><i class="fa-solid fa-money-check-dollar"></i> Sale</a>
+          <a  *ngIf="isUser" class="nav-link" onmouseover="this.style.color='#DC0000'" onmouseout="this.style.color='white'"
+            routerLink="/nuevaVenta"><i class="fa-solid fa-money-check-dollar"></i> Buy</a>
         </li>
         <li class="nav-item">
           <a *ngIf="isLogged && isAdmin || isRecepcionista" onmouseover="this.style.color='#DC0000'"
@@ -45,10 +47,6 @@
         <li *ngIf="isLogged && isAdmin || isInstructor || isRecepcionista" class="nav-item">
           <a class="nav-link" onmouseover="this.style.color='#DC0000'" onmouseout="this.style.color='white'"
             routerLink="/chekcIn"><i class="fa-solid fa-user-check"></i> CheckIn</a>
-        </li>
-        <li *ngIf="isLogged && isAdmin" class="nav-item">
-          <a class="nav-link" onmouseover="this.style.color='#DC0000'" onmouseout="this.style.color='white'"
-            routerLink="/control-checkIn"><i class="fa-solid fa-address-book"></i> Employees control</a>
         </li>
         <li class="nav-item" >
           <a *ngIf="!isLogged" class="nav-link" onmouseover="this.style.color='#DC0000'"
@@ -64,6 +62,7 @@
           <i class="fa-solid fa-user"></i> {{userName}}
         </span>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+          <li><a class="dropdown-item" routerLink="/checkIn-empleado/{{userID}}"><i class="fa-solid fa-user"></i> Profile</a></li>
           <li><a class="dropdown-item" (click)="showModalDialog()"><i class="fa-solid fa-sitemap"></i> Site Map</a></li>
           <li><hr class="dropdown-divider"></li>
           <li><a class="dropdown-item" href="#" (click)="logOut()"><i class="fa-solid fa-power-off"></i> Logout</a></li>
