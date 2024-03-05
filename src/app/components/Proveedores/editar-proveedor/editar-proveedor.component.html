@@ -8,7 +8,7 @@
 <div id="formulario" class="row-mt-10">
   <div class="card col-md-4 mx-auto">
     <div class="card-header">
-      <div class="text-header">Provider Register</div>
+      <div class="text-header">Edit Provider</div>
     </div>
     <div class="card-body">
       <form (ngSubmit)="onUpdate()" novalidate #f="ngForm">
@@ -56,11 +56,9 @@
           <label for="calle">Street</label>
         </div>
         <br>
-        <div class="botones" style="display: flex;justify-content: space-between;">
+        <div class="botones" style="display: flex;justify-content: flex-end;">
           <!--Crear-->
-          <input type="submit" class="btn" value="Update" id="BootonCrear" [disabled]="!f.valid">
-          <!--Salir-->
-          <input type="submit" class="btn" value="Exit" routerLink="/proveedor/lista">
+          <input type="submit" class="btn" value="Save" id="BootonCrear" [disabled]="!f.valid">
         </div>
       </form>
     </div>
