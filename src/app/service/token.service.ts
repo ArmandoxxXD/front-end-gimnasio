@@ -31,14 +31,18 @@ export class TokenService {
       return false;
     }
     const token = this.getToken();
-    const payload = token!.split('.')[1];
-    const payloadDecoded = atob(payload);
-    const values = JSON.parse(payloadDecoded);
-    const roles = values.roles;
-    if (roles.indexOf('ROLE_ADMIN') < 0) {
-      return false;
+    if (token) {
+      const payload = token.split('.')[1];
+      const payloadDecoded = atob(payload);
+      const values = JSON.parse(payloadDecoded);
+      const roles = values.roles;
+        if (roles.indexOf('ROLE_ADMIN') < 0) {
+          return false;
+        }
+      return true;
+    } else {
+      return false
     }
-    return true;
   }
 
   public isInstructor(): boolean {
@@ -46,14 +50,19 @@ export class TokenService {
       return false;
     }
     const token = this.getToken();
-    const payload = token!.split('.')[1];
-    const payloadDecoded = atob(payload);
-    const values = JSON.parse(payloadDecoded);
-    const roles = values.roles;
-    if (roles.indexOf('ROLE_INSTRUCTOR') < 0) {
+    if (token) {
+      const payload = token.split('.')[1];
+      const payloadDecoded = atob(payload);
+      const values = JSON.parse(payloadDecoded);
+      const roles = values.roles;
+      if (roles.indexOf('ROLE_INSTRUCTOR') < 0) {
+        return false;
+      }
+      return true;
+    } else {
       return false;
     }
-    return true;
+   
   }
 
   public isMantenimeinto(): boolean {
@@ -61,14 +70,19 @@ export class TokenService {
       return false;
     }
     const token = this.getToken();
-    const payload = token!.split('.')[1];
-    const payloadDecoded = atob(payload);
-    const values = JSON.parse(payloadDecoded);
-    const roles = values.roles;
-    if (roles.indexOf('ROLE_MANTENIMIENTO') < 0) {
+    if (token) {
+      const payload = token.split('.')[1];
+      const payloadDecoded = atob(payload);
+      const values = JSON.parse(payloadDecoded);
+      const roles = values.roles;
+      if (roles.indexOf('ROLE_MANTENIMIENTO') < 0) {
+        return false;
+      }
+      return true;
+    } else {
       return false;
     }
-    return true;
+   
   }
 
   public isRecepcionista(): boolean {
@@ -76,14 +90,18 @@ export class TokenService {
       return false;
     }
     const token = this.getToken();
-    const payload = token!.split('.')[1];
-    const payloadDecoded = atob(payload);
-    const values = JSON.parse(payloadDecoded);
-    const roles = values.roles;
-    if (roles.indexOf('ROLE_RECEPCIONISTA') < 0) {
+    if (token) {
+      const payload = token.split('.')[1];
+      const payloadDecoded = atob(payload);
+      const values = JSON.parse(payloadDecoded);
+      const roles = values.roles;
+      if (roles.indexOf('ROLE_RECEPCIONISTA') < 0) {
+        return false;
+      }
+      return true;
+    } else {
       return false;
     }
-    return true;
   }
 
   
@@ -92,14 +110,18 @@ export class TokenService {
       return false;
     }
     const token = this.getToken();
-    const payload = token!.split('.')[1];
-    const payloadDecoded = atob(payload);
-    const values = JSON.parse(payloadDecoded);
-    const roles = values.roles;
-    if (roles.indexOf('ROLE_USER') < 0) {
+    if (token) {
+      const payload = token.split('.')[1];
+      const payloadDecoded = atob(payload);
+      const values = JSON.parse(payloadDecoded);
+      const roles = values.roles;
+      if (roles.indexOf('ROLE_USER') < 0) {
+        return false;
+      }
+      return true;
+    } else {
       return false;
     }
-    return true;
   }
 
   public getDatesUserName(): string {

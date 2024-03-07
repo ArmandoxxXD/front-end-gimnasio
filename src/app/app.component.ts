@@ -26,7 +26,7 @@ export class AppComponent  implements OnInit  {
       if (highlightedWord) {
         // Aquí es donde aplicarías el resaltado y el scroll
         // Necesitas seleccionar el elemento contenedor del texto donde deseas aplicar el resaltado.
-        const container = document.querySelector('.content'); // Asegúrate de que '.content' seleccione el contenedor correcto
+        const container = document.querySelector('.content');
         if (container) {
           this.buscadorService.highlight(container as HTMLElement);
         }
