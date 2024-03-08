@@ -44,10 +44,7 @@ const routes: Routes = [
     data: { expectedRoles: ['admin', 'instructor', 'mantenimiento'] },
   },
   {
-    path: 'cliente/nuevo',
-    component: NuevoClienteComponent,
-    canActivate: [ClientesGuard, HomeGuard],
-    data: { expectedRoles: ['admin'] },
+    path: 'register', component: NuevoClienteComponent,canActivate: [LoginGuard]
   },
   {
     path: 'cliente/editar/:id',
@@ -182,7 +179,7 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
   {
-    path: 'register',
+    path: 'empleado/nuevo',
     component: RegisterComponent,
     canActivate: [ClientesGuard],
     data: { expectedRoles: ['admin'] },

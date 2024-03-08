@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Clase } from 'src/app/models/clase';
-import { Clientes } from 'src/app/models/clientes';
-import { ClaseService } from 'src/app/service/clase.service';
-import { ClienteService } from 'src/app/service/cliente.service';
+import { CreateCliente } from 'src/app/models/create-cliente';
+import { AuthService } from 'src/app/service/auth.service';;
 import { TokenService } from 'src/app/service/token.service';
 
 @Component({
@@ -13,86 +11,29 @@ import { TokenService } from 'src/app/service/token.service';
   styleUrls: ['./nuevo-cliente.component.css'],
 })
 export class NuevoClienteComponent implements OnInit {
-  isAdmin: boolean = false;
-  aux: String[] = [];
-  nombreCliente!: String;
-  nombreClase: String[] = [];
+  nombreUsuario!: string;
   edad!: number;
-  email!: String;
-  telefono!: String;
-  subcripcion!: number;
+  password!: string;
+  email!: string;
+  telefono!: string;
+  roles: string = 'ROLE_USER';
 
-  opcion!: String;
-
-  clases: Clase[] = [];
-  constructor(
-    private clienteService: ClienteService,
-    private claseService: ClaseService,
-    private toastr: ToastrService,
-    private router: Router,
-    private token: TokenService
-  ) {}
+  constructor(private auth:AuthService,private toastr:ToastrService,private router:Router) { }
 
   ngOnInit(): void {
-    this.getClases();
-    this.isAdmin = this.token.isAdmin();
   }
 
-  onCreate(): void {
-    const cliente = new Clientes(
-      this.nombreCliente,
-      this.nombreClase,
-      this.edad,
-      this.email,
-      this.telefono,
-      this.subcripcion
-    );
-    this.clienteService.save(cliente).subscribe(
-      (data) => {
-        this.toastr.success('Client Saved', 'OK', {
-          timeOut: 3000,
-        });
-        this.router.navigate(['/cliente/lista']);
+  onRegister(): void{
+    console.log(this.nombreUsuario)
+    const dto=new CreateCliente(this.nombreUsuario,this.edad,this.email,this.telefono,this.password,[this.roles]);
+    this.auth.registerCliente(dto).subscribe(
+      data=>{
+        this.toastr.success(data.mensaje, 'OK', {timeOut: 3000}); 
+        this.router.navigate(['login']);
       },
-      (err) => {
-        this.toastr.error(err.error.mensaje, 'Fail', {
-          timeOut: 3000,
-        });
+      err=>{
+        this.toastr.error(err.error.mensaje, 'Fail', {timeOut: 3000}); 
       }
     );
-  }
-
-  getClases(): void {
-    this.claseService.list().subscribe(
-      (data) => {
-        this.clases = data;
-      },
-      (err) => {
-        this.toastr.error(err.error.mensaje, 'Error', { timeOut: 3000 });
-      }
-    );
-  }
-
-  // onClaseChange(opcion: String) {
-  //   if (this.nombreClase.includes(opcion)) {
-  //     this.nombreClase = this.nombreClase.filter((c) => c !== opcion);
-  //   } else {
-  //     this.aux.push(opcion);
-  //     this.nombreClase = this.aux.filter((elem, index, arr) => {
-  //       return arr.indexOf(elem) === index;
-  //     });
-  //   }
-  // }
-
-  onClaseChange(opcion: String) {
-    console.log(opcion);
-    if (this.nombreClase.includes(opcion)) {
-      this.nombreClase = this.nombreClase.filter((c) => c !== opcion);
-    } else {
-      this.aux.push(opcion);
-      this.nombreClase = this.aux.filter((elem, index, arr) => {
-        return arr.indexOf(elem) === index;
-      });
-    }
   }
 }

@@ -19,7 +19,7 @@
       <div *ngIf="tipoPago != 'Paypal'; else paypal">
         <button class="cssbuttons-io ms-5 rounded" id="botonNuevo" (click)="saveVentas()">
           <span><i class='bx bxs-plus-circle bx-tada-hover me-2'></i>
-            Sell</span>
+            Buy</span>
         </button>
       </div>
       <button *ngIf="isAdmin || isRecepcionista" class="cssbuttons-io ms-5 rounded" id="botonNuevo" routerLink="/listaVentas" style="height: 60px;">

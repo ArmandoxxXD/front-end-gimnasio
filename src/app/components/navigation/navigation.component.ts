@@ -58,10 +58,6 @@ export class NavigationComponent implements OnInit {
                 data: {route: '/cliente/lista', icon: 'fa-solid fa-user-group'},
                 children: [
                   {
-                    label: 'New',
-                    data: {icon: 'fa-solid fa-circle-plus'}
-                  },
-                  {
                     label: 'Edit',
                     data: {icon: 'fa-solid fa-pen-to-square'}
                   }
