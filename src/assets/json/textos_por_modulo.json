@@ -24,44 +24,22 @@
     },
     {
         "data": [
+            "Home",
+            "Login",
             "Spartacus",
             "User",
             "Password",
             "Login",
-            "Administration System",
-            "Project for the administration and\n                  the management of a gym which has a sale of\n                  products supplier management checkin and class management"
+            "You do not have an account",
+            "Sign up here",
+            "GYM  System",
+            "Project for the administration and\n                    the management of a gym which has a sale of\n                    products supplier management checkin and class management"
         ],
         "path": "login",
         "permissions": [
             "ALL"
         ],
         "Label": "Login"
-    },
-    {
-        "data": [
-            "Employees",
-            "add",
-            "Select an Turn",
-            "Morning",
-            "Evening",
-            "Select an Role",
-            "Admin",
-            "Instructor",
-            "Recepcionista",
-            "User",
-            "Create User",
-            "Spartacus",
-            "Add user for system",
-            "Admin Has control of all application modules and all operations",
-            "Instructor Has access to the classes clients users and checkin module with limited operations",
-            "Receptionist Has access to the clients classes inventory users and check module with limited operations",
-            "User has access to the class sell inventory module with limited operations"
-        ],
-        "path": "register",
-        "permissions": [
-            "ROLE_ADMIN"
-        ],
-        "Label": "Register"
     },
     {
         "data": [
@@ -124,10 +102,24 @@
     },
     {
         "data": [
+            "Login",
+            "Sign up",
+            "Create Acount",
+            "Spartacus",
+            "Sign Up",
+            "Register and be part of the Spartacus Gym family achieve your goals you have evolved your body to the next level"
+        ],
+        "path": "register",
+        "permissions": [
+            "ALL"
+        ],
+        "Label": "Sign up"
+    },
+    {
+        "data": [
             "Customer List",
             "Customers",
             "Search Clients",
-            "New",
             "Name",
             "Class",
             "Age",
@@ -285,7 +277,7 @@
             "Sale",
             "Buy",
             "Add Products",
-            "Sell",
+            "Buy",
             "See Sales",
             "Cuts",
             "Payment Type",

@@ -11,6 +11,7 @@ import { TokenService } from 'src/app/service/token.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  isAdmin: boolean = false;
   nombreUsuario!: string;
   foto!: string;
   edad!: number;
@@ -23,12 +24,14 @@ export class RegisterComponent implements OnInit {
 
 
 
-  constructor(private auth:AuthService,private token:TokenService,private toastr:ToastrService,private router:Router) { }
+  constructor(private auth:AuthService,private token:TokenService,private toastr:ToastrService,private router:Router) {
+    this.isAdmin = this.token.isAdmin();
+   }
 
   ngOnInit(): void {
   }
 
-  onRegister(): void{
+  onCreate(): void{
     const dto=new CreateUser(this.nombreUsuario,this.foto,this.edad,this.sueldo,this.turno,this.email,this.telefono,this.password,[this.roles]);
     this.auth.register(dto).subscribe(
       data=>{
