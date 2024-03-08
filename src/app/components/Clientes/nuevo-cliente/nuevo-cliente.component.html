@@ -1,81 +1,14 @@
-<!-- 
-<nav class="ms-5 mb-2 mt-5" aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a routerLink="/cliente/lista">Customers</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Add</li>
-  </ol>
-</nav>
-
-<div id="formulario" class="row-mt-10 ">
-  <div class="card col-md-4 mx-auto">
-    <div class="card-header">
-      <div class="text-header">Add Customer</div>
-    </div>
-    <div class="card-body">
-      <form (ngSubmit)="onCreate()" novalidate #f="ngForm">
-        nombreCliente
-        <div class="input">
-          <input autocomplete="off" type="text" id="nombreCliente" name="nombreCliente" [(ngModel)]="nombreCliente"
-            required>
-          <label for="text">Customer Name</label>
-        </div>
-
-        nombreClase
-        <label class="input">Class:</label>
-        <div class="form-check">
-          <div *ngFor="let opcion of clases">
-            <input class="form-check-input" type="checkbox" id="flexCheckDefault" [value]="opcion.nombreClase"
-              (change)="onClaseChange(opcion.nombreClase)">
-            <label class="form-check-label" for="flexCheckDefault">
-              {{ opcion.nombreClase }}
-            </label>
-          </div>
-        </div>
-        <br>
-
-        Edad
-        <div class="input">
-          <input autocomplete="off" type="number" id="edad" name="edad" [(ngModel)]="edad" required>
-          <label for="text">Age</label>
-        </div>
-        Email
-        <div class="input">
-          <input autocomplete="off" type="email" id="email" name="email" [(ngModel)]="email" required>
-          <label for="text">Email</label>
-        </div>
-        Telefono
-        <div class="input">
-          <input autocomplete="off" type="number" id="telefono" name="telefono" [(ngModel)]="telefono" required>
-          <label for="number">Phone</label>
-        </div>
-        Subscripcion
-        <div class="input">
-          <input autocomplete="off" type="number" id="subcripcion" name="subcripcion" [(ngModel)]="subcripcion"
-            required>
-          <label for="text">Suscription</label>
-        </div>
-        <div class="botones" style="display: flex;justify-content: flex-end;">
-          Crear
-          <input type="submit" class="btn" value="Save" id="BootonCrear">
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-<br>
--->
-
 <div class="content">
   <nav class="ms-5 mt-5" aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a routerLink="/login">Login</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Register</li>
+      <li class="breadcrumb-item active" aria-current="page">Sign up</li>
     </ol>
   </nav>
   
   
     <section class="h-100 gradient-form">
-      <div class="container py-1 h-100">
+      <div class="container py-0 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col-xl-10">
             <div class="card rounded-3 text-black">
@@ -124,7 +57,7 @@
                       <img src="../../../../assets/img/logo.jfif" style="width: 185px;" alt="logo">
                       <h4 class="mt-1 mb-5 pb-1">Spartacus</h4>
                     </div>
-                  <h4 class="mb-3">Create Acount</h4>
+                  <h4 class="mb-3">Sign Up</h4>
                   <p class="small mb-0">
                     Register and be part of the Spartacus Gym family, achieve your goals, you have evolved your body to the next level</p>
                 </div>
