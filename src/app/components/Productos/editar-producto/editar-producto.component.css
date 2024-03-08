@@ -4,7 +4,7 @@
 }
 
 .card {
-  margin-top: 50px;
+  margin-top: 10px;
   border: 1px solid #ccc;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -87,7 +87,7 @@ select {
 }
 
 .mat-select-panel {
-  transform: translateY(50%);
+  transform: translateY(10%);
   top: 50%;
 }
 

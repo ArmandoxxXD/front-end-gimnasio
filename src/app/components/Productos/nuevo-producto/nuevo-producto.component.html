@@ -48,12 +48,10 @@
           <label for="text">Type</label>
         </div>
         <!--selector-->
-        <div aria-label="Default select example">
+        <div class="form-group" style="margin-top: 20px; margin-bottom: 20px;">
           <label>Select an Provider:</label>
-          <select style="border-radius: 20px;border: 2px solid rgb(40, 40, 42);" id="nombreProvedor"
-            name="nombreProvedor" [(ngModel)]="nombreProvedor" required>
-            <option class="form-select" value="" disable selected></option>
-            <option class="form-select" *ngFor="let prove of proveedores">{{prove.nombreProvedor}}</option>
+          <select id="nombreProvedor" name="nombreProvedor" [(ngModel)]="nombreProvedor" required>
+            <option value="{{prove.nombreProvedor}}" *ngFor="let prove of proveedores">{{prove.nombreProvedor}}</option>
           </select>
         </div>
         <br>
