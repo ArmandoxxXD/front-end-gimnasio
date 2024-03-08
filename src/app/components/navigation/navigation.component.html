@@ -48,11 +48,16 @@
           <a class="nav-link" onmouseover="this.style.color='#DC0000'" onmouseout="this.style.color='white'"
             routerLink="/chekcIn"><i class="fa-solid fa-user-check"></i> CheckIn</a>
         </li>
-        <li class="nav-item" >
+        <!-- <li class="nav-item">
           <a *ngIf="!isLogged" class="nav-link" onmouseover="this.style.color='#DC0000'"
-            onmouseout="this.style.color='white'" routerLink="/login"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
-        </li>
+            onmouseout="this.style.color='white'" routerLink="/login" id="navbar__Login"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+        </li> -->
       </ul>
+
+      <div class="navbar__login">
+        <a *ngIf="!isLogged" class="nav-link" onmouseover="this.style.color='#DC0000'"
+        onmouseout="this.style.color='white'" routerLink="/login" id="navbar__Login"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+      </div>
 
     </div>
 
