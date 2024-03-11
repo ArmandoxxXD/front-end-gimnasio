@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Clientes } from 'src/app/models/clientes';
 import { ClienteService } from 'src/app/service/cliente.service';
@@ -23,7 +22,6 @@ export class VerClienteComponent implements OnInit {
     private clienteService: ClienteService,
     private toastr: ToastrService,
     private token: TokenService,
-    private router: Router
   ) {}
 
   ngOnInit(): void {

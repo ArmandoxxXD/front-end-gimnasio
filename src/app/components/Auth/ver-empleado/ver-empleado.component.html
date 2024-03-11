@@ -36,7 +36,7 @@
       <div class="buttons">
         <a id="BotonCrear" routerLink="/checkIn-empleado/{{employee.id}}" class="btn btn-outline-primary"
         style="margin-right: 5px"><i class="fa-solid fa-eye"></i> Details</a>
-        <a id="BotonCrear" *ngIf="isAdmin" routerLink="/empelado/editar/{{employee.id}}" class="btn btn-outline-primary"
+        <a id="BotonCrear" *ngIf="isAdmin && loggedUserId!=employee.id" routerLink="/empelado/editar/{{employee.id}}" [queryParams]="{ from: 'employeeList' }" class="btn btn-outline-primary"
           style="margin-right: 5px"><i class="fa-solid fa-pen-to-square"></i>
           Edit</a>
         <button *ngIf="isAdmin && loggedUserId!=employee.id" (click)="deleteEmployee(employee)" class="noselect" style="margin-left: 30%">

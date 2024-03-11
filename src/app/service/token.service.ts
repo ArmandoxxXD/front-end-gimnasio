@@ -17,6 +17,7 @@ export class TokenService {
 
   public logOut(): void {
     localStorage.removeItem(TOKEN_KEY);
+    location.reload();
   }
 
   public isLogged(): boolean {

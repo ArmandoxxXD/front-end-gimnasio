@@ -6,6 +6,7 @@ import Chart from 'chart.js/auto';
 import { CheckIn } from 'src/app/models/check-in';
 import Swal from 'sweetalert2';
 import { TokenService } from 'src/app/service/token.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-empleado-check-in',
@@ -23,6 +24,7 @@ export class EmpleadoCheckInComponent implements OnInit {
   @ViewChild('myChart', { static: true }) myChart!: ElementRef;
   chart!: Chart;
   isClient: boolean = false;
+  loggedUserId:number|null = this.token.getDatesId();
 
   private calendar!: HTMLElement;
   private prevBtn!: HTMLElement;
@@ -43,14 +45,15 @@ export class EmpleadoCheckInComponent implements OnInit {
     private capyfit: AuthService,
     private route: ActivatedRoute,
     private checkin: CheckInService,
-    private token : TokenService
+    private token : TokenService,
+    private authService: AuthService,
+    private toastr: ToastrService
   ) {
     const params = this.route.snapshot.params;
     this.p = params;
     this.capyfit.detail(params['id']).subscribe(
       (res) => {
         this.emp = res;
-        console.log(res);
       },
       (err) => console.log(err)
     );
@@ -351,6 +354,50 @@ export class EmpleadoCheckInComponent implements OnInit {
       icon: 'info',
       confirmButtonText: 'OK',
       confirmButtonColor: '#1a1a1a',
+    });
+  }
+
+  deleteEmployee(employee: any) {
+    Swal.fire({
+      title: 'Do you want to delete the employee?',
+      text: 'This action can´t be undone.',
+      html: '<p><strong>Employee: </strong>' + employee.nombreUsuario + '</p>',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, do it',
+      confirmButtonColor: '#1a1a1a',
+      cancelButtonText: 'Cancel',
+      cancelButtonColor: '#b9b9b9',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: 'Done!',
+          text: 'You have deleted the employee ' + employee.nombreUsuario,
+          icon: 'success',
+          confirmButtonText: 'OK',
+          confirmButtonColor: '#1a1a1a',
+        });
+        this.authService.delete(employee.id).subscribe(
+          (res) => {
+            this.toastr.success('Employee Deleted', 'OK', {
+              timeOut: 3000,
+            });
+          },
+          (err) =>{
+            this.toastr.error(err.error.mensaje, 'Fail', {
+              timeOut: 3000,
+            });
+          }
+        );
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire({
+          title: 'Canceled',
+          text: 'The employee has not been deleted',
+          icon: 'error',
+          confirmButtonText: 'OK',
+          confirmButtonColor: '#1a1a1a',
+        });
+      }
     });
   }
 }
