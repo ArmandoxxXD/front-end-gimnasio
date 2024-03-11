@@ -35,9 +35,9 @@ export class VerEmpleadoComponent implements OnInit {
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Yes, do it',
-      confirmButtonColor: '#1a1a1a',
+      // confirmButtonColor: '#1a1a1a',
       cancelButtonText: 'Cancel',
-      cancelButtonColor: '#b9b9b9',
+      // cancelButtonColor: '#b9b9b9',
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire({
@@ -45,7 +45,7 @@ export class VerEmpleadoComponent implements OnInit {
           text: 'You have deleted the employee ' + employee.nombreUsuario,
           icon: 'success',
           confirmButtonText: 'OK',
-          confirmButtonColor: '#1a1a1a',
+          // confirmButtonColor: '#1a1a1a',
         });
         this.authService.delete(employee.id).subscribe(
           (res) => {
@@ -66,7 +66,7 @@ export class VerEmpleadoComponent implements OnInit {
           text: 'The employee has not been deleted',
           icon: 'error',
           confirmButtonText: 'OK',
-          confirmButtonColor: '#1a1a1a',
+          // confirmButtonColor: '#1a1a1a',
         });
       }
     });

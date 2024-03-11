@@ -48,12 +48,12 @@ export class VerProductoComponent implements OnInit {
   }
   onDelete(id:number):void{
     Swal.fire({
-      title: '¿Estas Seguro?',
-      text: 'No podras desaser la acción',
+      title: 'Are you sure?',
+      text: 'You will not be able to remove the action',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Aceptar',
-      cancelButtonText: 'Cancelar'
+      confirmButtonText: 'Accept',
+      cancelButtonText: 'Cancel'
     }).then((result)=>{
         if(result.value){
           this.productoService.delete(id).subscribe(
@@ -67,8 +67,8 @@ export class VerProductoComponent implements OnInit {
           );
         }else if(result.dismiss===Swal.DismissReason.cancel){
           Swal.fire(
-            'Cancelado',
-            'Producto no eliminado',
+            'Cancelled',
+            'Product not eliminated',
             'error'
           )
         }
@@ -94,12 +94,12 @@ export class VerProductoComponent implements OnInit {
   }
 
   Ninguno(){
-    $('#filtrar').html('Filtrar por...');
+    $('#filtrar').html('Filter by...');
     this.getProductos()
   }
 
   filtrarCategorias(categoria: String){
-    $('#filtrar').html('Filtrar por '+categoria);
+    $('#filtrar').html('Filter by '+categoria);
     this.productoService.listCategorias(categoria).subscribe(
       data=>{
         this.productos=data; 

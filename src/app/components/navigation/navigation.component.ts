@@ -121,6 +121,10 @@ export class NavigationComponent implements OnInit {
                     data: {icon: 'fa-solid fa-circle-plus'}
                   },
                   {
+                    label: 'Details',
+                    data: {icon: 'fa-solid fa-eye'}
+                  },
+                  {
                     label: 'Edit',
                     data: {icon: 'fa-solid fa-pen-to-square'}
                   }
