@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { CreateCliente } from 'src/app/models/create-cliente';
+import { CreateCliente } from 'src/app/models/clientes';
 import { AuthService } from 'src/app/service/auth.service';;
-import { TokenService } from 'src/app/service/token.service';
+
 
 @Component({
   selector: 'app-nuevo-cliente',

@@ -4,8 +4,9 @@ import { LoginUser } from '../models/login-user';
 import { Observable } from 'rxjs';
 import { JwtToken } from '../models/jwt-token';
 import { environment } from 'src/environments/environment';
-import { CreateUser } from '../models/create-user';
-import { CreateCliente } from '../models/create-cliente';
+import { CreateUser, EditPassword, EditUser } from '../models/users';
+import { CreateCliente } from '../models/clientes';
+
 
 @Injectable({
   providedIn: 'root'
@@ -40,9 +41,14 @@ export class AuthService {
     return this.http.get<CreateUser>(this.authURL+`/${id}`);
   }
 
-  public update(id:number,proveedor:CreateUser):Observable<any>{
-    return this.http.put<any>(this.authURL+`/${id}`,proveedor)
+  public update(id:number,dto:EditUser):Observable<any>{
+    return this.http.put<any>(this.authURL+`/${id}`,dto)
   }
+
+  public updatePassword(id:number,dto:EditPassword):Observable<any>{
+    return this.http.put<any>(this.authURL+`/change-password/${id}`,dto)
+  }
+
 
   public delete(id:number):Observable<any>{
     return this.http.delete<any>(this.authURL+`/${id}`);

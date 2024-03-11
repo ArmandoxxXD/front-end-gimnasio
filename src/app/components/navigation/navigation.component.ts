@@ -135,7 +135,7 @@ export class NavigationComponent implements OnInit {
           },
           {
             label: 'Privacy policies',
-            data: {route: '/#', icon: 'fa-solid fa-shield-halved'}
+            data: {route: '/privacity_polices', icon: 'fa-solid fa-shield-halved'}
           }
         ]
       }
@@ -189,7 +189,6 @@ export class NavigationComponent implements OnInit {
 
   logOut(): void {
     this.token.logOut();
-    location.reload();
     this.router.navigate(['localhost:4200/home']);
   }
 

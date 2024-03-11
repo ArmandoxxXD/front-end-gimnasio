@@ -1,7 +1,7 @@
 import { Component, OnInit, Optional } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { CreateUser } from 'src/app/models/create-user';
+import { CreateUser } from 'src/app/models/users';
 import { AuthService } from 'src/app/service/auth.service';
 import { TokenService } from 'src/app/service/token.service';
 
