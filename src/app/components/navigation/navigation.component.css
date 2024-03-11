@@ -158,7 +158,11 @@ a {
   height: auto;
 }
 
-@media (max-width:770px) {
+#navbar__logout {
+  margin-right: 20px;
+}
+
+@media (max-width:1100px) {
 
   a {
     margin: 10px 0;

@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenService } from 'src/app/service/token.service';
 import { TreeNode } from 'primeng/api';
-
 
 @Component({
   selector: 'app-navigation',
@@ -16,133 +15,155 @@ export class NavigationComponent implements OnInit {
   isRecepcionista: boolean = false;
   isUser: boolean = false;
   userName: string = '';
-  userID?: number| null;
+  userID?: number | null;
   displayModal: boolean = false;
-  data: TreeNode[]; 
+  data: TreeNode[];
   selectedNode?: TreeNode;
 
+  private eventListenerNavbarShow: any;
+  private eventListenerNavbarHide: any;
+
   constructor(
-     private token: TokenService,
-     private router: Router,
-     ) {
-      this.data = [{
-        label: 'Home',
-        data: {route: '/home', icon: 'fas fa-home'},
-        expanded: true,
-        children: [
-          {
-            label: 'Login',
-            data: {route: '/login', icon: 'fa-solid fa-right-to-bracket'},
-            expanded: true,
-            children: [
-              {
-                label: 'Class',
-                data: {route: '/clase/lista', icon: 'fa-solid fa-person-chalkboard'},
-                children: [
-                  {
-                    label: 'New',
-                    data: {icon: 'fa-solid fa-circle-plus'}
-                  },
-                  {
-                    label: 'Details',
-                    data: {icon: 'fa-solid fa-eye'}
-                  },
-                  {
-                    label: 'Edit',
-                    data: {icon: 'fa-solid fa-pen-to-square'}
-                  }
-                ]
-              },
-              {
-                label: 'Customers',
-                data: {route: '/cliente/lista', icon: 'fa-solid fa-user-group'},
-                children: [
-                  {
-                    label: 'Edit',
-                    data: {icon: 'fa-solid fa-pen-to-square'}
-                  }
-                ]
-              },
-              {
-                label: 'Providers',
-                data: {route: '/proveedor/lista', icon: 'fa-solid fa-truck-field'},
-                children: [
-                  {
-                    label: 'New',
-                    data: {icon: 'fa-solid fa-circle-plus'}
-                  },
-                  {
-                    label: 'Details',
-                    data: {icon: 'fa-solid fa-eye'}
-                  },
-                  {
-                    label: 'Edit',
-                    data: {icon: 'fa-solid fa-pen-to-square'}
-                  }
-                ]
-              },
-              {
-                label: 'Inventory',
-                data: {route: '/producto/lista', icon: 'fa-solid fa-clipboard'},
-                children: [
-                  {
-                    label: 'New',
-                    data: {icon: 'fa-solid fa-circle-plus'}
-                  },
-                  {
-                    label: 'Edit',
-                    data: {icon: 'fa-solid fa-pen-to-square'}
-                  }
-                ]
-              },
-              {
-                label: 'Sale',
-                data: {route: '/nuevaVenta', icon: 'fa-solid fa-money-check-dollar'},
-                children: [
-                  {
-                    label: 'See Sales',
-                    data: {icon: 'fa-solid fa-eye'}
-                  },
-                  {
-                    label: 'Cuts',
-                    data: {icon: 'fa-solid fa-book'}
-                  }
-                ]
-              },
-              {
-                label: 'Employees',
-                data: {route: '/empelado/lista', icon: 'fa-solid fa-users'},
-                children: [
-                  {
-                    label: 'New',
-                    data: {icon: 'fa-solid fa-circle-plus'}
-                  },
-                  {
-                    label: 'Edit',
-                    data: {icon: 'fa-solid fa-pen-to-square'}
-                  }
-                ]
-              },
-              {
-                label: 'CheckIn',
-                data: {route: '/chekcIn', icon: 'fa-solid fa-user-check'}
-              }
-            ]
-          },
-          {
-            label: 'About Us',
-            data: {route: '/about', icon: 'fa-solid fa-dumbbell'}
-          },
-          {
-            label: 'Privacy policies',
-            data: {route: '/#', icon: 'fa-solid fa-shield-halved'}
-          }
-        ]
-      }
+    private token: TokenService,
+    private router: Router,
+    private el: ElementRef
+  ) {
+    this.data = [{
+      label: 'Home',
+      data: { route: '/home', icon: 'fas fa-home' },
+      expanded: true,
+      children: [
+        {
+          label: 'Login',
+          data: { route: '/login', icon: 'fa-solid fa-right-to-bracket' },
+          expanded: true,
+          children: [
+            {
+              label: 'Class',
+              data: { route: '/clase/lista', icon: 'fa-solid fa-person-chalkboard' },
+              children: [
+                {
+                  label: 'New',
+                  data: { icon: 'fa-solid fa-circle-plus' }
+                },
+                {
+                  label: 'Details',
+                  data: { icon: 'fa-solid fa-eye' }
+                },
+                {
+                  label: 'Edit',
+                  data: { icon: 'fa-solid fa-pen-to-square' }
+                }
+              ]
+            },
+            {
+              label: 'Customers',
+              data: { route: '/cliente/lista', icon: 'fa-solid fa-user-group' },
+              children: [
+                {
+                  label: 'Edit',
+                  data: { icon: 'fa-solid fa-pen-to-square' }
+                }
+              ]
+            },
+            {
+              label: 'Providers',
+              data: { route: '/proveedor/lista', icon: 'fa-solid fa-truck-field' },
+              children: [
+                {
+                  label: 'New',
+                  data: { icon: 'fa-solid fa-circle-plus' }
+                },
+                {
+                  label: 'Details',
+                  data: { icon: 'fa-solid fa-eye' }
+                },
+                {
+                  label: 'Edit',
+                  data: { icon: 'fa-solid fa-pen-to-square' }
+                }
+              ]
+            },
+            {
+              label: 'Inventory',
+              data: { route: '/producto/lista', icon: 'fa-solid fa-clipboard' },
+              children: [
+                {
+                  label: 'New',
+                  data: { icon: 'fa-solid fa-circle-plus' }
+                },
+                {
+                  label: 'Edit',
+                  data: { icon: 'fa-solid fa-pen-to-square' }
+                }
+              ]
+            },
+            {
+              label: 'Sale',
+              data: { route: '/nuevaVenta', icon: 'fa-solid fa-money-check-dollar' },
+              children: [
+                {
+                  label: 'See Sales',
+                  data: { icon: 'fa-solid fa-eye' }
+                },
+                {
+                  label: 'Cuts',
+                  data: { icon: 'fa-solid fa-book' }
+                }
+              ]
+            },
+            {
+              label: 'Employees',
+              data: { route: '/empelado/lista', icon: 'fa-solid fa-users' },
+              children: [
+                {
+                  label: 'New',
+                  data: { icon: 'fa-solid fa-circle-plus' }
+                },
+                {
+                  label: 'Edit',
+                  data: { icon: 'fa-solid fa-pen-to-square' }
+                }
+              ]
+            },
+            {
+              label: 'CheckIn',
+              data: { route: '/chekcIn', icon: 'fa-solid fa-user-check' }
+            }
+          ]
+        },
+        {
+          label: 'About Us',
+          data: { route: '/about', icon: 'fa-solid fa-dumbbell' }
+        },
+        {
+          label: 'Privacy policies',
+          data: { route: '/#', icon: 'fa-solid fa-shield-halved' }
+        }
+      ]
+    }
     ];
   }
 
   ngOnInit(): void {
+
+    if (!this.isLogged) {
+      const navbar = this.el.nativeElement.querySelector('.navbar-collapse');
+      const elementLogout = document.getElementById("navbar__logout") as HTMLDivElement;
+
+      this.eventListenerNavbarShow = () => {
+        elementLogout.style.margin = "0 auto";
+      };
+
+      this.eventListenerNavbarHide = () => {
+        elementLogout.style.margin = "0 25px 0 0";
+      }
+
+      navbar.addEventListener('show.bs.collapse', this.eventListenerNavbarShow);
+      navbar.addEventListener('hidden.bs.collapse', this.eventListenerNavbarHide);
+
+    }
+
     this.isLogged = this.token.isLogged();
     this.isAdmin = this.token.isAdmin();
     this.isInstructor = this.token.isInstructor();
@@ -172,18 +193,26 @@ export class NavigationComponent implements OnInit {
     if (this.isInstructor) {
       const loginNode = this.data[0].children?.find(node => node.label === 'Login');
       if (loginNode) {
-        loginNode.children = loginNode.children?.filter(child => 
-          ['Class', 'Inventory', 'Sale', 'Customers','Employees','CheckIn'].includes(child.label!)
+        loginNode.children = loginNode.children?.filter(child =>
+          ['Class', 'Inventory', 'Sale', 'Customers', 'Employees', 'CheckIn'].includes(child.label!)
         );
       }
     }
     if (this.isRecepcionista) {
       const loginNode = this.data[0].children?.find(node => node.label === 'Login');
       if (loginNode) {
-        loginNode.children = loginNode.children?.filter(child => 
-          ['Class', 'Inventory', 'Sale', 'Customers','Employees','CheckIn'].includes(child.label!)
+        loginNode.children = loginNode.children?.filter(child =>
+          ['Class', 'Inventory', 'Sale', 'Customers', 'Employees', 'CheckIn'].includes(child.label!)
         );
       }
+    }
+  }
+
+  ngOnDestroy(): void {
+    const navbar = this.el.nativeElement.querySelector('.navbar-collapse');
+    if (navbar) {
+      navbar.removeEventListener('show.bs.collapse', this.eventListenerNavbarShow);      
+      navbar.removeEventListener('hidden.bs.collapse', this.eventListenerNavbarHide);
     }
   }
 
@@ -197,10 +226,11 @@ export class NavigationComponent implements OnInit {
     this.displayModal = true;
   }
 
-  onNodeSelect(event:any) {
+  onNodeSelect(event: any) {
     console.log(event.node.label);
     this.router.navigate([event.node.data.route]);
   }
+
 
 
 }
