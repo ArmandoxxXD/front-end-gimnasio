@@ -382,6 +382,7 @@ export class EmpleadoCheckInComponent implements OnInit {
             this.toastr.success('Employee Deleted', 'OK', {
               timeOut: 3000,
             });
+            this.token.logOut();
           },
           (err) =>{
             this.toastr.error(err.error.mensaje, 'Fail', {
