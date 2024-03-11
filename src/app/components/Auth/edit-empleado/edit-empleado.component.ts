@@ -14,11 +14,14 @@ declare var bootstrap: any;
 export class EditEmpleadoComponent implements OnInit {
   
   isAdmin: boolean = false;
+  isUser: boolean = false;
   id!: number;
   empleado!: CreateUser;
   originalEmployeeData: any;
   currentPassword: String = '';
   newPassword: String = '';
+  loggedUserId:number|null = this.token.getDatesId();
+  fromListaEmpleado: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -26,11 +29,17 @@ export class EditEmpleadoComponent implements OnInit {
     private token: TokenService,
     private router: Router,
     private activateRoute: ActivatedRoute,
-    private toastr: ToastrService
-  ) {}
+    private toastr: ToastrService,
+    private route: ActivatedRoute
+  ) {
+    this.route.queryParams.subscribe(params => {
+      this.fromListaEmpleado = params['from'] === 'employeeList';
+    });
+  }
 
   ngOnInit(): void {
     this.isAdmin = this.token.isAdmin();
+    this.isUser = this.token.isUser();
     this.getEmpleados();
   }
 
@@ -79,7 +88,11 @@ export class EditEmpleadoComponent implements OnInit {
       this.authService.update(this.id, this.empleado).subscribe(
         (data) => {
           this.toast.success(data.mensaje, 'OK', { timeOut: 3000 });
-          this.router.navigate(['empelado/lista']);
+          if (this.fromListaEmpleado) {
+            this.router.navigate(['/empelado/lista']); // Redirige a la lista de empleados
+          } else {
+            this.router.navigate(['/checkIn-empleado', this.id]);
+          }
         },
         (err) => {
           this.toast.error(err.error.mensaje, 'Error', { timeOut: 3000 });
@@ -104,9 +117,7 @@ export class EditEmpleadoComponent implements OnInit {
 
   
   changePassword(): void {
-    console.log(this.currentPassword, this.newPassword);
       const dto=new EditPassword(this.currentPassword, this.newPassword);
-      console.log(dto)
       this.authService.updatePassword(this.id, dto).subscribe(
         (response) => {
           this.toastr.success('Password successfully updated');

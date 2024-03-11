@@ -1,6 +1,7 @@
 <nav class="ms-5 mb-2 mt-5" aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a routerLink="/empelado/lista">Employees</a></li>
+    <li *ngIf="fromListaEmpleado" class="breadcrumb-item"><a routerLink="/empelado/lista">Employees</a></li>
+    <li *ngIf="!fromListaEmpleado" class="breadcrumb-item"><a routerLink="/checkIn-empleado/{{loggedUserId}}">Profile</a></li>
     <li class="breadcrumb-item active" aria-current="page">{{this.originalEmployeeData.nombreUsuario}}</li>
   </ol>
 </nav>
@@ -33,12 +34,12 @@
         </div>
 
         <!--Sueldo-->
-        <div class="input">
+        <div *ngIf="!isUser" class="input">
           <input autocomplete="off" type="number" id="sueldo" name="sueldo" [(ngModel)]="empleado.sueldo" required>
           <label for="text">Salary</label>
         </div>
 
-        <div class="form-group" style="margin-top: 20px; margin-bottom: 30px;">
+        <div *ngIf="!isUser"class="form-group" style="margin-top: 20px; margin-bottom: 30px;">
           <label>Select an Turn:</label>
           <select id="turno" name="turno" [(ngModel)]="empleado.turno" required>
             <option value="Matutino">Morning</option>
@@ -58,7 +59,7 @@
           <label for="text">Phone</label>
         </div>
 
-        <div class="form-group" style="margin-top: 20px;  margin-bottom: 30px;">
+        <div *ngIf="!isUser" class="form-group" style="margin-top: 20px;  margin-bottom: 30px;">
 
           <label>Select an Role:</label>
           <select id="roles" name="roles" [(ngModel)]="empleado.roles" required>

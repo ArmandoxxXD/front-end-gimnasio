@@ -5,11 +5,11 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     margin-bottom: 2%;
-    padding: 10px;;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 10px;
-    /* background-color: #f0f0f0; */
 }
 .info-employee h1 {
     margin-left: 20px;
@@ -130,32 +130,59 @@
     background-color: #188cfc;
     color: white;
 }
-
-#BotonCrear {
-    margin-left: 1.25rem;
+.botones-verticales {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 20px; /* Ajuste de la separación entre la foto y los botones */
+    /* Alinea los botones al final del contenedor */
+    justify-content: flex-end;
+    /* Asegúrate de que el contenedor .info-employee tenga suficiente altura */
+    height: 100%;
+  }
+  
+  /* Estilos de los botones se mantienen */
+  #BotonVerQR, #BotonEditar, #BotonEliminar {
+    width: 200px; /* Ancho fijo para todos los botones */
+    margin: 5px 0; /* Espacio vertical entre botones */
     border: none;
-    background-color: #434242;
     color: white;
     font-size: 1.15rem;
     font-weight: 500;
-    padding: 0.7rem 2rem;
+    padding: 0.7rem; /* Ajuste del padding para mantener la altura */
     border-radius: 0.5rem;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
     cursor: pointer;
-    transform: translate(1) translate(0, 0);
     transition: transform 225ms, box-shadow 225ms;
+    text-align: center; /* Asegura que el texto esté centrado */
   }
   
-  #BotonCrear:hover {
+  #BotonVerQR, #BotonEditar {
+    background-color: #434242; /* Color de fondo para botones no críticos */
+  }
+  
+  #BotonVerQR:hover, #BotonEditar:hover {
     transform: scale(1.05) translate(0, -0.15rem);
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.35);
   }
   
-  #BotonCrear:active {
+  #BotonVerQR:active, #BotonEditar:active {
     transform: scale(1) translate(0, 0.15rem);
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   }
-
+  
+  #BotonEliminar {
+    background-color: red; /* Color de fondo para el botón Eliminar */
+  }
+  
+  #BotonEliminar:hover {
+    transform: scale(1.05) translate(0, -0.15rem);
+  }
+  
+  #BotonEliminar:active {
+    transform: scale(1) translate(0, 0.15rem);
+    box-shadow: 0 0.5rem 1rem rgba(255, 0, 0, 0.25);
+  }
 
 @media (max-width:400px){
     

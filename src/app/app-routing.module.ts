@@ -175,7 +175,12 @@ const routes: Routes = [
     path: 'empelado/editar/:id',
     component: EditEmpleadoComponent,
     canActivate: [ClientesGuard, HomeGuard],
-    data: { expectedRoles: ['admin'] },
+    data: { expectedRoles: [
+    'admin',
+    'user',
+    'instructor',
+    'recepcionista'
+    ]},
   },
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
   {
