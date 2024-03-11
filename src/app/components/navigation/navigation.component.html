@@ -48,17 +48,18 @@
           <a class="nav-link" onmouseover="this.style.color='#DC0000'" onmouseout="this.style.color='white'"
             routerLink="/chekcIn"><i class="fa-solid fa-user-check"></i> CheckIn</a>
         </li>
-        <li class="nav-item" >
-          <a *ngIf="!isLogged" class="nav-link" onmouseover="this.style.color='#DC0000'"
-            onmouseout="this.style.color='white'" routerLink="/login"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
-        </li>
       </ul>
+
+      <div class="navbar__login">
+        <a *ngIf="!isLogged" class="nav-link" onmouseover="this.style.color='#DC0000'"
+        onmouseout="this.style.color='white'" routerLink="/login" id="navbar__Login"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+      </div>
 
     </div>
 
-    <div class="d-flex align-items-center">
+    <div class="mb-2" id="navbar__logout">
       <div class="dropdown" *ngIf="isLogged">
-        <span id="userDropdown" class="navbar-text me-4 dropdown-toggle" style="text-transform: capitalize; font-weight: bold;" data-bs-toggle="dropdown" aria-expanded="false">
+        <span id="userDropdown" class="navbar-text dropdown-toggle" style="text-transform: capitalize; font-weight: bold; width: auto;" data-bs-toggle="dropdown" aria-expanded="false">
           <i class="fa-solid fa-user"></i> {{userName}}
         </span>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">

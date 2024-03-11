@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenService } from 'src/app/service/token.service';
 import { TreeNode } from 'primeng/api';
-
 
 @Component({
   selector: 'app-navigation',
@@ -16,14 +15,18 @@ export class NavigationComponent implements OnInit {
   isRecepcionista: boolean = false;
   isUser: boolean = false;
   userName: string = '';
-  userID?: number| null;
+  userID?: number | null;
   displayModal: boolean = false;
-  data: TreeNode[]; 
+  data: TreeNode[];
   selectedNode?: TreeNode;
+
+  private eventListenerNavbarShow: any;
+  private eventListenerNavbarHide: any;
 
   constructor(
      private token: TokenService,
      private router: Router,
+     private el: ElementRef
      ) {
       this.data = [{
         label: 'Home',
@@ -143,6 +146,24 @@ export class NavigationComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    if (!this.isLogged) {
+      const navbar = this.el.nativeElement.querySelector('.navbar-collapse');
+      const elementLogout = document.getElementById("navbar__logout") as HTMLDivElement;
+
+      this.eventListenerNavbarShow = () => {
+        elementLogout.style.margin = "0 auto";
+      };
+
+      this.eventListenerNavbarHide = () => {
+        elementLogout.style.margin = "0 25px 0 0";
+      }
+
+      navbar.addEventListener('show.bs.collapse', this.eventListenerNavbarShow);
+      navbar.addEventListener('hidden.bs.collapse', this.eventListenerNavbarHide);
+
+    }
+
     this.isLogged = this.token.isLogged();
     this.isAdmin = this.token.isAdmin();
     this.isInstructor = this.token.isInstructor();
@@ -172,18 +193,26 @@ export class NavigationComponent implements OnInit {
     if (this.isInstructor) {
       const loginNode = this.data[0].children?.find(node => node.label === 'Login');
       if (loginNode) {
-        loginNode.children = loginNode.children?.filter(child => 
-          ['Class', 'Inventory', 'Sale', 'Customers','Employees','CheckIn'].includes(child.label!)
+        loginNode.children = loginNode.children?.filter(child =>
+          ['Class', 'Inventory', 'Sale', 'Customers', 'Employees', 'CheckIn'].includes(child.label!)
         );
       }
     }
     if (this.isRecepcionista) {
       const loginNode = this.data[0].children?.find(node => node.label === 'Login');
       if (loginNode) {
-        loginNode.children = loginNode.children?.filter(child => 
-          ['Class', 'Inventory', 'Sale', 'Customers','Employees','CheckIn'].includes(child.label!)
+        loginNode.children = loginNode.children?.filter(child =>
+          ['Class', 'Inventory', 'Sale', 'Customers', 'Employees', 'CheckIn'].includes(child.label!)
         );
       }
+    }
+  }
+
+  ngOnDestroy(): void {
+    const navbar = this.el.nativeElement.querySelector('.navbar-collapse');
+    if (navbar) {
+      navbar.removeEventListener('show.bs.collapse', this.eventListenerNavbarShow);      
+      navbar.removeEventListener('hidden.bs.collapse', this.eventListenerNavbarHide);
     }
   }
 
@@ -196,10 +225,11 @@ export class NavigationComponent implements OnInit {
     this.displayModal = true;
   }
 
-  onNodeSelect(event:any) {
+  onNodeSelect(event: any) {
     console.log(event.node.label);
     this.router.navigate([event.node.data.route]);
   }
+
 
 
 }
