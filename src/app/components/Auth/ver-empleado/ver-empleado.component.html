@@ -26,7 +26,7 @@
 
   <div class="employee-container">
     <div class="employee-card" *ngFor="let employee of employees | filterEmployees:filterPost">
-      <img [src]="employee.foto" alt="Foto del empleado">
+      <img [src]="employee.foto" alt="Foto del empleado" class="placeholder-glow image rounded-circle">
 
       <h2 style="text-transform: capitalize;">{{employee.nombreUsuario}}</h2>
       <!-- <p>{{employee.Rol[0]}}</p> -->

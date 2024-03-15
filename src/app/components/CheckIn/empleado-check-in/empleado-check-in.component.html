@@ -8,7 +8,7 @@
 
 <div class="contenedor">
   <div class="info-employee">
-    <img [src]="emp.foto" alt="" class="bd-placeholder-img rounded-circle" height="155px" width="155px">
+    <img [src]="emp.foto" alt="" class="placeholder-glow image rounded-circle" height="155px" width="155px">
     <h1 *ngIf="emp" style="text-transform: capitalize;">{{emp.nombreUsuario}}</h1>
     <div class="botones-verticales">
       <button id="BotonVerQR" *ngIf="!isClient" (click)="showQR()"><i class="fa-solid fa-pen-to-square"></i> View QR</button>

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { CreateUser, EditPassword } from 'src/app/models/users';
+import { CreateUser, EditPassword, EditUser } from 'src/app/models/users';
 import { AuthService } from 'src/app/service/auth.service';
 import { TokenService } from 'src/app/service/token.service';
 import Swal from 'sweetalert2';
@@ -12,7 +12,6 @@ declare var bootstrap: any;
   styleUrls: ['./edit-empleado.component.css'],
 })
 export class EditEmpleadoComponent implements OnInit {
-  
   isAdmin: boolean = false;
   isUser: boolean = false;
   id!: number;
@@ -22,7 +21,9 @@ export class EditEmpleadoComponent implements OnInit {
   newPassword: String = '';
   loggedUserId:number|null = this.token.getDatesId();
   fromListaEmpleado: boolean = false;
-
+  previewUrl: any = null;
+  isPhotoDeleted: boolean = false;
+  hasValidPhoto: boolean = false;
   constructor(
     private authService: AuthService,
     private toast: ToastrService,
@@ -44,6 +45,7 @@ export class EditEmpleadoComponent implements OnInit {
   }
 
   onEdit(): void {
+    const dto=new EditUser(this.empleado.nombreUsuario,this.empleado.foto,this.empleado.edad,this.empleado.sueldo,this.empleado.turno,this.empleado.email,this.empleado.telefono,this.empleado.roles);
     if (this.token.getDatesId() === this.empleado.id &&
       this.empleado.nombreUsuario !== this.originalEmployeeData.nombreUsuario) {
       Swal.fire({
@@ -64,7 +66,7 @@ export class EditEmpleadoComponent implements OnInit {
             confirmButtonText: 'OK',
             confirmButtonColor: '#1a1a1a',
           }).then((result) => { 
-            this.authService.update(this.id, this.empleado).subscribe(
+            this.authService.update(this.id, dto).subscribe(
               (data) => {
                 this.toast.success(data.mensaje, 'OK', { timeOut: 3000 });
                 this.token.logOut();
@@ -85,7 +87,7 @@ export class EditEmpleadoComponent implements OnInit {
         }
       });
     } else {
-      this.authService.update(this.id, this.empleado).subscribe(
+      this.authService.update(this.id, dto).subscribe(
         (data) => {
           this.toast.success(data.mensaje, 'OK', { timeOut: 3000 });
           if (this.fromListaEmpleado) {
@@ -106,6 +108,7 @@ export class EditEmpleadoComponent implements OnInit {
     this.authService.detail(this.id).subscribe(
       (data) => {
         this.empleado = data;
+        console.log(this.empleado.foto)
         this.originalEmployeeData = JSON.parse(JSON.stringify(data));
       },
       (err) => {
@@ -136,4 +139,36 @@ export class EditEmpleadoComponent implements OnInit {
   hasChanges(): boolean {
     return JSON.stringify(this.originalEmployeeData) !== JSON.stringify(this.empleado);
   }
+
+  
+  onFileChange(event: any): void {
+    if (event.target.files.length > 0) {
+      this.empleado.foto = event.target.files[0];
+
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.previewUrl = e.target.result;
+      };
+  
+      reader.readAsDataURL(this.empleado.foto);
+    }
+  }
+
+  cancelNewImage(): void {
+    this.previewUrl = null;
+    if (!this.isPhotoDeleted) {
+      this.empleado.foto = this.originalEmployeeData.foto;
+    }
+    const fileInput = document.getElementById('foto') as HTMLInputElement;
+    fileInput.value = "";
+  }
+  
+  deleteImage(): void {
+    this.isPhotoDeleted = true;
+    this.empleado.foto =  new File([], "");
+    this.previewUrl = null;
+    const fileInput = document.getElementById('foto') as HTMLInputElement;
+    fileInput.value = "";
+  }
+
 }
