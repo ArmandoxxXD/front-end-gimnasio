@@ -16,13 +16,14 @@ export class NuevoProductoComponent implements OnInit {
   isAdmin: boolean = false;
 
   nombreProducto!: string;
-  imagen!: string;
+  imagen: File = new File([], "");
   cantidad!: number;
   precio!: number;
   nombreProvedor!: string;
   categoria!: string;
   tipo!: string;
   codeBar!: string;
+  previewUrl: any = null;
 
   proveedores: Proveedor[] = [];
 
@@ -70,5 +71,24 @@ export class NuevoProductoComponent implements OnInit {
         this.toast.error(err.error.mensaje, 'Error', { timeOut: 3000 });
       }
     );
+  }
+
+  onFileChange(event: any): void {
+    if (event.target.files.length > 0) {
+      this.imagen = event.target.files[0];
+    }
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      this.previewUrl = e.target.result;
+    };
+
+    reader.readAsDataURL(this.imagen!);
+  }
+
+  cancelNewImage(): void {
+    this.previewUrl = null;
+    this.imagen = new File([], "");
+    const fileInput = document.getElementById('imagen') as HTMLInputElement;
+    fileInput.value = "";
   }
 }

@@ -2,7 +2,7 @@
   <ol class="breadcrumb">
     <li *ngIf="fromListaEmpleado" class="breadcrumb-item"><a routerLink="/empelado/lista">Employees</a></li>
     <li *ngIf="!fromListaEmpleado" class="breadcrumb-item"><a routerLink="/checkIn-empleado/{{loggedUserId}}">Profile</a></li>
-    <li class="breadcrumb-item active" aria-current="page">{{this.originalEmployeeData.nombreUsuario}}</li>
+    <li class="breadcrumb-item active" aria-current="page">Edit</li>
   </ol>
 </nav>
 
@@ -22,7 +22,7 @@
         <div class="custom-file-input">
           <label for="foto">
             Upload Photo <i class="fa-solid fa-file-image"></i>
-            <input type="file" id="foto" name="foto" [(ngModel)]="empleado.foto" (change)="onFileChange($event)" required>
+            <input type="file" id="foto" name="foto" accept="image/*" [(ngModel)]="empleado.foto" (change)="onFileChange($event)" required>
           </label>
           <button *ngIf="previewUrl" class="cancel-btn" (click)="cancelNewImage()"><i class="fa-solid fa-delete-left"></i></button>
           <button *ngIf="empleado.foto && !previewUrl && !isPhotoDeleted" class="cancel-btn" (click)="deleteImage()"><i class="fa-solid fa-trash"></i></button>

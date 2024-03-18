@@ -1,7 +1,7 @@
 export class Producto {
   id!: number;
   nombreProducto: string;
-  imagen: string;
+  imagen: File;
   cantidad: number;
   precio: number;
   existencia!: boolean;
@@ -13,7 +13,7 @@ export class Producto {
 
   constructor(
     nombreProducto: string,
-    imagen: string,
+    imagen: File,
     cantidad: number,
     precio: number,
     nombreProvedor: string,
@@ -30,6 +30,19 @@ export class Producto {
     this.tipo = tipo;
     this.codeBar = codeBar;
   }
+
+  toFormData(): FormData {
+    const formData = new FormData();
+    formData.append('nombreProducto', this.nombreProducto ? this.nombreProducto.toString() : '');
+    formData.append('imagen', this.imagen ? this.imagen : new File([], ""));
+    formData.append('cantidad', this.cantidad ? this.cantidad.toString() : '');
+    formData.append('precio', this.precio ? this.precio.toString() : '');
+    formData.append('nombreProvedor', this.nombreProvedor ? this.nombreProvedor.toString() : '');
+    formData.append('categoria', this.categoria ? this.categoria.toString() : '');
+    formData.append('tipo', this.tipo ? this.tipo.toString() : '');
+    formData.append('codeBar', this.codeBar ? this.codeBar.toString() : '');
+    return formData;
+}    
 }
 
 export interface Ventas {

@@ -28,9 +28,7 @@ export class CreateUser {
     toFormData(): FormData {
         const formData = new FormData();
         formData.append('nombreUsuario', this.nombreUsuario ? this.nombreUsuario.toString() : '');
-        if (this.foto) {
-            formData.append('foto', this.foto);
-        }
+        formData.append('foto', this.foto ? this.foto : new File([], ""));
         formData.append('edad', this.edad ? this.edad.toString() : '');
         formData.append('sueldo', this.sueldo ? this.sueldo.toString() : '');
         formData.append('turno', this.turno ? this.turno.toString() : '');
@@ -70,16 +68,18 @@ export class EditUser {
 
     toFormData(): FormData {
         const formData = new FormData();
-        formData.append('nombreUsuario', this.nombreUsuario.toString());
-        formData.append('foto', this.foto);
-        formData.append('edad', this.edad.toString());
-        formData.append('sueldo', this.sueldo.toString());
-        formData.append('turno', this.turno.toString());
-        formData.append('email', this.email.toString());
-        formData.append('telefono', this.telefono.toString());
-        formData.append('roles', this.roles.toString());
+        formData.append('nombreUsuario', this.nombreUsuario ? this.nombreUsuario.toString() : '');
+        formData.append('foto', this.foto ? this.foto : new File([], ""));
+        formData.append('edad', this.edad ? this.edad.toString() : '');
+        formData.append('sueldo', this.sueldo ? this.sueldo.toString() : '');
+        formData.append('turno', this.turno ? this.turno.toString() : '');
+        formData.append('email', this.email ? this.email.toString() : '');
+        formData.append('telefono', this.telefono ? this.telefono.toString() : '');
+        if (this.roles) {
+            formData.append('roles', this.roles.toString());
+        }
         return formData;
-      }
+    }    
 }
 
 

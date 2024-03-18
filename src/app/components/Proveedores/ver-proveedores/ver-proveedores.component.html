@@ -26,7 +26,7 @@
 
   <div class="employee-container">
     <div class="employee-card" *ngFor="let prove of proveedores |filterProvedor:filterProvedor ">
-      <img [src]="prove.logo" class="img-fluid mb-2">
+      <img [src]="prove.logo" class="img-fluid placeholder-glow image rounded">
       <h5 class="card-title">{{prove.nombreProvedor}}</h5>
       <p class="card-text"><small class="text-muted">{{prove.pais}}</small></p>
       <div class="buttons">

@@ -16,14 +16,13 @@ export class EditEmpleadoComponent implements OnInit {
   isUser: boolean = false;
   id!: number;
   empleado!: CreateUser;
-  originalEmployeeData: any;
+  originalEmployeeData!: CreateUser;
   currentPassword: String = '';
   newPassword: String = '';
   loggedUserId:number|null = this.token.getDatesId();
   fromListaEmpleado: boolean = false;
   previewUrl: any = null;
   isPhotoDeleted: boolean = false;
-  hasValidPhoto: boolean = false;
   constructor(
     private authService: AuthService,
     private toast: ToastrService,
@@ -108,7 +107,6 @@ export class EditEmpleadoComponent implements OnInit {
     this.authService.detail(this.id).subscribe(
       (data) => {
         this.empleado = data;
-        console.log(this.empleado.foto)
         this.originalEmployeeData = JSON.parse(JSON.stringify(data));
       },
       (err) => {

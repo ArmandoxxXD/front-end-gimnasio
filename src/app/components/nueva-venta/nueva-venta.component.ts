@@ -147,7 +147,7 @@ export class NuevaVentaComponent implements OnInit {
               product.total = this.cantidad * data.precio;
               product.cantidad = this.cantidad;
               product.codeBar = data.codeBar;
-              product.img = data.imagen;
+              product.img = data.imagen.toString();
               product.nombre = data.nombreProducto;
               venta.nombre = data.nombreProducto;
               venta.cantidad = this.cantidad;

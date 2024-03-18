@@ -19,6 +19,9 @@ export class EditarProductoComponent implements OnInit {
   id!:number;
   producto!:Producto;
   nombreProducto!: String;
+  previewUrl: any = null;
+  isPhotoDeleted: boolean = false;
+  originalProductData!: Producto;
 
   constructor(
     private productoService:ProductoService,
@@ -36,7 +39,8 @@ export class EditarProductoComponent implements OnInit {
   }
 
   onUpdate():void{
-    this.productoService.update(this.id,this.producto).subscribe(
+    const dto=new Producto(this.producto.nombreProducto,this.producto.imagen,this.producto.cantidad,this.producto.precio,this.producto.nombreProvedor,this.producto.categoria,this.producto.tipo,this.producto.codeBar);
+    this.productoService.update(this.id,dto).subscribe(
       data=>{
         this.toast.success(data.mensaje,'OK',{timeOut:3000});
         this.router.navigate(['/producto/lista'])
@@ -64,13 +68,48 @@ export class EditarProductoComponent implements OnInit {
     this.productoService.detail(this.id).subscribe(
       data=>{
         this.producto=data;
-        this.nombreProducto = this.producto.nombreProducto;
+        this.originalProductData =JSON.parse(JSON.stringify(data));
       },
       err=>{
         this.toast.error(err.error.mensaje,'Error',{timeOut:3000});
         this.router.navigate(['/producto/lista'])
       }
     );
+  }
+
+  hasChanges(): boolean {
+    return JSON.stringify(this.originalProductData) !== JSON.stringify(this.producto);
+  }
+
+  onFileChange(event: any): void {
+    console.log(this.hasChanges())
+    if (event.target.files.length > 0) {
+      this.producto.imagen = event.target.files[0];
+
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.previewUrl = e.target.result;
+      };
+  
+      reader.readAsDataURL(this.producto.imagen);
+    }
+  }
+
+  cancelNewImage(): void {
+    this.previewUrl = null;
+    if (!this.isPhotoDeleted) {
+      this.producto.imagen = this.originalProductData.imagen;
+    }
+    const fileInput = document.getElementById('foto') as HTMLInputElement;
+    fileInput.value = "";
+  }
+  
+  deleteImage(): void {
+    this.isPhotoDeleted = true;
+    this.producto.imagen =  new File([], "");
+    this.previewUrl = null;
+    const fileInput = document.getElementById('foto') as HTMLInputElement;
+    fileInput.value = "";
   }
 
 }

@@ -9,7 +9,7 @@
 <h1 style="text-align: center;">Provider Details</h1>
 <div class="employee-container">
   <div class="employee-card" *ngIf="proveedor">
-    <img [src]="proveedor.logo">
+    <img [src]="proveedor.logo" class="img-fluid placeholder-glow image rounded" width="420px" height="220px">
     <div id="mapa">
       <iframe width="auto" height="auto" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"
         [src]="Mapa">
@@ -57,7 +57,7 @@
         <tr *ngFor="let producto of productos | filter:filterProductos">
           <td><img data-bs-toggle="modal" data-bs-target="#exampleModal"
               (click)="showImage(producto.imagen,producto.nombreProducto)" [src]="producto.imagen"
-              style="cursor: pointer;" class="card-img-top" width="60px" height="70px"></td>
+              style="cursor: pointer;" class="placeholder-glow image rounded" height="75px" width="75px"></td>
           <td>{{producto.nombreProducto}}</td>
           <td style="vertical-align: middle;" id="stock{{producto.id}}">{{producto.cantidad}}</td>
           <td>{{producto.categoria}}</td>

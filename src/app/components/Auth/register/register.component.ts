@@ -13,7 +13,7 @@ import { TokenService } from 'src/app/service/token.service';
 export class RegisterComponent implements OnInit {
   isAdmin: boolean = false;
   nombreUsuario!: string;
-  foto!: File;
+  foto: File = new File([], "");
   edad!: number;
   sueldo!: number;
   turno!: String;

@@ -24,11 +24,11 @@ export class ClaseService {
   }
 
   public create(clase: Clase): Observable<any> {
-    return this.http.post<any>(this.claseURL, clase);
+    return this.http.post<any>(this.claseURL, clase.toFormData());
   }
 
   public update(id: number, clase: Clase): Observable<any> {
-    return this.http.put<any>(this.claseURL + `/${id}`, clase);
+    return this.http.put<any>(this.claseURL + `/${id}`, clase.toFormData());
   }
 
   public delete(id: number): Observable<any> {
