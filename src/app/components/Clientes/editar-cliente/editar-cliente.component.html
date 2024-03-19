@@ -56,7 +56,7 @@
         </div>
         <div class="botones" style="display: flex;justify-content: flex-end;">
           <!--Crear-->
-          <input type="submit" class="btn" value="Save" id="BootonCrear">
+          <input type="submit" class="btn" value="Save" id="BootonCrear"  [disabled]="!hasChanges()">
         </div>
       </form>
     </div>

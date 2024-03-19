@@ -12,16 +12,24 @@
     </div>
     <div class="card-body">
       <form (ngSubmit)="onUpdate()" novalidate #f="ngForm">
+        <div class="image-container">
+          <img *ngIf="previewUrl" [src]="previewUrl" alt="Previsualización de la imagen" class="rounded" height="155px" width="155px">
+          <img *ngIf="!previewUrl" [src]="proveedor.logo" alt="" class="placeholder-glow image rounded" height="155px" width="155px">
+        </div>
+        <!--Foto-->
+        <div class="custom-file-input">
+          <label for="foto">
+            Upload Photo <i class="fa-solid fa-file-image"></i>
+            <input type="file" id="logo" name="logo" accept="image/*" [(ngModel)]="proveedor.logo" (change)="onFileChange($event)" required>
+          </label>
+          <button *ngIf="previewUrl" class="cancel-btn" (click)="cancelNewImage()"><i class="fa-solid fa-delete-left"></i></button>
+          <button *ngIf="proveedor.logo && !previewUrl && !isPhotoDeleted" class="cancel-btn" (click)="deleteImage()"><i class="fa-solid fa-trash"></i></button>
+        </div>
         <!--nombre-->
         <div class="input">
           <input autocomplete="off" type="text" id="nombre" name="nombre" [(ngModel)]="proveedor.nombreProvedor"
             required>
           <label for="nombreProveedor">Provider Name</label>
-        </div>
-        <!--Logo-->
-        <div class="input">
-          <input autocomplete="off" type="url" id="logo" name="logo" [(ngModel)]="proveedor.logo" required>
-          <label for="logo">Logo</label>
         </div>
         <!--Telefono-->
         <div class="input">
@@ -58,7 +66,7 @@
         <br>
         <div class="botones" style="display: flex;justify-content: flex-end;">
           <!--Crear-->
-          <input type="submit" class="btn" value="Save" id="BootonCrear" [disabled]="!f.valid">
+          <input type="submit" class="btn" value="Save" id="BootonCrear" [disabled]="!hasChanges()">
         </div>
       </form>
     </div>

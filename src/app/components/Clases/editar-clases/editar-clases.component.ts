@@ -18,7 +18,9 @@ export class EditarClasesComponent implements OnInit {
   clase!:Clase;
   id!:number;
   instructores:CreateUser[]=[];
-
+  previewUrl: any = null;
+  isPhotoDeleted: boolean = false;
+  originalClassData!: Clase;
   constructor(
     private claseService:ClaseService,
     private empleadoService:AuthService,
@@ -35,7 +37,8 @@ export class EditarClasesComponent implements OnInit {
   }
 
   onUpdate():void{
-    this.claseService.update(this.id,this.clase).subscribe(
+    const dto=new Clase(this.clase.nombreClase,this.clase.descripcion,this.clase.costo,this.clase.nombreInstructor,this.clase.fecha,this.clase.hora,this.clase.cupo,this.clase.fotoClase);
+    this.claseService.update(this.id,dto).subscribe(
       data=>{
         this.toast.success(data.mensaje,'OK',{timeOut:3000});
         this.router.navigate(['/clase/lista'])
@@ -63,6 +66,7 @@ export class EditarClasesComponent implements OnInit {
     this.claseService.detail(this.id).subscribe(
       data=>{
         this.clase=data;
+        this.originalClassData = JSON.parse(JSON.stringify(data));
       },
       err=>{
         this.toast.error(err.error.mensaje,'Error',{timeOut:3000});
@@ -71,4 +75,38 @@ export class EditarClasesComponent implements OnInit {
     );
   }
 
+  hasChanges(): boolean {
+    return JSON.stringify(this.originalClassData) !== JSON.stringify(this.clase);
+  }
+
+  
+  onFileChange(event: any): void {
+    if (event.target.files.length > 0) {
+      this.clase.fotoClase = event.target.files[0];
+
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.previewUrl = e.target.result;
+      };
+  
+      reader.readAsDataURL(this.clase.fotoClase);
+    }
+  }
+
+  cancelNewImage(): void {
+    this.previewUrl = null;
+    if (!this.isPhotoDeleted) {
+      this.clase.fotoClase = this.originalClassData.fotoClase;
+    }
+    const fileInput = document.getElementById('foto') as HTMLInputElement;
+    fileInput.value = "";
+  }
+  
+  deleteImage(): void {
+    this.isPhotoDeleted = true;
+    this.clase.fotoClase =  new File([], "");
+    this.previewUrl = null;
+    const fileInput = document.getElementById('foto') as HTMLInputElement;
+    fileInput.value = "";
+  }
 }

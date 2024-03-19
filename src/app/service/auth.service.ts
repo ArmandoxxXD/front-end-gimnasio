@@ -12,6 +12,9 @@ import { CreateCliente } from '../models/clientes';
   providedIn: 'root'
 })
 export class AuthService {
+  getFileSize(photoUrl: string) {
+    throw new Error('Method not implemented.');
+  }
 
   authURL= environment.apiRestURL+ '/auth';
 
@@ -22,7 +25,7 @@ export class AuthService {
   }
 
   public register(dto:CreateUser): Observable<any>{
-    return this.http.post<any>(this.authURL+'/create',dto);
+    return this.http.post<any>(this.authURL+'/create',dto.toFormData());
   }
 
   public registerCliente(dto:CreateCliente): Observable<any>{
@@ -42,7 +45,7 @@ export class AuthService {
   }
 
   public update(id:number,dto:EditUser):Observable<any>{
-    return this.http.put<any>(this.authURL+`/${id}`,dto)
+    return this.http.put<any>(this.authURL+`/${id}`, dto.toFormData())
   }
 
   public updatePassword(id:number,dto:EditPassword):Observable<any>{

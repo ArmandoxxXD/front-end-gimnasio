@@ -13,7 +13,7 @@ import { TokenService } from 'src/app/service/token.service';
 export class RegisterComponent implements OnInit {
   isAdmin: boolean = false;
   nombreUsuario!: string;
-  foto!: string;
+  foto: File = new File([], "");
   edad!: number;
   sueldo!: number;
   turno!: String;
@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
   email!: string;
   telefono!: String;
   roles!: Optional;
-
+  previewUrl: any = null;
 
 
   constructor(private auth:AuthService,private token:TokenService,private toastr:ToastrService,private router:Router) {
@@ -44,4 +44,22 @@ export class RegisterComponent implements OnInit {
     );
   }
 
+  onFileChange(event: any): void {
+    if (event.target.files.length > 0) {
+      this.foto = event.target.files[0];
+    }
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      this.previewUrl = e.target.result;
+    };
+
+    reader.readAsDataURL(this.foto!);
+  }
+
+  cancelNewImage(): void {
+    this.previewUrl = null;
+    this.foto = new File([], "");
+    const fileInput = document.getElementById('foto') as HTMLInputElement;
+    fileInput.value = "";
+  }
 }

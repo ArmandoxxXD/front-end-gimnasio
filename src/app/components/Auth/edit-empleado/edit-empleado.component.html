@@ -2,29 +2,37 @@
   <ol class="breadcrumb">
     <li *ngIf="fromListaEmpleado" class="breadcrumb-item"><a routerLink="/empelado/lista">Employees</a></li>
     <li *ngIf="!fromListaEmpleado" class="breadcrumb-item"><a routerLink="/checkIn-empleado/{{loggedUserId}}">Profile</a></li>
-    <li class="breadcrumb-item active" aria-current="page">{{this.originalEmployeeData.nombreUsuario}}</li>
+    <li class="breadcrumb-item active" aria-current="page">Edit</li>
   </ol>
 </nav>
 
 <div id="formulario" class="row-mt-10 ">
   <div class="card col-md-4 mx-auto">
     <div class="card-header">
-      <div class="text-header">Add Employee</div>
+      <div class="text-header">Edit Employee</div>
     </div>
     <div class="card-body">
       <form (ngSubmit)="onEdit()" novalidate #f="ngForm">
+
+        <div class="image-container">
+          <img *ngIf="previewUrl" [src]="previewUrl" alt="Previsualización de la imagen" class="rounded-circle" height="155px" width="155px">
+          <img *ngIf="!previewUrl" [src]="empleado.foto" alt="" class="placeholder-glow image rounded-circle" height="155px" width="155px">
+        </div>
+        <!--Foto-->
+        <div class="custom-file-input">
+          <label for="foto">
+            Upload Photo <i class="fa-solid fa-file-image"></i>
+            <input type="file" id="foto" name="foto" accept="image/*" [(ngModel)]="empleado.foto" (change)="onFileChange($event)" required>
+          </label>
+          <button *ngIf="previewUrl" class="cancel-btn" (click)="cancelNewImage()"><i class="fa-solid fa-delete-left"></i></button>
+          <button *ngIf="empleado.foto && !previewUrl && !isPhotoDeleted" class="cancel-btn" (click)="deleteImage()"><i class="fa-solid fa-trash"></i></button>
+        </div>
+
         <!--NombreEmpleado-->
         <div class="input">
           <input autocomplete="off" type="text" id="nombreCliente" name="nombreUsuario" [(ngModel)]="empleado.nombreUsuario"
             required>
           <label for="text">User </label>
-        </div>
-
-        <!--Foto-->
-        <div class="input">
-          <input autocomplete="off" type="text" id="foto" name="foto" [(ngModel)]="empleado.foto"
-            required>
-          <label for="text">Picture </label>
         </div>
 
         <!--Edad-->
@@ -94,11 +102,11 @@
         <form #changePasswordForm="ngForm" (ngSubmit)="changePassword()">
           <div class="form-group">
             <label for="currentPassword">Current password</label>
-            <input type="password" class="form-control" id="currentPassword" [(ngModel)]="currentPassword" name="currentPassword" required>
+            <input autocomplete="off" type="password" class="form-control" id="currentPassword" [(ngModel)]="currentPassword" name="currentPassword" required>
           </div>
           <div class="form-group">
             <label for="newPassword">New Password</label>
-            <input type="password" class="form-control" id="newPassword" [(ngModel)]="newPassword" name="newPassword" required>
+            <input autocomplete="off" type="password" class="form-control" id="newPassword" [(ngModel)]="newPassword" name="newPassword" required>
           </div>
           <button type="submit" class="btn btn-primary">Save</button>
         </form>

@@ -16,11 +16,12 @@ export class NuevoProveedorComponent implements OnInit {
     nombreProvedor!:string ;
     telefono!: string ;
     email!:string;
-    logo!: string;
+    logo: File =  new File([], "");
     pais!:string;
     estado!:string;
     municipio!: string;
     calle!: string;
+    previewUrl: any = null;
   constructor(private proveedorService:ProveedorService,private toast:ToastrService, private token:TokenService,private router:Router) { }
 
   ngOnInit(): void {
@@ -39,4 +40,23 @@ export class NuevoProveedorComponent implements OnInit {
     }
   );
  }
+
+ onFileChange(event: any): void {
+  if (event.target.files.length > 0) {
+    this.logo = event.target.files[0];
+  }
+  const reader = new FileReader();
+  reader.onload = (e: any) => {
+    this.previewUrl = e.target.result;
+  };
+
+  reader.readAsDataURL(this.logo!);
+}
+
+cancelNewImage(): void {
+  this.previewUrl = null;
+  this.logo = new File([], "");
+  const fileInput = document.getElementById('imagen') as HTMLInputElement;
+  fileInput.value = "";
+}
 }

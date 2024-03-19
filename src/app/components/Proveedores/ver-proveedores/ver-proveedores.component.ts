@@ -38,12 +38,12 @@ export class VerProveedoresComponent implements OnInit {
 
   onDelete(id:number):void{
     Swal.fire({
-      title: '¿Estas Seguro?',
-      text: 'No podras desaser la acción',
+      title: 'Are you sure?',
+      text: 'You will not be able to remove the action',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'OK',
-      cancelButtonText: 'Cancelar'
+      confirmButtonText: 'Accept',
+      cancelButtonText: 'Cancel'
     }).then((result)=>{
         if(result.value){
           this.proveedorService.delete(id).subscribe(
@@ -57,8 +57,8 @@ export class VerProveedoresComponent implements OnInit {
           );
         }else if(result.dismiss===Swal.DismissReason.cancel){
           Swal.fire(
-            'Cancelado',
-            'Proveedor no eliminado',
+            'Cancelled',
+            'Provider not eliminated',
             'error'
           )
         }

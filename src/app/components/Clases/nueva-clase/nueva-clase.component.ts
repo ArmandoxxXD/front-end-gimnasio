@@ -22,8 +22,8 @@ export class NuevaClaseComponent implements OnInit {
   fecha!:String;
   hora!: String;
   cupo!:number;
-  fotoClase!:String;
-
+  fotoClase:File= new File([], "");
+  previewUrl: any = null;
   instructores:CreateUser[]=[];
   constructor(private claseService:ClaseService,private empleadoService:AuthService,private toast:ToastrService, private token:TokenService,private router:Router) { }
 
@@ -55,4 +55,23 @@ export class NuevaClaseComponent implements OnInit {
       }
     );
    }
+
+   onFileChange(event: any): void {
+    if (event.target.files.length > 0) {
+      this.fotoClase = event.target.files[0];
+    }
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      this.previewUrl = e.target.result;
+    };
+
+    reader.readAsDataURL(this.fotoClase!);
+  }
+
+  cancelNewImage(): void {
+    this.previewUrl = null;
+    this.fotoClase = new File([], "");
+    const fileInput = document.getElementById('foto') as HTMLInputElement;
+    fileInput.value = "";
+  }
 }

@@ -296,3 +296,13 @@ button:active .icon svg {
   font-weight: bold;
   margin-right: 5px;
 }
+
+.descripcion {
+  text-align: justify;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 100px; /* Ajusta la altura según el tamaño de tu fuente y el espacio deseado */
+}

@@ -13,17 +13,24 @@
 
     <div class="card-body">
       <form (ngSubmit)="onUpdate()" novalidate #f="ngForm">
+        <div class="image-container">
+          <img *ngIf="previewUrl" [src]="previewUrl" alt="Previsualización de la imagen" class="rounded-circle" height="155px" width="155px">
+          <img *ngIf="!previewUrl" [src]="clase.fotoClase" alt="" class="placeholder-glow image rounded-circle" height="155px" width="155px">
+        </div>
+        <!--Foto-->
+        <div class="custom-file-input">
+          <label for="foto">
+            Upload Photo <i class="fa-solid fa-file-image"></i>
+            <input type="file" id="foto" name="foto" accept="image/*" [(ngModel)]="clase.fotoClase" (change)="onFileChange($event)" required>
+          </label>
+          <button *ngIf="previewUrl" class="cancel-btn" (click)="cancelNewImage()"><i class="fa-solid fa-delete-left"></i></button>
+          <button *ngIf="clase.fotoClase && !previewUrl && !isPhotoDeleted" class="cancel-btn" (click)="deleteImage()"><i class="fa-solid fa-trash"></i></button>
+        </div>
         <!--nombre-->
         <div class="input">
           <input autocomplete="off" type="text" id="nombreClase" name="nombreClase" [(ngModel)]="clase.nombreClase"
             required />
           <label for="nombreClase">Class Name</label>
-        </div>
-        <!--Foto-->
-        <div class="input">
-          <input autocomplete="off" type="text" id="fotoClase" name="fotoClase" [(ngModel)]="clase.fotoClase"
-            required />
-          <label for="fotoClase">Photo</label>
         </div>
         <!--Descripción-->
         <div class="input">
@@ -65,7 +72,7 @@
         <br />
         <div class="botones" style="display: flex; justify-content: flex-end">
           <!--Crear-->
-          <input type="submit" class="btn" value="Save" id="BootonCrear" />
+          <input type="submit" class="btn" value="Save" id="BootonCrear"  [disabled]="!hasChanges()" />
         </div>
       </form>
     </div>

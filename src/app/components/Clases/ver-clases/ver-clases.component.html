@@ -29,9 +29,9 @@
 
   <div class="employee-container">
     <div class="employee-card" *ngFor="let class of clases | filterClase : filterClase">
-      <img [src]="class.fotoClase" />
+      <img [src]="class.fotoClase" class="placeholder-glow image rounded-circle"/>
       <h2 style="text-transform: capitalize;">{{class.nombreClase}}</h2>
-      <p>{{class.descripcion}}</p>
+      <p class="descripcion">{{class.descripcion}}</p>
       <p class="mb-3"><strong>Price: </strong>${{class.costo}}</p>
       <div class="buttons">
         <a id="BotonCrear" routerLink="/clase/detalle/{{ class.id }}" class="btn btn-outline-primary"

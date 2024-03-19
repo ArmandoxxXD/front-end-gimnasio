@@ -18,6 +18,7 @@ export class EditarClienteComponent implements OnInit {
   cliente!: Clientes;
   clases: Clase[] = [];
   opcion!: String;
+  originalCustomerData!: Clientes;
 
   constructor(
     private clienteService: ClienteService,
@@ -56,6 +57,7 @@ export class EditarClienteComponent implements OnInit {
     this.clienteService.detail(id).subscribe(
       (data) => {
         this.cliente = data;
+        this.originalCustomerData =JSON.parse(JSON.stringify(data));
       },
       (err) => {
         this.toastr.error(err.error.mensaje, 'Fail', {
@@ -89,5 +91,9 @@ export class EditarClienteComponent implements OnInit {
         (c) => c !== opcion
       );
     }
+  }
+
+  hasChanges(): boolean {
+    return JSON.stringify(this.originalCustomerData) !== JSON.stringify(this.cliente);
   }
 }

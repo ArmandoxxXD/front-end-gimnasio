@@ -29,11 +29,11 @@ export class ProductoService {
   }
 
   public create(proveedor:Producto):Observable<any>{
-    return this.http.post<any>(this.proveedorURL,proveedor)
+    return this.http.post<any>(this.proveedorURL,proveedor.toFormData())
   }
 
   public update(id:number,proveedor:Producto):Observable<any>{
-    return this.http.put<any>(this.proveedorURL+`/${id}`,proveedor)
+    return this.http.put<any>(this.proveedorURL+`/${id}`,proveedor.toFormData())
   }
 
   public delete(id:number):Observable<any>{

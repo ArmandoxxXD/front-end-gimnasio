@@ -12,6 +12,19 @@
     </div>
     <div class="card-body">
       <form (ngSubmit)="onCreate()" novalidate #f="ngForm">
+     
+        <div class="image-container">
+          <img *ngIf="previewUrl" [src]="previewUrl" alt="Previsualización de la imagen" class="rounded" height="155px" width="155px">
+          <img *ngIf="!previewUrl" [src]="imagen" alt=""  class="placeholder-glow image rounded" height="155px" width="155px">
+        </div>
+        <!--Foto-->
+        <div class="custom-file-input">
+          <label for="foto">
+            Upload Photo <i class="fa-solid fa-file-image"></i>
+            <input type="file" id="imagen" name="imagen" accept="image/*" [(ngModel)]="imagen" (change)="onFileChange($event)" required>
+          </label>
+          <button *ngIf="previewUrl" class="cancel-btn" (click)="cancelNewImage()"><i class="fa-solid fa-delete-left"></i></button>
+        </div>
         <!--nombre-->
         <div class="input">
           <input autocomplete="off" type="text" id="nombre" name="nombre" [(ngModel)]="nombreProducto" required>
@@ -21,11 +34,6 @@
         <div class="input">
           <input autocomplete="off" type="text" id="codeBar" name="codeBar" [(ngModel)]="codeBar" required>
           <label for="text">Product Code</label>
-        </div>
-        <!--imagen-->
-        <div class="input">
-          <input autocomplete="off" type="url" id="logo" name="logo" [(ngModel)]="imagen" required>
-          <label for="nombre">Image</label>
         </div>
         <!--Cantidad-->
         <div class="input">
