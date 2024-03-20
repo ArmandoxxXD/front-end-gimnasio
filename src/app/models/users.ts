@@ -39,7 +39,7 @@ export class CreateUser {
             formData.append('roles', this.roles.toString());
         }
         return formData;
-    }    
+    }
 }
 
 
