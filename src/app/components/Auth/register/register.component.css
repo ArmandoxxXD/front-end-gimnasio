@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 #formulario {
   display: flex;
   justify-content: center;
@@ -173,4 +179,30 @@ select {
 
 .cancel-btn:hover {
   color: #333;
+}
+
+/* Password required */
+.password_requeriment__level_text {
+  margin: 15px 0px 15px 0px;
+}
+
+.password_requeriment__requeriments {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.password_requeriment__requeriments div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 10px;
+}
+
+.password_requeriment__requeriments p {
+  margin-left: 10px;
+}
+
+.password_requeriment__requeriments div i {
+  color: #666;
 }
