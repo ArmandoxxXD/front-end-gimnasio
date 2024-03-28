@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Proveedor } from 'src/app/models/proveedor';
+import { EditProveedor, Proveedor } from 'src/app/models/proveedor';
 import { ProveedorService } from 'src/app/service/proveedor.service';
 import { TokenService } from 'src/app/service/token.service';
 
@@ -16,7 +16,7 @@ export class EditarProveedorComponent implements OnInit {
   proveedor!:Proveedor;
   previewUrl: any = null;
   isPhotoDeleted: boolean = false;
-  originalProvedorData!: Proveedor;
+  originalProvedorData!: EditProveedor;
 
   constructor(
     private proveedorService:ProveedorService,
@@ -31,7 +31,7 @@ export class EditarProveedorComponent implements OnInit {
   }
 
   onUpdate():void{
-    const dto=new Proveedor(this.proveedor.nombreProvedor,this.proveedor.telefono,this.proveedor.email,this.proveedor.logo,this.proveedor.pais,this.proveedor.estado,this.proveedor.municipio,this.proveedor.calle);
+    const dto=new EditProveedor(this.proveedor.nombreProvedor,this.proveedor.telefono,this.proveedor.email,this.proveedor.logo,this.proveedor.pais,this.proveedor.estado,this.proveedor.municipio,this.proveedor.calle, this.isPhotoDeleted);
     this.proveedorService.update(this.id,dto).subscribe(
       data=>{
         this.toast.success(data.mensaje,'OK',{timeOut:3000});

@@ -26,7 +26,6 @@ export class CreateCliente {
 
     id!: number;
     nombreUsuario: string;
-    // foto:string ;
     edad: number;
     email: string;
     telefono: string;

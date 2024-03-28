@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Producto } from 'src/app/models/producto';
+import { EditProducto, Producto } from 'src/app/models/producto';
 import { Proveedor } from 'src/app/models/proveedor';
 import { ProductoService } from 'src/app/service/producto.service';
 import { ProveedorService } from 'src/app/service/proveedor.service';
@@ -39,7 +39,7 @@ export class EditarProductoComponent implements OnInit {
   }
 
   onUpdate():void{
-    const dto=new Producto(this.producto.nombreProducto,this.producto.imagen,this.producto.cantidad,this.producto.precio,this.producto.nombreProvedor,this.producto.categoria,this.producto.tipo,this.producto.codeBar);
+    const dto=new EditProducto(this.producto.nombreProducto,this.producto.imagen,this.producto.cantidad,this.producto.precio,this.producto.nombreProvedor,this.producto.categoria,this.producto.tipo,this.producto.codeBar,this.isPhotoDeleted);
     this.productoService.update(this.id,dto).subscribe(
       data=>{
         this.toast.success(data.mensaje,'OK',{timeOut:3000});

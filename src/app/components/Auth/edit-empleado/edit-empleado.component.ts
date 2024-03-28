@@ -1,7 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { CreateUser, EditPassword, EditUser } from 'src/app/models/users';
+import { User, EditPassword, EditUser } from 'src/app/models/users';
 import { AuthService } from 'src/app/service/auth.service';
 import { TokenService } from 'src/app/service/token.service';
 import Swal from 'sweetalert2';
@@ -15,8 +15,8 @@ export class EditEmpleadoComponent implements OnInit {
   isAdmin: boolean = false;
   isUser: boolean = false;
   id!: number;
-  empleado!: CreateUser;
-  originalEmployeeData!: CreateUser;
+  empleado!: User;
+  originalEmployeeData!: User;
   currentPassword: String = '';
   newPassword: String = '';
   loggedUserId:number|null = this.token.getDatesId();
@@ -44,7 +44,7 @@ export class EditEmpleadoComponent implements OnInit {
   }
 
   onEdit(): void {
-    const dto=new EditUser(this.empleado.nombreUsuario,this.empleado.foto,this.empleado.edad,this.empleado.sueldo,this.empleado.turno,this.empleado.email,this.empleado.telefono,this.empleado.roles);
+    const dto=new EditUser(this.empleado.nombreUsuario,this.empleado.foto,this.empleado.edad,this.empleado.sueldo,this.empleado.turno,this.empleado.email,this.empleado.telefono,this.empleado.roles,this.isPhotoDeleted);
     if (this.token.getDatesId() === this.empleado.id &&
       this.empleado.nombreUsuario !== this.originalEmployeeData.nombreUsuario) {
       Swal.fire({
