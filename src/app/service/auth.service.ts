@@ -4,7 +4,7 @@ import { LoginUser } from '../models/login-user';
 import { Observable } from 'rxjs';
 import { JwtToken } from '../models/jwt-token';
 import { environment } from 'src/environments/environment';
-import { CreateUser, EditPassword, EditUser } from '../models/users';
+import { User, EditPassword, EditUser } from '../models/users';
 import { CreateCliente } from '../models/clientes';
 
 
@@ -24,24 +24,25 @@ export class AuthService {
     return this.http.post<JwtToken>(this.authURL+'/login',dto);
   }
 
-  public register(dto:CreateUser): Observable<any>{
+  public register(dto:User): Observable<any>{
     return this.http.post<any>(this.authURL+'/create',dto.toFormData());
   }
 
   public registerCliente(dto:CreateCliente): Observable<any>{
-    return this.http.post<any>(this.authURL+'/create',dto);
+    console.log(dto)
+    return this.http.post<any>(this.authURL+'/create',dto.toFormData());
   } 
 
-  public list():Observable<CreateUser[]>{
-    return this.http.get<CreateUser[]>(this.authURL);
+  public list():Observable<User[]>{
+    return this.http.get<User[]>(this.authURL);
   }
 
-  public listByRol(rol:String):Observable<CreateUser[]>{
-    return this.http.get<CreateUser[]>(this.authURL+`/Rol/${rol}`);
+  public listByRol(rol:String):Observable<User[]>{
+    return this.http.get<User[]>(this.authURL+`/Rol/${rol}`);
   }
 
-  public detail(id:number):Observable<CreateUser>{
-    return this.http.get<CreateUser>(this.authURL+`/${id}`);
+  public detail(id:number):Observable<User>{
+    return this.http.get<User>(this.authURL+`/${id}`);
   }
 
   public update(id:number,dto:EditUser):Observable<any>{
