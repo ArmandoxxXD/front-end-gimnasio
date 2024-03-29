@@ -29,7 +29,8 @@ export class AuthService {
   }
 
   public registerCliente(dto:CreateCliente): Observable<any>{
-    return this.http.post<any>(this.authURL+'/create',dto);
+    console.log(dto)
+    return this.http.post<any>(this.authURL+'/create',dto.toFormData());
   } 
 
   public list():Observable<User[]>{

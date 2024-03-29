@@ -40,4 +40,17 @@ export class CreateCliente {
         this.password=password;
         this.roles=roles;
     }
+
+    toFormData(): FormData {
+        const formData = new FormData();
+        formData.append('nombreUsuario', this.nombreUsuario ? this.nombreUsuario.toString() : '');
+        formData.append('edad', this.edad ? this.edad.toString() : '');
+        formData.append('email', this.email ? this.email.toString() : '');
+        formData.append('telefono', this.telefono ? this.telefono.toString() : '');
+        formData.append('password', this.password ? this.password.toString() : '');
+        if (this.roles) {
+            formData.append('roles', this.roles.toString());
+        }
+        return formData;
+    }   
 }
