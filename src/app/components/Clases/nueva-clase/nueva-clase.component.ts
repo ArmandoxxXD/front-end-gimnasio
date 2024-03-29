@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Clase } from 'src/app/models/clase';
-import { CreateUser } from 'src/app/models/users';
+import { User } from 'src/app/models/users';
 import { AuthService } from 'src/app/service/auth.service';
 import { ClaseService } from 'src/app/service/clase.service';
 import { TokenService } from 'src/app/service/token.service';
@@ -24,7 +24,7 @@ export class NuevaClaseComponent implements OnInit {
   cupo!:number;
   fotoClase:File= new File([], "");
   previewUrl: any = null;
-  instructores:CreateUser[]=[];
+  instructores:User[]=[];
   constructor(private claseService:ClaseService,private empleadoService:AuthService,private toast:ToastrService, private token:TokenService,private router:Router) { }
 
   ngOnInit(): void {

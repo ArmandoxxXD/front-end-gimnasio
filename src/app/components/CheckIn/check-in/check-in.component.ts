@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CheckInService } from '../../../service/check-in.service';
 import Swal from 'sweetalert2';
 import { AuthService } from 'src/app/service/auth.service';
-import { CreateUser } from 'src/app/models/users';
+import { User } from 'src/app/models/users';
 import { CheckIn } from 'src/app/models/check-in';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -20,7 +20,7 @@ export class CheckInComponent implements OnInit {
   public results: string[] = [];
 
   checkin!:CheckIn
-  empleado!: CreateUser;
+  empleado!: User;
   reviewCheckIn: any;
   turno?: any;
   succes: boolean = false;

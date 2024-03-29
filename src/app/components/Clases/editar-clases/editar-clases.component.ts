@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Clase } from 'src/app/models/clase';
-import { CreateUser } from 'src/app/models/users';
+import { Clase, EditClase } from 'src/app/models/clase';
+import { User } from 'src/app/models/users';
 import { AuthService } from 'src/app/service/auth.service';
 import { ClaseService } from 'src/app/service/clase.service';
 import { TokenService } from 'src/app/service/token.service';
@@ -17,7 +17,7 @@ export class EditarClasesComponent implements OnInit {
   isAdmin: boolean=false;
   clase!:Clase;
   id!:number;
-  instructores:CreateUser[]=[];
+  instructores:User[]=[];
   previewUrl: any = null;
   isPhotoDeleted: boolean = false;
   originalClassData!: Clase;
@@ -37,7 +37,7 @@ export class EditarClasesComponent implements OnInit {
   }
 
   onUpdate():void{
-    const dto=new Clase(this.clase.nombreClase,this.clase.descripcion,this.clase.costo,this.clase.nombreInstructor,this.clase.fecha,this.clase.hora,this.clase.cupo,this.clase.fotoClase);
+    const dto=new EditClase(this.clase.nombreClase,this.clase.descripcion,this.clase.costo,this.clase.nombreInstructor,this.clase.fecha,this.clase.hora,this.clase.cupo,this.clase.fotoClase,this.isPhotoDeleted);
     this.claseService.update(this.id,dto).subscribe(
       data=>{
         this.toast.success(data.mensaje,'OK',{timeOut:3000});

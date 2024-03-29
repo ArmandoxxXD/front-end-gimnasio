@@ -41,7 +41,7 @@ export class CreateCliente {
         this.roles=roles;
     }
 
-    toFormDataCliente(): FormData {
+    toFormData(): FormData {
         const formData = new FormData();
         formData.append('nombreUsuario', this.nombreUsuario ? this.nombreUsuario.toString() : '');
         formData.append('edad', this.edad ? this.edad.toString() : '');
@@ -52,5 +52,6 @@ export class CreateCliente {
             formData.append('roles', this.roles.toString());
         }
         return formData;
-    }
+    }   
 }
+

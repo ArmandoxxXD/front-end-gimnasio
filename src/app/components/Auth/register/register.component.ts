@@ -1,7 +1,7 @@
 import { Component, OnInit, Optional } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { CreateUser } from 'src/app/models/users';
+import { User } from 'src/app/models/users';
 import { AuthService } from 'src/app/service/auth.service';
 import { TokenService } from 'src/app/service/token.service';
 
@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onCreate(): void{
-    const dto=new CreateUser(this.nombreUsuario,this.foto,this.edad,this.sueldo,this.turno,this.email,this.telefono,this.password,[this.roles]);
+    const dto=new User(this.nombreUsuario,this.foto,this.edad,this.sueldo,this.turno,this.email,this.telefono,this.password,[this.roles]);
     this.auth.register(dto).subscribe(
       data=>{
         this.toastr.success(data.mensaje, 'OK', {timeOut: 3000}); 

@@ -1,6 +1,6 @@
 import { Optional } from "@angular/core";
 
-export class CreateUser {
+export class User {
 
     id!: number;
     nombreUsuario: String;
@@ -28,7 +28,9 @@ export class CreateUser {
     toFormData(): FormData {
         const formData = new FormData();
         formData.append('nombreUsuario', this.nombreUsuario ? this.nombreUsuario.toString() : '');
-        formData.append('foto', this.foto ? this.foto : new File([], ""));
+        if (this.foto instanceof File) {
+            formData.append('foto', this.foto);
+        }
         formData.append('edad', this.edad ? this.edad.toString() : '');
         formData.append('sueldo', this.sueldo ? this.sueldo.toString() : '');
         formData.append('turno', this.turno ? this.turno.toString() : '');
@@ -53,9 +55,10 @@ export class EditUser {
     turno: String;
     email: String;
     telefono: String;
-    roles: Optional ;
+    roles: Optional;
+    borrarFoto:boolean=false;
 
-    constructor(nombreUsuario: String,foto:File,edad: number,sueldo: number,turno: String,email: String,telefono:String, roles:Optional ){
+    constructor(nombreUsuario: String,foto:File,edad: number,sueldo: number,turno: String,email: String,telefono:String,roles:Optional,borrarFoto:boolean){
         this.nombreUsuario=nombreUsuario;
         this.foto=foto;
         this.edad=edad;
@@ -64,12 +67,15 @@ export class EditUser {
         this.email=email;
         this.telefono=telefono;
         this.roles=roles;
+        this.borrarFoto=borrarFoto;
     }
 
     toFormData(): FormData {
         const formData = new FormData();
         formData.append('nombreUsuario', this.nombreUsuario ? this.nombreUsuario.toString() : '');
-        formData.append('foto', this.foto ? this.foto : new File([], ""));
+        if (this.foto instanceof File) {
+            formData.append('foto', this.foto);
+        }
         formData.append('edad', this.edad ? this.edad.toString() : '');
         formData.append('sueldo', this.sueldo ? this.sueldo.toString() : '');
         formData.append('turno', this.turno ? this.turno.toString() : '');
@@ -78,6 +84,7 @@ export class EditUser {
         if (this.roles) {
             formData.append('roles', this.roles.toString());
         }
+        formData.append('borrarFoto', this.borrarFoto.toString());
         return formData;
     }    
 }
