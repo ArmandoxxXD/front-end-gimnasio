@@ -34,4 +34,6 @@ export class HomeComponent implements OnInit {
     this.destino.nativeElement.scrollIntoView({ behavior: 'smooth' });
   }
 
+
+  
 }

@@ -41,7 +41,7 @@ export class User {
             formData.append('roles', this.roles.toString());
         }
         return formData;
-    }    
+    }
 }
 
 

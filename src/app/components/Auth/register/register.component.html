@@ -67,9 +67,31 @@
 
         <!--Password-->
         <div class="input">
-          <input autocomplete="off" type="password" id="password" name="password" [(ngModel)]="password"
+          <input autocomplete="off" type="password" id="password" name="password" [(ngModel)]="password" (ngModelChange)="evaluarPassword($event)"
             required>
           <label for="text">Password </label>
+          <div class="password_requeriment">
+            <p class="password_requeriment__level_text">Level: <strong id="password_requeriment__level">Empty</strong> </p>
+            <p><strong>Your password must contain:</strong></p>
+
+            <div class="password_requeriment__requeriments">
+              <div id="requeriment_1">
+                <i class="fa-solid fa-xmark"></i> <p>Minimum number of characters is 6.</p>
+              </div>
+              <div id="requeriment_2">
+                <i class="fa-solid fa-xmark"></i> <p> Should contain lowercase. </p>
+              </div>
+              <div id="requeriment_3">
+               <i class="fa-solid fa-xmark"></i> <p> Should contain uppercase. </p>
+              </div>
+              <div id="requeriment_4">
+                <i class="fa-solid fa-xmark"></i> <p> Should contain numbers. </p>
+              </div>
+              <div id="requeriment_5">
+                <i class="fa-solid fa-xmark"></i> <p> Should contain special characters. </p>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="form-group" style="margin-top: 20px;">

@@ -32,7 +32,7 @@ export class CreateCliente {
     password: string;
     roles: Optional ;
 
-    constructor(nombreUsuario: string,edad: number,email: string,telefono:string ,password: string, roles:Optional ){
+    constructor(nombreUsuario: string,edad: number, email: string,telefono:string ,password: string, roles:Optional ){
         this.nombreUsuario=nombreUsuario;
         this.edad=edad;
         this.email=email;
@@ -54,3 +54,4 @@ export class CreateCliente {
         return formData;
     }   
 }
+
