@@ -2,6 +2,9 @@ import { Component, OnInit, ElementRef, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenService } from 'src/app/service/token.service';
 import { TreeNode } from 'primeng/api';
+import { AuthService } from 'src/app/service/auth.service';
+import { AngularFireMessaging } from '@angular/fire/compat/messaging';
+import { ConfigUser } from 'src/app/models/users';
 
 @Component({
   selector: 'app-navigation',
@@ -19,6 +22,7 @@ export class NavigationComponent implements OnInit {
   displayModal: boolean = false;
   data: TreeNode[];
   selectedNode?: TreeNode;
+  public notificationsEnabled = this.token.getConfigUser();
 
   private eventListenerNavbarShow: any;
   private eventListenerNavbarHide: any;
@@ -26,7 +30,9 @@ export class NavigationComponent implements OnInit {
   constructor(
      private token: TokenService,
      private router: Router,
-     private el: ElementRef
+     private el: ElementRef,
+     private authService: AuthService,
+     private afMessaging: AngularFireMessaging
      ) {
       this.data = [{
         label: 'Home',
@@ -234,6 +240,33 @@ export class NavigationComponent implements OnInit {
     this.router.navigate([event.node.data.route]);
   }
 
-
+  toggleNotifications(): void {
+    this.notificationsEnabled = !this.notificationsEnabled;
+    this.requestPermissionAndGetToken();
+  }
+  
+  requestPermissionAndGetToken(): void {
+    this.afMessaging.requestToken.subscribe(
+      (token) => {
+        this.updateNotificationPreference(this.notificationsEnabled, token);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+  
+  updateNotificationPreference(enabled: Boolean, fcmToken: string|null): void {
+    if (fcmToken) {
+      const config = new ConfigUser(fcmToken, enabled);
+      this.authService.configUser(this.token.getDatesId(), config).subscribe({
+        next: (response) => {
+        },
+        error: (error) => {
+          console.error('Error updating notification preference', error);
+        }
+      });
+    }
+  }
 
 }

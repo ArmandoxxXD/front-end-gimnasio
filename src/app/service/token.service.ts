@@ -157,4 +157,15 @@ export class TokenService {
     const values = JSON.parse(payloadDecoded);
     return values.roles.join(', ');
   }
+
+  public getConfigUser(): Boolean {
+    if (!this.isLogged()) {
+      return false;
+    }
+    const token = this.getToken();
+    const payload = token!.split('.')[1];
+    const payloadDecoded = atob(payload);
+    const values = JSON.parse(payloadDecoded);
+    return values.configuration;
+  }
 }

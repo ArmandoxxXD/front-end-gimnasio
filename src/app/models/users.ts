@@ -100,3 +100,13 @@ export class EditPassword {
         this.newPassword=newPassword;
     }
 }
+
+export class ConfigUser {
+    fcmToken: String;
+    notificationsEnabled :Boolean;
+
+    constructor(fcmToken: String,notificationsEnabled:Boolean){
+        this.fcmToken=fcmToken;
+        this.notificationsEnabled=notificationsEnabled;
+    }
+}
