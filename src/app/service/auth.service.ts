@@ -4,8 +4,9 @@ import { LoginUser } from '../models/login-user';
 import { Observable } from 'rxjs';
 import { JwtToken } from '../models/jwt-token';
 import { environment } from 'src/environments/environment';
-import { User, EditPassword, EditUser } from '../models/users';
+import { User, EditPassword, EditUser, ConfigUser } from '../models/users';
 import { CreateCliente } from '../models/clientes';
+import { NotificationPush } from '../models/notificationPush';
 
 
 @Injectable({
@@ -55,6 +56,20 @@ export class AuthService {
 
   public delete(id:number):Observable<any>{
     return this.http.delete<any>(this.authURL+`/${id}`);
+  }
+
+  public configUser(id:number|null,dto:ConfigUser): Observable<any>{
+    return this.http.put<any>(this.authURL+`/preferences/${id}`,dto);
+  } 
+
+  public pushNotifications(id:number|null,dto:NotificationPush):Observable<any>{
+    return this.http.post<any>(this.authURL+`/send/${id}`, dto)
+  }
+
+  public validatedCount(token: string):Observable<any>{
+    return this.http.get<any>(this.authURL+`/verify-email`,{
+      params: { token: token }
+      });
   }
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LoginUser } from 'src/app/models/login-user';
 import { AuthService } from 'src/app/service/auth.service';
@@ -21,13 +21,29 @@ export class LoginComponent implements OnInit {
     private auth:AuthService,
     private token:TokenService,
     private toastr:ToastrService,
-    private router:Router
+    private router:Router,
+    private route: ActivatedRoute 
     ) {}
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      const token = params['token'];
+      if (token) {
+        this.verifyEmail(token);
+      }
+    });
   }
 
-
+  verifyEmail(token: string): void {
+    this.auth.validatedCount(token).subscribe(
+      res => {
+        this.toastr.success(res.mensaje, 'OK', {timeOut: 3000});
+      },
+      err => {
+        this.toastr.error(err.error.mensaje, 'Fail', {timeOut: 3000});
+      }
+    );
+  }
 
   onLogin(): void {
     $('#loader-container').css('display', 'block');
