@@ -67,7 +67,7 @@
           <li><a class="dropdown-item" (click)="showModalDialog()"><i class="fa-solid fa-sitemap"></i> Site Map</a></li>
           <a class="dropdown-item" (click)="toggleNotifications()">
             <i class="fa-solid" [class.fa-bell]="!notificationsEnabled" [class.fa-bell-slash]="notificationsEnabled"></i>
-            {{ notificationsEnabled ? 'Notifications' : 'Notifications' }}
+            {{ notificationsEnabled ? 'Disable Notifications' : 'Enable Notifications' }}
           </a>
           <li><hr class="dropdown-divider"></li>
           <li><a class="dropdown-item" href="#" (click)="logOut()"><i class="fa-solid fa-power-off"></i> Logout</a></li>

@@ -5,6 +5,7 @@ import { TreeNode } from 'primeng/api';
 import { AuthService } from 'src/app/service/auth.service';
 import { AngularFireMessaging } from '@angular/fire/compat/messaging';
 import { ConfigUser } from 'src/app/models/users';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-navigation',
@@ -32,7 +33,8 @@ export class NavigationComponent implements OnInit {
      private router: Router,
      private el: ElementRef,
      private authService: AuthService,
-     private afMessaging: AngularFireMessaging
+     private afMessaging: AngularFireMessaging,
+     private toast: ToastrService
      ) {
       this.data = [{
         label: 'Home',
@@ -243,6 +245,8 @@ export class NavigationComponent implements OnInit {
   toggleNotifications(): void {
     this.notificationsEnabled = !this.notificationsEnabled;
     this.requestPermissionAndGetToken();
+    const message = this.notificationsEnabled ? 'Notifications enabled' : 'Notifications disabled';
+    this.toast.info(message, 'Notifications', { timeOut: 3000 });
   }
   
   requestPermissionAndGetToken(): void {
