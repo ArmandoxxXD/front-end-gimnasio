@@ -1,7 +1,8 @@
 <nav class="ms-5 mb-2 mt-5" aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li *ngIf="fromListaEmpleado" class="breadcrumb-item"><a routerLink="/empelado/lista">Employees</a></li>
-    <li *ngIf="!fromListaEmpleado" class="breadcrumb-item"><a routerLink="/checkIn-empleado/{{loggedUserId}}">Profile</a></li>
+    <li *ngIf="!fromListaEmpleado" class="breadcrumb-item"><a
+        routerLink="/checkIn-empleado/{{loggedUserId}}">Profile</a></li>
     <li class="breadcrumb-item active" aria-current="page">Edit</li>
   </ol>
 </nav>
@@ -15,23 +16,28 @@
       <form (ngSubmit)="onEdit()" novalidate #f="ngForm">
 
         <div class="image-container">
-          <img *ngIf="previewUrl" [src]="previewUrl" alt="Previsualización de la imagen" class="rounded-circle" height="155px" width="155px">
-          <img *ngIf="!previewUrl" [src]="empleado.foto" alt="" class="placeholder-glow image rounded-circle" height="155px" width="155px">
+          <img *ngIf="previewUrl" [src]="previewUrl" alt="Previsualización de la imagen" class="rounded-circle"
+            height="155px" width="155px">
+          <img *ngIf="!previewUrl" [src]="empleado.foto" alt="" class="placeholder-glow image rounded-circle"
+            height="155px" width="155px">
         </div>
         <!--Foto-->
         <div class="custom-file-input">
           <label for="foto">
             Upload Photo <i class="fa-solid fa-file-image"></i>
-            <input type="file" id="foto" name="foto" accept="image/*" [(ngModel)]="empleado.foto" (change)="onFileChange($event)" required>
+            <input type="file" id="foto" name="foto" accept="image/*" [(ngModel)]="empleado.foto"
+              (change)="onFileChange($event)" required>
           </label>
-          <button *ngIf="previewUrl" class="cancel-btn" (click)="cancelNewImage()"><i class="fa-solid fa-delete-left"></i></button>
-          <button *ngIf="empleado.foto && !previewUrl && !isPhotoDeleted" class="cancel-btn" (click)="deleteImage()"><i class="fa-solid fa-trash"></i></button>
+          <button *ngIf="previewUrl" class="cancel-btn" (click)="cancelNewImage()"><i
+              class="fa-solid fa-delete-left"></i></button>
+          <button *ngIf="empleado.foto && !previewUrl && !isPhotoDeleted" class="cancel-btn" (click)="deleteImage()"><i
+              class="fa-solid fa-trash"></i></button>
         </div>
 
         <!--NombreEmpleado-->
         <div class="input">
-          <input autocomplete="off" type="text" id="nombreCliente" name="nombreUsuario" [(ngModel)]="empleado.nombreUsuario"
-            required>
+          <input autocomplete="off" type="text" id="nombreCliente" name="nombreUsuario"
+            [(ngModel)]="empleado.nombreUsuario" required>
           <label for="text">User </label>
         </div>
 
@@ -47,7 +53,7 @@
           <label for="text">Salary</label>
         </div>
 
-        <div *ngIf="!isUser"class="form-group" style="margin-top: 20px; margin-bottom: 30px;">
+        <div *ngIf="!isUser" class="form-group" style="margin-top: 20px; margin-bottom: 30px;">
           <label>Select an Turn:</label>
           <select id="turno" name="turno" [(ngModel)]="empleado.turno" required>
             <option value="Matutino">Morning</option>
@@ -63,7 +69,8 @@
 
         <!--Telefono-->
         <div class="input">
-          <input autocomplete="off" type="number" id="telefono" name="telefono" [(ngModel)]="empleado.telefono" required>
+          <input autocomplete="off" type="number" id="telefono" name="telefono" [(ngModel)]="empleado.telefono"
+            required>
           <label for="text">Phone</label>
         </div>
 
@@ -78,9 +85,10 @@
         </div>
 
         <div>
-          <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#changePasswordModal">Edit Password</button>
+          <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+            data-bs-target="#changePasswordModal">Edit Password</button>
         </div>
-     
+
         <div class="botones" style="display: flex;justify-content: flex-end;">
           <!--Crear-->
           <button type="submit" class="btn" id="BootonCrear" [disabled]="!hasChanges()">Save</button>
@@ -91,7 +99,8 @@
 </div>
 <br>
 
-<div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+<div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel"
+  aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -102,11 +111,41 @@
         <form #changePasswordForm="ngForm" (ngSubmit)="changePassword()">
           <div class="form-group">
             <label for="currentPassword">Current password</label>
-            <input autocomplete="off" type="password" class="form-control" id="currentPassword" [(ngModel)]="currentPassword" name="currentPassword" required>
+            <input autocomplete="off" type="password" class="form-control" id="currentPassword"
+              [(ngModel)]="currentPassword" name="currentPassword" required>
           </div>
           <div class="form-group">
             <label for="newPassword">New Password</label>
-            <input autocomplete="off" type="password" class="form-control" id="newPassword" [(ngModel)]="newPassword" name="newPassword" required>
+            <input autocomplete="off" type="password" class="form-control" id="newPassword" [(ngModel)]="newPassword"
+              name="newPassword" (ngModelChange)="evaluarPassword($event)" required>
+          </div>
+          <div class="password_requeriment mb-2">
+            <p class="password_requeriment__level_text">Level: <strong id="password_requeriment__level">Empty</strong>
+            </p>
+            <p><strong>Your password must contain:</strong></p>
+
+            <div class="password_requeriment__requeriments">
+              <div id="requeriment_1">
+                <i class="fa-solid fa-xmark"></i>
+                <p>Minimum number of characters is 6.</p>
+              </div>
+              <div id="requeriment_2">
+                <i class="fa-solid fa-xmark"></i>
+                <p> Should contain lowercase. </p>
+              </div>
+              <div id="requeriment_3">
+                <i class="fa-solid fa-xmark"></i>
+                <p> Should contain uppercase. </p>
+              </div>
+              <div id="requeriment_4">
+                <i class="fa-solid fa-xmark"></i>
+                <p> Should contain numbers. </p>
+              </div>
+              <div id="requeriment_5">
+                <i class="fa-solid fa-xmark"></i>
+                <p> Should contain special characters. </p>
+              </div>
+            </div>
           </div>
           <button type="submit" class="btn btn-primary">Save</button>
         </form>

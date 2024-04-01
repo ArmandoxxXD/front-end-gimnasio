@@ -60,6 +60,7 @@ import { environment } from '../environments/environment';
 
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -96,7 +97,7 @@ import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
     ErrorComponent,
     SearchComponent,
     AboutUsComponent,
-    PrivacyPoliciesComponent,
+    PrivacyPoliciesComponent
   ],
   imports: [
     BrowserModule,

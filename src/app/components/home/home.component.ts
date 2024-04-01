@@ -22,12 +22,52 @@ export class HomeComponent implements OnInit {
       });
     });
 
+    document.addEventListener('DOMContentLoaded', () => {
+      const observador = new IntersectionObserver((entradas, observador) => {
+        entradas.forEach((entrada) => {
+          if (entrada.isIntersecting) {
+            entrada.target.classList.add('fade_top');
+            entrada.target.classList.remove('opacity-0');
+            observador.unobserve(entrada.target); // Opcional: deja de observar una vez visible
+          }
+        });
+      }, {
+        rootMargin: '0px',
+        threshold: 0.05 // Ajusta según necesidad, porcentaje de visibilidad para activar
+      });
+    
+      const elementos = document.querySelectorAll('.home__Body_animation');
+      elementos.forEach((el) => {
+        observador.observe(el);
+      });
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const observador = new IntersectionObserver((entradas, observador) => {
+        entradas.forEach((entrada) => {
+          if (entrada.isIntersecting) {
+            entrada.target.classList.add('shake');
+            entrada.target.classList.remove('opacity-0');
+            observador.unobserve(entrada.target); // Opcional: deja de observar una vez visible
+          }
+        });
+      }, {
+        rootMargin: '0px',
+        threshold: 0.05 // Ajusta según necesidad, porcentaje de visibilidad para activar
+      });
+    
+      const elementos = document.querySelectorAll('.btn_animation');
+      elementos.forEach((el) => {
+        observador.observe(el);
+      });
+    });
+
   }
 
   
 
   ngOnInit(): void {
-    
+
   }
 
   irCard(): void{
