@@ -66,4 +66,10 @@ export class AuthService {
     return this.http.post<any>(this.authURL+`/send/${id}`, dto)
   }
 
+  public validatedCount(token: string):Observable<any>{
+    return this.http.get<any>(this.authURL+`/verify-email`,{
+      params: { token: token }
+      });
+  }
+
 }

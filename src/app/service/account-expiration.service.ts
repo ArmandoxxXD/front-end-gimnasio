@@ -11,7 +11,7 @@ import { AuthService } from './auth.service';
 export class AccountExpirationService {
   private timerId: any;
   private countdownId: any;
-  private readonly inactivityTime = 50 * 60 * 1000; // 1 min y 30 segundos de tiempo permitido de inactividad 
+  private readonly inactivityTime = 1 * 60 * 1000; // 1 min y 30 segundos de tiempo permitido de inactividad 
   private isCountdownShown = false;
   private inactivitySwalVisible = false;
 
