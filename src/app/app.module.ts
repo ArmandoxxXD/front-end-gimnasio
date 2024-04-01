@@ -56,6 +56,11 @@ import { OrganizationChartModule } from 'primeng/organizationchart';
 import { DialogModule } from 'primeng/dialog';
 import { PrivacyPoliciesComponent } from './components/privacy-policies/privacy-policies.component';
 
+import { environment } from '../environments/environment';
+
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -106,7 +111,9 @@ import { PrivacyPoliciesComponent } from './components/privacy-policies/privacy-
     ZXingScannerModule,
     RecaptchaModule,
     OrganizationChartModule,
-    DialogModule
+    DialogModule,
+    AngularFireMessagingModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ClientesInterceptor, multi: true },
