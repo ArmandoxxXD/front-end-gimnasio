@@ -186,7 +186,7 @@ const routes: Routes = [
   {
     path: 'empleado/nuevo',
     component: RegisterComponent,
-    canActivate: [ClientesGuard],
+    canActivate: [ClientesGuard, HomeGuard],
     data: { expectedRoles: ['admin'] },
   },
 

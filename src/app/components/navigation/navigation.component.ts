@@ -24,7 +24,7 @@ export class NavigationComponent implements OnInit {
   displayModal: boolean = false;
   data: TreeNode[];
   selectedNode?: TreeNode;
-  notificationsEnabled:Boolean=false;
+  notificationsEnabled!:Boolean;
 
   private eventListenerNavbarShow: any;
   private eventListenerNavbarHide: any;
@@ -180,6 +180,7 @@ export class NavigationComponent implements OnInit {
           this.nombreUsuario= this.user.nombreUsuario;
           this.userID = this.user.id;
           this.notificationsEnabled=this.user.notificationsEnabled;
+          console.log(this.notificationsEnabled)
         },
         (error) => {
           console.error(error);
@@ -239,7 +240,7 @@ export class NavigationComponent implements OnInit {
 
   logOut(): void {
     this.token.logOut();
-    this.router.navigate(['localhost:4200/home']);
+    this.router.navigate(['/home']);
   }
 
   showModalDialog() {
@@ -253,6 +254,7 @@ export class NavigationComponent implements OnInit {
 
   toggleNotifications(): void {
     this.notificationsEnabled = !this.notificationsEnabled;
+    console.log(this.notificationsEnabled)
     this.requestPermissionAndGetToken();
     const message = this.notificationsEnabled ? 'Notifications enabled' : 'Notifications disabled';
     this.toast.info(message, 'Notifications', { timeOut: 3000 });
@@ -261,6 +263,7 @@ export class NavigationComponent implements OnInit {
   requestPermissionAndGetToken(): void {
     this.afMessaging.requestToken.subscribe(
       (token) => {
+        console.log(token)
         this.updateNotificationPreference(this.notificationsEnabled, token);
       },
       (error) => {
