@@ -12,6 +12,8 @@ export class User {
     telefono: String;
     password: String;
     roles: Optional ;
+    notificationsEnabled!:Boolean;
+    isTwoFactorAuthEnabled!: Boolean;
 
     constructor(nombreUsuario: String,foto:File,edad: number,sueldo: number,turno: String,email: String,telefono:String ,password: String, roles:Optional ){
         this.nombreUsuario=nombreUsuario;

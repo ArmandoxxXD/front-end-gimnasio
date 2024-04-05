@@ -4,7 +4,7 @@ import { TokenService } from 'src/app/service/token.service';
 import { TreeNode } from 'primeng/api';
 import { AuthService } from 'src/app/service/auth.service';
 import { AngularFireMessaging } from '@angular/fire/compat/messaging';
-import { ConfigUser } from 'src/app/models/users';
+import { ConfigUser, User } from 'src/app/models/users';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -18,12 +18,12 @@ export class NavigationComponent implements OnInit {
   isInstructor: boolean = false;
   isRecepcionista: boolean = false;
   isUser: boolean = false;
-  userName: string = '';
+  user!: User;
   userID?: number | null;
   displayModal: boolean = false;
   data: TreeNode[];
   selectedNode?: TreeNode;
-  public notificationsEnabled = this.token.getConfigUser();
+  notificationsEnabled:Boolean=false;
 
   private eventListenerNavbarShow: any;
   private eventListenerNavbarHide: any;
@@ -173,7 +173,15 @@ export class NavigationComponent implements OnInit {
 
       navbar.addEventListener('show.bs.collapse', this.eventListenerNavbarShow);
       navbar.addEventListener('hidden.bs.collapse', this.eventListenerNavbarHide);
-
+      this.authService.detail(this.token.getDatesId()).subscribe(
+        (data) => {
+          this.user = data;
+          this.notificationsEnabled=this.user.notificationsEnabled;
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
     }
 
     this.isLogged = this.token.isLogged();
@@ -181,7 +189,6 @@ export class NavigationComponent implements OnInit {
     this.isInstructor = this.token.isInstructor();
     this.isRecepcionista = this.token.isRecepcionista();
     this.isUser = this.token.isUser();
-    this.userName = this.token.getDatesUserName();
     this.userID = this.token.getDatesId();
     if (this.isUser) {
       const loginNode = this.data[0].children?.find(node => node.label === 'Login');

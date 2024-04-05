@@ -60,7 +60,7 @@
     <div class="mb-2" id="navbar__logout">
       <div class="dropdown" *ngIf="isLogged">
         <span id="userDropdown" class="navbar-text dropdown-toggle" style="text-transform: capitalize; font-weight: bold; width: auto;" data-bs-toggle="dropdown" aria-expanded="false">
-          <i class="fa-solid fa-user"></i> {{userName}}
+          <i class="fa-solid fa-user"></i> {{user.nombreUsuario}}
         </span>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
           <li><a class="dropdown-item" routerLink="/checkIn-empleado/{{userID}}"><i class="fa-solid fa-user"></i> Profile</a></li>

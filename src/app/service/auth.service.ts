@@ -41,7 +41,7 @@ export class AuthService {
     return this.http.get<User[]>(this.authURL+`/Rol/${rol}`);
   }
 
-  public detail(id:number):Observable<User>{
+  public detail(id:number|null):Observable<User>{
     return this.http.get<User>(this.authURL+`/${id}`);
   }
 
