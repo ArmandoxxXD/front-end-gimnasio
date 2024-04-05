@@ -20,6 +20,7 @@ export class NavigationComponent implements OnInit {
   isUser: boolean = false;
   user!: User;
   userID?: number | null;
+  nombreUsuario: String=''
   displayModal: boolean = false;
   data: TreeNode[];
   selectedNode?: TreeNode;
@@ -176,6 +177,8 @@ export class NavigationComponent implements OnInit {
       this.authService.detail(this.token.getDatesId()).subscribe(
         (data) => {
           this.user = data;
+          this.nombreUsuario= this.user.nombreUsuario;
+          this.userID = this.user.id;
           this.notificationsEnabled=this.user.notificationsEnabled;
         },
         (error) => {
@@ -189,7 +192,6 @@ export class NavigationComponent implements OnInit {
     this.isInstructor = this.token.isInstructor();
     this.isRecepcionista = this.token.isRecepcionista();
     this.isUser = this.token.isUser();
-    this.userID = this.token.getDatesId();
     if (this.isUser) {
       const loginNode = this.data[0].children?.find(node => node.label === 'Login');
       if (loginNode) {
