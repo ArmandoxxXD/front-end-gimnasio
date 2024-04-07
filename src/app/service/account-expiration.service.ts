@@ -16,6 +16,9 @@ export class AccountExpirationService {
   private inactivitySwalVisible = false;
 
   constructor(private token: TokenService, private router: Router, private authService: AuthService) { 
+    if (!this.token.isLogged()) {
+      return; // Si el usuario no ha iniciado sesión, no hagas nada
+    }
     this.resetTimer();
     this.addActivityListeners();
   }
@@ -71,7 +74,7 @@ export class AccountExpirationService {
         const notificationDto: NotificationPush = { title: 'Session Expired', body: 'Your session has been closed due to inactivity.' };
         this.sendNotification(notificationDto);
         this.token.logOut();
-        this.router.navigate(['localhost:4200/home']);
+        this.router.navigate(['/home']);
       }
     });
   }

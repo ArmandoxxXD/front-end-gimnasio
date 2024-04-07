@@ -4,7 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { EditProveedor, Proveedor } from 'src/app/models/proveedor';
 import { ProveedorService } from 'src/app/service/proveedor.service';
 import { TokenService } from 'src/app/service/token.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-editar-proveedor',
   templateUrl: './editar-proveedor.component.html',
@@ -32,12 +32,22 @@ export class EditarProveedorComponent implements OnInit {
 
   onUpdate():void{
     const dto=new EditProveedor(this.proveedor.nombreProvedor,this.proveedor.telefono,this.proveedor.email,this.proveedor.logo,this.proveedor.pais,this.proveedor.estado,this.proveedor.municipio,this.proveedor.calle, this.isPhotoDeleted);
+    Swal.fire({
+      title: 'Loading...',
+      allowOutsideClick: false,
+      position: 'top',
+      didOpen: () => {
+        Swal.showLoading(); // Muestra el spinner de SweetAlert2
+      },
+    });
     this.proveedorService.update(this.id,dto).subscribe(
       data=>{
+        Swal.close();
         this.toast.success(data.mensaje,'OK',{timeOut:3000});
         this.router.navigate(['/proveedor/lista'])
       },
       err=>{
+        Swal.close();
         this.toast.error(err.error.mensaje,'Error',{timeOut:3000});
       }
     );

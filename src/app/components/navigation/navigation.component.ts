@@ -6,7 +6,6 @@ import { AuthService } from 'src/app/service/auth.service';
 import { AngularFireMessaging } from '@angular/fire/compat/messaging';
 import { ConfigUser, User } from 'src/app/models/users';
 import { ToastrService } from 'ngx-toastr';
-
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
@@ -20,10 +19,15 @@ export class NavigationComponent implements OnInit {
   isUser: boolean = false;
   user!: User;
   userID?: number | null;
+  nombreUsuario: String=''
   displayModal: boolean = false;
+  configDialogVisible: boolean = false;
   data: TreeNode[];
   selectedNode?: TreeNode;
-  notificationsEnabled:Boolean=false;
+  notificationsEnabled!:Boolean;
+  twoFactorAuthEnabled!:Boolean;
+  fcmToken:String |null =null;
+
 
   private eventListenerNavbarShow: any;
   private eventListenerNavbarHide: any;
@@ -176,7 +180,11 @@ export class NavigationComponent implements OnInit {
       this.authService.detail(this.token.getDatesId()).subscribe(
         (data) => {
           this.user = data;
+          this.nombreUsuario= this.user.nombreUsuario;
+          this.userID = this.user.id;
           this.notificationsEnabled=this.user.notificationsEnabled;
+          this.twoFactorAuthEnabled= this.user.twoFactorAuthEnabled;
+          console.log(this.notificationsEnabled)
         },
         (error) => {
           console.error(error);
@@ -189,7 +197,6 @@ export class NavigationComponent implements OnInit {
     this.isInstructor = this.token.isInstructor();
     this.isRecepcionista = this.token.isRecepcionista();
     this.isUser = this.token.isUser();
-    this.userID = this.token.getDatesId();
     if (this.isUser) {
       const loginNode = this.data[0].children?.find(node => node.label === 'Login');
       if (loginNode) {
@@ -237,15 +244,17 @@ export class NavigationComponent implements OnInit {
 
   logOut(): void {
     this.token.logOut();
-    this.router.navigate(['localhost:4200/home']);
+    this.router.navigate(['/home']);
   }
 
   showModalDialog() {
     this.displayModal = true;
   }
+  showConfigDialog() {
+    this.configDialogVisible = true;
+  }
 
   onNodeSelect(event: any) {
-    console.log(event.node.label);
     this.router.navigate([event.node.data.route]);
   }
 
@@ -253,13 +262,22 @@ export class NavigationComponent implements OnInit {
     this.notificationsEnabled = !this.notificationsEnabled;
     this.requestPermissionAndGetToken();
     const message = this.notificationsEnabled ? 'Notifications enabled' : 'Notifications disabled';
-    this.toast.info(message, 'Notifications', { timeOut: 3000 });
+    this.toast.info(message, 'Information', { timeOut: 3000 });
+  }
+
+  toggleTwoAuthFactor(): void {
+    this.twoFactorAuthEnabled = !this.twoFactorAuthEnabled;
+    this.updateUserPreferences();
+    const message = this.twoFactorAuthEnabled ? 'Double Factor Authentication enabled' : 'Double Factor Authentication disabled';
+    this.toast.info(message, 'Information', { timeOut: 3000 });
   }
   
   requestPermissionAndGetToken(): void {
     this.afMessaging.requestToken.subscribe(
       (token) => {
-        this.updateNotificationPreference(this.notificationsEnabled, token);
+        console.log(token)
+        this.fcmToken = token;
+        this.updateUserPreferences();
       },
       (error) => {
         console.error(error);
@@ -267,14 +285,17 @@ export class NavigationComponent implements OnInit {
     );
   }
   
-  updateNotificationPreference(enabled: Boolean, fcmToken: string|null): void {
-    if (fcmToken) {
-      const config = new ConfigUser(fcmToken, enabled);
-      this.authService.configUser(this.token.getDatesId(), config).subscribe({
-        next: (response) => {
-        },
+  updateUserPreferences(): void {
+    const config = new ConfigUser();
+    config.setFcmToken(this.fcmToken);
+    config.setNotificationsEnabled(this.notificationsEnabled);
+    config.setTwoFactorAuthEnabled(this.twoFactorAuthEnabled);
+  
+    if (this.userID) {
+      this.authService.configUser(this.userID, config).subscribe({
         error: (error) => {
-          console.error('Error updating notification preference', error);
+          console.error('Error updating preferences', error);
+          this.toast.error('Error updating preferences', 'Error', { timeOut: 3000 });
         }
       });
     }

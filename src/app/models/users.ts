@@ -13,7 +13,7 @@ export class User {
     password: String;
     roles: Optional ;
     notificationsEnabled!:Boolean;
-    isTwoFactorAuthEnabled!: Boolean;
+    twoFactorAuthEnabled!: Boolean;
 
     constructor(nombreUsuario: String,foto:File,edad: number,sueldo: number,turno: String,email: String,telefono:String ,password: String, roles:Optional ){
         this.nombreUsuario=nombreUsuario;
@@ -103,12 +103,41 @@ export class EditPassword {
     }
 }
 
-export class ConfigUser {
-    fcmToken: String;
-    notificationsEnabled :Boolean;
+export class ResetPassword {
+    newPassword:String;
 
-    constructor(fcmToken: String,notificationsEnabled:Boolean){
-        this.fcmToken=fcmToken;
-        this.notificationsEnabled=notificationsEnabled;
+    constructor(newPassword:String){
+        this.newPassword=newPassword;
+    }
+}
+
+
+export class ConfigUser {
+    fcmToken!: String | null;
+    notificationsEnabled! :Boolean;
+    twoFactorAuthEnabled! :Boolean;
+
+    getFcmToken(): String | null {
+        return this.fcmToken;
+    }
+
+    setFcmToken(fcmToken: String| null): void {
+        this.fcmToken = fcmToken;
+    }
+
+    getIsNotificationsEnabled(): Boolean {
+        return this.notificationsEnabled;
+    }
+
+    setNotificationsEnabled(notificationsEnabled: Boolean): void {
+        this.notificationsEnabled = notificationsEnabled;
+    }
+
+    getIsTwoFactorAuthEnabled(): Boolean {
+        return this.twoFactorAuthEnabled;
+    }
+
+    setTwoFactorAuthEnabled(twoFactorAuthEnabled: Boolean): void {
+        this.twoFactorAuthEnabled = twoFactorAuthEnabled;
     }
 }

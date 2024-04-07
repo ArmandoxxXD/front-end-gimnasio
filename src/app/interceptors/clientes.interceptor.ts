@@ -19,8 +19,8 @@ export class ClientesInterceptor implements HttpInterceptor {
     const token =this.tokenService.getToken();
     if(token != null){
       intReq= request.clone({headers:request.headers.set("Authorization","Bearer "+token)})
+      this.accountExpirationService.resetTimer();
     }
-    this.accountExpirationService.resetTimer();
     return next.handle(intReq);
   }
 }

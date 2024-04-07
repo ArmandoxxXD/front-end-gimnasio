@@ -98,11 +98,23 @@ export class VerEmpleadoComponent implements OnInit {
   }
 
   listarEmployees(){
+    Swal.fire({
+      title: 'Loading...',
+      allowOutsideClick: false,
+      position: 'top',
+      didOpen: () => {
+        Swal.showLoading(); // Muestra el spinner de SweetAlert2
+      },
+    });
     this.authService.list().subscribe(
       (resp) => {
+        Swal.close();
         this.employees =  resp.filter(employee => employee.roles != 'ROLE_USER')
       },
-      (err) => console.error(err)
+      (err) => {
+        Swal.close();
+        console.error(err)
+      }
     );
   }
 }

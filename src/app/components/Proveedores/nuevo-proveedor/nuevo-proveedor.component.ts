@@ -4,7 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Proveedor } from 'src/app/models/proveedor';
 import { ProveedorService } from 'src/app/service/proveedor.service';
 import { TokenService } from 'src/app/service/token.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-nuevo-proveedor',
   templateUrl: './nuevo-proveedor.component.html',
@@ -30,12 +30,22 @@ export class NuevoProveedorComponent implements OnInit {
 
  onCreate():void{
   const proveedor= new Proveedor(this.nombreProvedor,this.telefono,this.email,this.logo,this.pais,this.estado,this.municipio,this.calle);
+  Swal.fire({
+    title: 'Loading...',
+    allowOutsideClick: false,
+    position: 'top',
+    didOpen: () => {
+      Swal.showLoading(); // Muestra el spinner de SweetAlert2
+    },
+  });
   this.proveedorService.create(proveedor).subscribe(
     data=>{
+      Swal.close();
       this.toast.success(data.mensaje,'OK',{timeOut:3000});
       this.router.navigate(['/proveedor/lista'])
     },
     err=>{
+      Swal.close();
       this.toast.error(err.error.mensaje,'Error',{timeOut:3000});
     }
   );

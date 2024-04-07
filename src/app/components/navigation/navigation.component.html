@@ -60,15 +60,14 @@
     <div class="mb-2" id="navbar__logout">
       <div class="dropdown" *ngIf="isLogged">
         <span id="userDropdown" class="navbar-text dropdown-toggle" style="text-transform: capitalize; font-weight: bold; width: auto;" data-bs-toggle="dropdown" aria-expanded="false">
-          <i class="fa-solid fa-user"></i> {{user.nombreUsuario}}
+          <i class="fa-solid fa-user"></i> {{nombreUsuario}}
         </span>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
           <li><a class="dropdown-item" routerLink="/checkIn-empleado/{{userID}}"><i class="fa-solid fa-user"></i> Profile</a></li>
           <li><a class="dropdown-item" (click)="showModalDialog()"><i class="fa-solid fa-sitemap"></i> Site Map</a></li>
-          <a class="dropdown-item" (click)="toggleNotifications()">
-            <i class="fa-solid" [class.fa-bell]="!notificationsEnabled" [class.fa-bell-slash]="notificationsEnabled"></i>
-            {{ notificationsEnabled ? 'Disable Notifications' : 'Enable Notifications' }}
-          </a>
+          <li><a class="dropdown-item" (click)="showConfigDialog()">
+            <i class="fa-solid fa-gear"></i> Settings
+          </a></li>
           <li><hr class="dropdown-divider"></li>
           <li><a class="dropdown-item" href="#" (click)="logOut()"><i class="fa-solid fa-power-off"></i> Logout</a></li>
         </ul>
@@ -78,6 +77,24 @@
   </div>
 
 </nav>
+
+<p-dialog header="Settings" [(visible)]="configDialogVisible" [modal]="true" [style]="{width: '30vw'}">
+  <div class="config-dialog p-3">
+    <div class="form-group d-flex align-items-center justify-content-between mb-3">
+      <label (click)="toggleNotifications()" class="config-label d-flex align-items-center">
+        <i class="fa-solid fa-2x" [ngClass]="{'fa-bell': notificationsEnabled, 'fa-bell-slash': !notificationsEnabled, 'text-success': notificationsEnabled, 'text-muted': !notificationsEnabled}"></i>
+        <span class="ms-2">Notifications</span>
+      </label>
+    </div>
+
+    <div class="form-group d-flex align-items-center justify-content-between">
+      <label (click)="toggleTwoAuthFactor()" class="config-label d-flex align-items-center">
+        <i class="fa-solid fa-2x" [ngClass]="{'fa-lock': twoFactorAuthEnabled, 'fa-lock-open': !twoFactorAuthEnabled, 'text-success': twoFactorAuthEnabled, 'text-muted': !twoFactorAuthEnabled}"></i>
+        <span class="ms-2">Two factor authentication</span>
+      </label>
+    </div>
+  </div>
+</p-dialog>
 
 <p-dialog header="Site Map" [(visible)]="displayModal" [modal]="true" [style]="{width: '80vw'}">
   <div *ngIf="displayModal">

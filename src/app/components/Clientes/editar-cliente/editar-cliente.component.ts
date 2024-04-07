@@ -6,6 +6,7 @@ import { ClienteService } from 'src/app/service/cliente.service';
 import { TokenService } from 'src/app/service/token.service';
 import { ClaseService } from 'src/app/service/clase.service';
 import { Clase } from 'src/app/models/clase';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-editar-cliente',
@@ -36,14 +37,24 @@ export class EditarClienteComponent implements OnInit {
 
   onUpdate(): void {
     const id = this.activateRoute.snapshot.params['id'];
+    Swal.fire({
+      title: 'Loading...',
+      allowOutsideClick: false,
+      position: 'top',
+      didOpen: () => {
+        Swal.showLoading(); // Muestra el spinner de SweetAlert2
+      },
+    });
     this.clienteService.update(id, this.cliente).subscribe(
       (data) => {
+        Swal.close();
         this.toastr.success('Cliente Actualizado', 'OK', {
           timeOut: 3000,
         });
         this.router.navigate(['/cliente/lista']);
       },
       (err) => {
+        Swal.close();
         this.toastr.error(err.error.mensaje, 'Fail', {
           timeOut: 3000,
         });

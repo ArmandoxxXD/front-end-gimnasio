@@ -22,28 +22,104 @@
     height: 50px;
   }
 
-#loader-container {
-    position: fixed;
-    z-index: 9999;
-    top: 86%;
-    left: 32%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    display: none;
-  }
-
-  #loader {
-    display: inline-block;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    border: 3px solid rgba(0, 0, 0, 0.2);
-    border-top-color: #db3434;
-    animation: spin 1s ease-in-out infinite;
-  }
-
   @keyframes spin {
     to {
       transform: rotate(360deg);
     }
   }
+
+.custom-modal .modal-header {
+    border-bottom: 0;
+    justify-content: center;
+    position: relative;
+    padding: 1rem;
+}
+
+.custom-modal .modal-header .btn-close {
+  position: absolute;
+  right: 1rem;
+  width: 1.5rem; 
+  height: 1.5rem; 
+  background-size: 1.5rem;
+}
+
+.custom-modal .modal-title {
+    color: #dc3545;
+}
+
+.custom-modal .modal-header .btn-close {
+    position: absolute;
+    right: 1rem;
+    top: 0.5rem;
+}
+
+.custom-modal .modal-body {
+    text-align: center;
+}
+
+.custom-modal .modal-body .form-label {
+    color: #343a40;
+}
+
+.custom-modal .modal-body .form-control {
+    border-color: #dc3545;
+    margin-bottom: 1rem;
+}
+
+.custom-modal .modal-footer {
+    border-top: 0;
+    justify-content: center;
+}
+
+.custom-modal .btn-secondary {
+    background-color: #343a40;
+    color: #ffffff;
+    margin-right: 1rem;
+}
+
+.custom-modal .btn-primary {
+    background-color: #dc3545;
+    color: #ffffff;
+}
+
+.custom-modal #countdown {
+    color: #dc3545; /* Tiempo en rojo */
+}
+
+/* Password required */
+.password_requeriment__level_text {
+  margin: 15px 0px 15px 0px;
+}
+
+.password_requeriment__requeriments {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.password_requeriment__requeriments div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: left;
+  margin: 10px;
+}
+
+.password_requeriment__requeriments p {
+  margin-left: 10px;
+  margin-bottom: 0px;
+}
+
+.password_requeriment__requeriments div i {
+  color: #666;
+}
+
+.forgot-password-link {
+  text-decoration: underline;
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: #007bff; /* Color azul por defecto de los enlaces, cámbialo según tu diseño */
+}
+
+.forgot-password-link:hover {
+  color: #0056b3; /* Un tono más oscuro para el hover, cámbialo según tu diseño */
+}

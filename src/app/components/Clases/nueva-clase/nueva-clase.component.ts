@@ -6,7 +6,7 @@ import { User } from 'src/app/models/users';
 import { AuthService } from 'src/app/service/auth.service';
 import { ClaseService } from 'src/app/service/clase.service';
 import { TokenService } from 'src/app/service/token.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-nueva-clase',
   templateUrl: './nueva-clase.component.html',
@@ -45,12 +45,22 @@ export class NuevaClaseComponent implements OnInit {
 
   onCreate():void{
     const clase= new Clase(this.nombreClase,this.descripcion,this.costo,this.nombreInstructor,this.fecha,this.hora,this.cupo,this.fotoClase);
+    Swal.fire({
+      title: 'Loading...',
+      allowOutsideClick: false,
+      position: 'top',
+      didOpen: () => {
+        Swal.showLoading(); // Muestra el spinner de SweetAlert2
+      },
+    });
     this.claseService.create(clase).subscribe(
       data=>{
+        Swal.close();
         this.toast.success(data.mensaje,'OK',{timeOut:3000});
         this.router.navigate(['/clase/lista'])
       },
       err=>{
+        Swal.close();
         this.toast.error(err.error.mensaje,'Error',{timeOut:3000});
       }
     );

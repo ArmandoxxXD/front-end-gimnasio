@@ -6,7 +6,7 @@ import { Proveedor } from 'src/app/models/proveedor';
 import { ProductoService } from 'src/app/service/producto.service';
 import { ProveedorService } from 'src/app/service/proveedor.service';
 import { TokenService } from 'src/app/service/token.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-editar-producto',
   templateUrl: './editar-producto.component.html',
@@ -40,12 +40,22 @@ export class EditarProductoComponent implements OnInit {
 
   onUpdate():void{
     const dto=new EditProducto(this.producto.nombreProducto,this.producto.imagen,this.producto.cantidad,this.producto.precio,this.producto.nombreProvedor,this.producto.categoria,this.producto.tipo,this.producto.codeBar,this.isPhotoDeleted);
+    Swal.fire({
+      title: 'Loading...',
+      allowOutsideClick: false,
+      position: 'top',
+      didOpen: () => {
+        Swal.showLoading(); // Muestra el spinner de SweetAlert2
+      },
+    });
     this.productoService.update(this.id,dto).subscribe(
       data=>{
+        Swal.close();
         this.toast.success(data.mensaje,'OK',{timeOut:3000});
         this.router.navigate(['/producto/lista'])
       },
       err=>{
+        Swal.close();
         this.toast.error(err.error.mensaje,'Error',{timeOut:3000});
       }
     );

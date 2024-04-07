@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CreateCliente } from 'src/app/models/clientes';
 import { AuthService } from 'src/app/service/auth.service';;
-
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-nuevo-cliente',
@@ -25,14 +25,24 @@ export class NuevoClienteComponent implements OnInit {
   }
 
   onRegister(): void{
-    console.log(this.nombreUsuario)
     const dto=new CreateCliente(this.nombreUsuario,this.edad,this.email,this.telefono,this.password,[this.roles]);
+    Swal.fire({
+      title: 'Loading...',
+      html: 'Creating account', // Mensaje adicional o puedes dejarlo vacío
+      allowOutsideClick: false,
+      position: 'top',
+      didOpen: () => {
+        Swal.showLoading(); // Muestra el spinner de SweetAlert2
+      },
+    });
     this.auth.registerCliente(dto).subscribe(
       data=>{
+        Swal.close();
         this.toastr.success(data.mensaje, 'OK', {timeOut: 3000}); 
         this.router.navigate(['login']);
       },
       err=>{
+        Swal.close();
         this.toastr.error(err.error.mensaje, 'Fail', {timeOut: 3000}); 
       }
     );

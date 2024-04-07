@@ -27,6 +27,9 @@
                       <label class="form-label" for="form2Example22">Password</label>
                       <input type="password" name="password" id="password" placeholder="Password" [(ngModel)]="password"
                         autocomplete="off" required required="required" class="form-control" />
+                        <div class="text-center mt-2">
+                          <a href="javascript:void(0);" (click)="showIdentificationModal()" class="forgot-password-link">Forgot password?</a>
+                        </div>
                     </div>
                     <div class="mb-4">
                       <re-captcha [siteKey]="keyCaptcha" (resolved)="onCaptchaResolved($event)"></re-captcha>
@@ -55,7 +58,102 @@
   </section>
 </div>
 
-<!-- Cargando -->
-<div id="loader-container">
-  <div id="loader"></div>
+<div class="modal fade custom-modal" id="twoFactorModal" tabindex="-1" aria-labelledby="twoFactorModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="twoFactorModalLabel">Two Factor Verification</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="twoFactorCode" class="form-label">Verification code:</label>
+            <input type="text" class="form-control" id="twoFactorCode" [(ngModel)]="twoFactorCode" name="twoFactorCode" required autofocus>
+          </div>
+          <p class="text-muted">The code will expire in <span id="countdown">03:00</span> minutes.</p>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="resendCode()">Resend Code</button>
+        <button type="button" class="btn btn-primary" (click)="verifyTwoFactorCode()">Verify</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade custom-modal" id="identificationModal" tabindex="-1" aria-labelledby="identificationModal" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="identificationModal">Recover password</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="identificator" class="form-label">Enter your email or username with which you registered:</label>
+            <input type="text" class="form-control" id="identificator" [(ngModel)]="identificator" name="identificator" required autofocus>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="sendTokenPasswordReset()">Verificar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade custom-modal" id="resetPasswordModal" tabindex="-1" aria-labelledby="resetPasswordModal"
+  aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="resetPasswordModal">Change Password</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #changePasswordForm="ngForm" (ngSubmit)="changePassword()">
+          <div class="form-group">
+            <label class="form-label" for="newPassword">New Password</label>
+            <input autocomplete="off" type="password" class="form-control" id="newPassword" [(ngModel)]="newPassword"
+              name="newPassword" (ngModelChange)="evaluarPassword($event)" required>
+          </div>
+          <div class="password_requeriment mb-2">
+            <p class="password_requeriment__level_text">Level: <strong id="password_requeriment__level">Empty</strong>
+            </p>
+            <p><strong>Your password must contain:</strong></p>
+
+            <div class="password_requeriment__requeriments">
+              <div id="requeriment_1">
+                <i class="fa-solid fa-xmark"></i>
+                <p>Minimum number of characters is 6.</p>
+              </div>
+              <div id="requeriment_2">
+                <i class="fa-solid fa-xmark"></i>
+                <p> Should contain lowercase. </p>
+              </div>
+              <div id="requeriment_3">
+                <i class="fa-solid fa-xmark"></i>
+                <p> Should contain uppercase. </p>
+              </div>
+              <div id="requeriment_4">
+                <i class="fa-solid fa-xmark"></i>
+                <p> Should contain numbers. </p>
+              </div>
+              <div id="requeriment_5">
+                <i class="fa-solid fa-xmark"></i>
+                <p> Should contain special characters. </p>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Save</button>
+         </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>

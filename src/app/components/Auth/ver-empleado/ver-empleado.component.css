@@ -154,20 +154,6 @@ button:active .icon svg {
   transform: scale(0.8);
 }
 
-/*Pantalla de carga*/
-#loading {
-  display: none;
-  position: fixed;
-  z-index: 9999;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.8)
-    url("https://camaradirecta.com/template/images/loading-full.gif?_=1") center
-    no-repeat;
-}
-
 .cssbuttons-io {
   position: relative;
   font-family: inherit;

@@ -25,24 +25,31 @@ export class VerProductoComponent implements OnInit {
   constructor(private productoService:ProductoService,private toast:ToastrService, private token:TokenService) { }
 
   ngOnInit(): void {
-    $('#loading').css('display', 'block');
     this.getProductos();
     this.isAdmin = this.token.isAdmin();
   }
 
   getProductos():void{
+    Swal.fire({
+      title: 'Loading...',
+      allowOutsideClick: false,
+      position: 'top',
+      didOpen: () => {
+        Swal.showLoading(); // Muestra el spinner de SweetAlert2
+      },
+    });
     this.productoService.list().subscribe(
       data=>{
         this.productos=data;
-        $('#loading').css('display', 'none');
+        Swal.close();
         this.categorias=this.productos.map(objeto=> objeto.categoria).filter((value,index,self)=> self.indexOf(value)===index);
         for(var i=0;i<this.productos.length;i++){
           this.stock(this.productos[i].id);
         }
       },
       err=>{
+        Swal.close();
         this.toast.error(err.error.mensaje,'Error',{timeOut:3000});
-        $('#loading').css('display', 'none');
       }
     )
   }

@@ -12,7 +12,7 @@ import { PagosService } from 'src/app/service/pagos.service';
 import { ProductosService } from 'src/app/service/productos.service';
 import { ToastrService } from 'ngx-toastr';
 import { TokenService } from 'src/app/service/token.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-nueva-venta',
   templateUrl: './nueva-venta.component.html',
@@ -70,17 +70,29 @@ export class NuevaVentaComponent implements OnInit {
         total: 0,
       };
       // Realiza una llamada al servicio de venta para guardar la venta
+      Swal.fire({
+        title: 'Loading...',
+        allowOutsideClick: false,
+        position: 'top',
+        didOpen: () => {
+          Swal.showLoading(); // Muestra el spinner de SweetAlert2
+        },
+      });
       this.ventaService.saveVentas(ventas).subscribe(
         (resp) => {
           // Realiza una llamada adicional al servicio de venta para crear un corte diario
           this.ventaService.postCorteDiario().subscribe((resp) => {
             // Muestra un mensaje de éxito utilizando la librería de notificaciones 'toast'
             this.toast.success('Sale Success', 'OK', { timeOut: 3000 });
+            Swal.close();
             // Recarga la página
-            window.location.reload();
           });
+          window.location.reload();
         },
-        (err) => console.error(err)
+        (err) => {
+          Swal.close();
+          console.error(err)
+        }
       );
     }
   }
