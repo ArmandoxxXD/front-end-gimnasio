@@ -195,7 +195,6 @@ export class LoginComponent implements OnInit  {
     }
     Swal.fire({
       title: 'Loading...',
-      html: 'Logging in', // Mensaje adicional o puedes dejarlo vacío
       allowOutsideClick: false,
       position: 'top',
       didOpen: () => {

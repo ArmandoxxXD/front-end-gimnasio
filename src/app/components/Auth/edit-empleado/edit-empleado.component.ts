@@ -97,7 +97,6 @@ export class EditEmpleadoComponent implements OnInit {
     } else {
       Swal.fire({
         title: 'Loading...',
-        html: 'Creating account', // Mensaje adicional o puedes dejarlo vacío
         allowOutsideClick: false,
         position: 'top',
         didOpen: () => {
