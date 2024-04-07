@@ -6,6 +6,7 @@ import { User } from 'src/app/models/users';
 import { AuthService } from 'src/app/service/auth.service';
 import { ClaseService } from 'src/app/service/clase.service';
 import { TokenService } from 'src/app/service/token.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-editar-clases',
@@ -38,12 +39,22 @@ export class EditarClasesComponent implements OnInit {
 
   onUpdate():void{
     const dto=new EditClase(this.clase.nombreClase,this.clase.descripcion,this.clase.costo,this.clase.nombreInstructor,this.clase.fecha,this.clase.hora,this.clase.cupo,this.clase.fotoClase,this.isPhotoDeleted);
+    Swal.fire({
+      title: 'Loading...',
+      allowOutsideClick: false,
+      position: 'top',
+      didOpen: () => {
+        Swal.showLoading(); // Muestra el spinner de SweetAlert2
+      },
+    });
     this.claseService.update(this.id,dto).subscribe(
       data=>{
+        Swal.close();
         this.toast.success(data.mensaje,'OK',{timeOut:3000});
         this.router.navigate(['/clase/lista'])
       },
       err=>{
+        Swal.close();
         this.toast.error(err.error.mensaje,'Error',{timeOut:3000});
       }
     );

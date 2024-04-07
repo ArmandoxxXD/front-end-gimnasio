@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/models/users';
 import { AuthService } from 'src/app/service/auth.service';
 import { TokenService } from 'src/app/service/token.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -33,13 +34,24 @@ export class RegisterComponent implements OnInit {
 
   onCreate(): void{
     const dto=new User(this.nombreUsuario,this.foto,this.edad,this.sueldo,this.turno,this.email,this.telefono,this.password,[this.roles]);
+    Swal.fire({
+      title: 'Loading...',
+      html: 'Creating account', // Mensaje adicional o puedes dejarlo vacío
+      allowOutsideClick: false,
+      position: 'top',
+      didOpen: () => {
+        Swal.showLoading(); // Muestra el spinner de SweetAlert2
+      },
+    });
     this.auth.register(dto).subscribe(
       data=>{
+        Swal.close();
         this.toastr.success(data.mensaje, 'OK', {timeOut: 3000}); 
         this.router.navigate(['empelado/lista']);
       },
       err=>{
-        this.toastr.error(err.error.mensaje, 'Fail', {timeOut: 3000}); 
+        Swal.close();
+        this.toastr.error(err.error.mensaje, 'Fail', {timeOut: 3000});
       }
     );
   }

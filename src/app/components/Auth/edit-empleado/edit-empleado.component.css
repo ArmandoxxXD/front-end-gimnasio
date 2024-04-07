@@ -182,29 +182,92 @@ select {
   color: #333;
 }
 
+.custom-modal .modal-header {
+  border-bottom: 0;
+  justify-content: center;
+  position: relative;
+  padding: 1rem;
+}
+
+.custom-modal .modal-header .btn-close {
+position: absolute;
+right: 1rem;
+width: 1.5rem; 
+height: 1.5rem; 
+background-size: 1.5rem;
+}
+
+.custom-modal .modal-title {
+  color: #dc3545;
+}
+
+.custom-modal .modal-header .btn-close {
+  position: absolute;
+  right: 1rem;
+  top: 0.5rem;
+}
+
+.custom-modal .modal-body {
+  text-align: center;
+}
+
+.custom-modal .modal-body .form-label {
+  color: #343a40;
+}
+
+.custom-modal .modal-body .form-control {
+  border-color: #dc3545;
+  margin-bottom: 1rem;
+}
+
+.custom-modal .modal-footer {
+  border-top: 0;
+  justify-content: center;
+}
+
+.custom-modal .btn-secondary {
+  background-color: #343a40;
+  color: #ffffff;
+  margin-right: 1rem;
+}
+
+.custom-modal .btn-primary {
+  background-color: #dc3545;
+  color: #ffffff;
+}
+
+.custom-modal #countdown {
+  color: #dc3545; /* Tiempo en rojo */
+}
+
 /* Password required */
 .password_requeriment__level_text {
-  margin: 15px 0px 15px 0px;
+margin: 15px 0px 15px 0px;
 }
 
 .password_requeriment__requeriments {
-  display: flex;
-  flex-direction: column;
-  margin-top: 10px;
+display: flex;
+flex-direction: column;
+margin-top: 10px;
 }
 
 .password_requeriment__requeriments div {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  margin: 10px;
+display: flex;
+flex-wrap: wrap;
+align-items: left;
+margin: 10px;
 }
 
 .password_requeriment__requeriments p {
-  margin-left: 10px;
-  margin-bottom: 0px;
+margin-left: 10px;
+margin-bottom: 0px;
 }
 
 .password_requeriment__requeriments div i {
-  color: #666;
+color: #666;
+}
+
+.save {
+  width: 310px;
+  height: 50px;
 }

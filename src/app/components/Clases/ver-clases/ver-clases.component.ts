@@ -3,7 +3,6 @@ import { ToastrService } from 'ngx-toastr';
 import { Clase } from 'src/app/models/clase';
 import { ClaseService } from 'src/app/service/clase.service';
 import { TokenService } from 'src/app/service/token.service';
-import * as $ from 'jquery';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -26,20 +25,27 @@ export class VerClasesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    $('#loading').css('display', 'block');
     this.getClases();
     this.isAdmin = this.token.isAdmin();
   }
 
   getClases(): void {
+    Swal.fire({
+      title: 'Loading...',
+      allowOutsideClick: false,
+      position: 'top',
+      didOpen: () => {
+        Swal.showLoading(); // Muestra el spinner de SweetAlert2
+      },
+    });
     this.claseService.list().subscribe(
       (data) => {
+        Swal.close();
         this.clases = data;
-        $('#loading').css('display', 'none');
       },
       (err) => {
+        Swal.close();
         this.toast.error(err.error.mensaje, 'Error', { timeOut: 3000 });
-        $('#loading').css('display', 'none');
       }
     );
   }

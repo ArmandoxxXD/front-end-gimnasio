@@ -4,7 +4,7 @@ import { LoginUser } from '../models/login-user';
 import { Observable } from 'rxjs';
 import { JwtToken } from '../models/jwt-token';
 import { environment } from 'src/environments/environment';
-import { User, EditPassword, EditUser, ConfigUser } from '../models/users';
+import { User, EditPassword, EditUser, ConfigUser, ResetPassword } from '../models/users';
 import { CreateCliente } from '../models/clientes';
 import { NotificationPush } from '../models/notificationPush';
 
@@ -53,6 +53,10 @@ export class AuthService {
     return this.http.put<any>(this.authURL+`/change-password/${id}`,dto)
   }
 
+  public resentPassword(id:number,dto:ResetPassword):Observable<any>{
+    console.log(id,dto)
+    return this.http.put<any>(this.authURL+`/resent-change-password/${id}`,dto)
+  }
 
   public delete(id:number):Observable<any>{
     return this.http.delete<any>(this.authURL+`/${id}`);
@@ -72,4 +76,21 @@ export class AuthService {
       });
   }
 
+  public validatedPasswordReset(token: string):Observable<any>{
+    return this.http.get<any>(this.authURL+`/request-password-reset`,{
+      params: { token: token }
+      });
+  }
+
+  verifyTwoFactorCode(userId: number, code: string): Observable<any> {
+    return this.http.post(`${this.authURL}/verify-2fa/${userId}`, { code });
+  }
+  
+  resendTwoFactorCode(userId: number): Observable<any> {
+    return this.http.get(`${this.authURL}/resend-2fa-code/${userId}`);
+  }
+
+  sendTokenPasswordReset(identificator: String): Observable<any> {
+    return this.http.get(`${this.authURL}/send-token-password-reset/${identificator}`);
+  }
 }

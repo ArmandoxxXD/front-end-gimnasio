@@ -65,6 +65,15 @@ export class EditEmpleadoComponent implements OnInit {
             confirmButtonText: 'OK',
             confirmButtonColor: '#1a1a1a',
           }).then((result) => { 
+            Swal.fire({
+              title: 'Loading...',
+              html: 'Creating account', // Mensaje adicional o puedes dejarlo vacío
+              allowOutsideClick: false,
+              position: 'top',
+              didOpen: () => {
+                Swal.showLoading(); // Muestra el spinner de SweetAlert2
+              },
+            });
             this.authService.update(this.id, dto).subscribe(
               (data) => {
                 this.toast.success(data.mensaje, 'OK', { timeOut: 3000 });
@@ -86,8 +95,18 @@ export class EditEmpleadoComponent implements OnInit {
         }
       });
     } else {
+      Swal.fire({
+        title: 'Loading...',
+        html: 'Creating account', // Mensaje adicional o puedes dejarlo vacío
+        allowOutsideClick: false,
+        position: 'top',
+        didOpen: () => {
+          Swal.showLoading(); // Muestra el spinner de SweetAlert2
+        },
+      });
       this.authService.update(this.id, dto).subscribe(
         (data) => {
+          Swal.close();
           this.toast.success(data.mensaje, 'OK', { timeOut: 3000 });
           if (this.fromListaEmpleado) {
             this.router.navigate(['/empelado/lista']); // Redirige a la lista de empleados
@@ -96,6 +115,7 @@ export class EditEmpleadoComponent implements OnInit {
           }
         },
         (err) => {
+          Swal.close();
           this.toast.error(err.error.mensaje, 'Error', { timeOut: 3000 });
         }
       );
@@ -119,8 +139,17 @@ export class EditEmpleadoComponent implements OnInit {
   
   changePassword(): void {
       const dto=new EditPassword(this.currentPassword, this.newPassword);
+      Swal.fire({
+        title: 'Loading...',
+        allowOutsideClick: false,
+        position: 'top',
+        didOpen: () => {
+          Swal.showLoading(); // Muestra el spinner de SweetAlert2
+        },
+      });
       this.authService.updatePassword(this.id, dto).subscribe(
         (response) => {
+          Swal.close();
           this.toastr.success('Password successfully updated');
           const modalElement = document.getElementById('changePasswordModal');
           const modalInstance = bootstrap.Modal.getInstance(modalElement); // Obtiene la instancia del modal
@@ -129,6 +158,7 @@ export class EditEmpleadoComponent implements OnInit {
           this.newPassword='';
         },
         (error) => {
+          Swal.close();
           this.toastr.error('Error: ' + (error.error.mensaje || error.message));
         }
       );
