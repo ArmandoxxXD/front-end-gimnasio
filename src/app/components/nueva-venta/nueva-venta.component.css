@@ -23,8 +23,6 @@ li :disabled {
   width: 98%;
   border-radius: 20px;
   background: #ffffff;
-  box-shadow: 5px 5px 20px rgb(67, 65, 65),
-    -5px -5px 20px rgb(67, 65, 65);
 }
 
 .table {

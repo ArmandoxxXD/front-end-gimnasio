@@ -1,12 +1,12 @@
 <div class="content">
   <h1 *ngIf="!isUser" class="mt-3" style="text-align: center;">Sale <i class="fa-solid fa-money-check-dollar"></i></h1>
   <h1 *ngIf="isUser" class="mt-3" style="text-align: center;">Buy <i class="fa-solid fa-money-check-dollar"></i></h1>
-<nav class="ms-5 mb-2 mt-5" aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li  *ngIf="!isUser" class="breadcrumb-item active" aria-current="page">Sale</li>
-    <li  *ngIf="isUser" class="breadcrumb-item active" aria-current="page">Buy</li>
-  </ol>
-</nav>
+  <nav class="ms-5 mb-2 mt-5" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li *ngIf="!isUser" class="breadcrumb-item active" aria-current="page">Sale</li>
+      <li *ngIf="isUser" class="breadcrumb-item active" aria-current="page">Buy</li>
+    </ol>
+  </nav>
 
   <div class="container mt-1">
     <div class="input-group mb-4">
@@ -22,11 +22,13 @@
             Buy</span>
         </button>
       </div>
-      <button *ngIf="isAdmin || isRecepcionista" class="cssbuttons-io ms-5 rounded" id="botonNuevo" routerLink="/listaVentas" style="height: 60px;">
+      <button *ngIf="isAdmin || isRecepcionista" class="cssbuttons-io ms-5 rounded" id="botonNuevo"
+        routerLink="/listaVentas" style="height: 60px;">
         <span><i class='bx bx-show me-2'></i>
           See Sales</span>
       </button>
-      <button *ngIf="isAdmin || isRecepcionista" class="cssbuttons-io ms-5 rounded" id="botonNuevo" routerLink="/cortes" style="height: 60px;">
+      <button *ngIf="isAdmin || isRecepcionista" class="cssbuttons-io ms-5 rounded" id="botonNuevo" routerLink="/cortes"
+        style="height: 60px;">
         <span><i class='bx bx-book-bookmark me-2'></i>
           Cuts</span>
       </button>
@@ -39,43 +41,46 @@
       </select>
     </div>
     <!-- Tabla de Productos -->
-    <table class="table table-striped">
-      <thead id="tablaBg">
-        <tr>
-          <th scope="col"></th>
-          <th scope="col">Name</th>
-          <th scope="col">Amount</th>
-          <th scope="col">Barcode</th>
-          <th scope="col">Subtotal</th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <!-- Lista los productos-->
-      <tbody id="buscarTabla">
-        <tr *ngFor="let item of productos; let i = index" class="text-capitalize">
-          <td><img src="{{item.img}}" id="imgTablita" class="img-fluid"></td>
-          <td>
-            <p>{{item.nombre}}</p>
-          </td>
-          <td>{{item.cantidad}}</td>
-          <td>{{item.codeBar}}</td>
-          <td>$ {{item.total.toFixed(2) }}</td>
-          <td>
-            <!-- Dropdown de opciones RUD -->
-            <div class="dropdown">
-              <a class="btn btn-outline-dark" id="opciones" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class='bx bx-dots-horizontal-rounded bx-sm'></i>
-              </a>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead id="tablaBg">
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Name</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Barcode</th>
+            <th scope="col">Subtotal</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <!-- Lista los productos-->
+        <tbody id="buscarTabla">
+          <tr *ngFor="let item of productos; let i = index" class="text-capitalize">
+            <td><img src="{{item.img}}" id="imgTablita" class="img-fluid"></td>
+            <td>
+              <p>{{item.nombre}}</p>
+            </td>
+            <td>{{item.cantidad}}</td>
+            <td>{{item.codeBar}}</td>
+            <td>$ {{item.total.toFixed(2) }}</td>
+            <td>
+              <!-- Dropdown de opciones RUD -->
+              <div class="dropdown">
+                <a class="btn btn-outline-dark" id="opciones" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  <i class='bx bx-dots-horizontal-rounded bx-sm'></i>
+                </a>
 
-              <ul class="dropdown-menu">
-                <li><button class="dropdown-item" (click)="removerProducto(i)"><i class='bx bxs-trash'></i>
-                    Eliminate</button></li>
-              </ul>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+                <ul class="dropdown-menu">
+                  <li><button class="dropdown-item" (click)="removerProducto(i)"><i class='bx bxs-trash'></i>
+                      Eliminate</button></li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
   <!-- Modal para Agregar Producto -->
   <div class="modal fade" id="crear" tabindex="-1" aria-labelledby="crear" aria-hidden="true">
@@ -91,8 +96,8 @@
             <input type="text" class="form-control" id="formGroupExampleInput" [(ngModel)]="codeBar"
               [ngModelOptions]="{standalone: true}">
             <label class="form-label">Amount</label>
-            <input type="number" placeholder="1" class="form-control" min="1" name="cantidadInput" [(ngModel)]="cantidad"
-              [ngModelOptions]="{standalone: true}">
+            <input type="number" placeholder="1" class="form-control" min="1" name="cantidadInput"
+              [(ngModel)]="cantidad" [ngModelOptions]="{standalone: true}">
           </form>
         </div>
         <div class="modal-footer">

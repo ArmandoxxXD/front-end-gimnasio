@@ -254,7 +254,7 @@ font-family: 'Roboto', sans-serif; */
 
 .home__body__comienza_comienza {
   width: 100%;
-  height: 615px;
+  height: 565px;
 }
 
 .Comienza__Comienza {
@@ -878,7 +878,7 @@ font-family: 'Roboto', sans-serif; */
 
 @media (max-width: 350px) {
   .home__Body_Gif__Content__SubTitulo {
-    font-size: 10px;
+    font-size: 7px;
   }
 
   .home__Body_Gif__Content__Titulo_Text {

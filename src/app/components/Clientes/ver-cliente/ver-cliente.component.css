@@ -2,7 +2,7 @@
   width: 98%;
   border-radius: 20px;
   background: #ffffff;
-  box-shadow: 5px 5px 20px rgb(67, 65, 65), -5px -5px 20px rgb(67, 65, 65);
+  /* box-shadow: 5px 5px 20px rgb(67, 65, 65), -5px -5px 20px rgb(67, 65, 65); */
   margin: 0 auto; /* Ajusta la tabla al centro de la página */
   color: rgb(0, 0, 0); /* Pone las letras en blanco */
 }

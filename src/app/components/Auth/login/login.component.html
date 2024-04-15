@@ -31,12 +31,12 @@
                           <a href="javascript:void(0);" (click)="showIdentificationModal()" class="forgot-password-link">Forgot password?</a>
                         </div>
                     </div>
-                    <div class="mb-4">
+                    <div id="captcha" class="mb-4">
                       <re-captcha [siteKey]="keyCaptcha" (resolved)="onCaptchaResolved($event)"></re-captcha>
                     </div>
                     <div class="text-center pt-1 mb-5 pb-1">
-                      <button [disabled]="!f.valid" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
-                        type="button" type="submit">Login</button>
+                      <button [disabled]="!f.valid" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 login_button"
+                         type="submit">Login</button>
                         <p>You do not have an account <a routerLink="/register">Sign up here.</a></p>
                     </div>
                   </form>

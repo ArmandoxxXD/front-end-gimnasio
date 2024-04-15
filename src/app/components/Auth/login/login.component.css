@@ -123,3 +123,11 @@
 .forgot-password-link:hover {
   color: #0056b3; /* Un tono más oscuro para el hover, cámbialo según tu diseño */
 }
+
+.login_button {
+  width: 150px;
+}
+
+#captcha {
+  overflow: hidden;
+}

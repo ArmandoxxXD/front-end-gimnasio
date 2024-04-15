@@ -1,50 +1,67 @@
 .contenedor {
     padding: 10px;
 }
+
 .info-employee {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
     margin-bottom: 2%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 10px;
 }
+
+.employe_pics {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 .info-employee h1 {
-    margin-left: 20px;
     background-color: transparent;
 }
+
 .nav-tabs {
     /*background-color: #e4dfdf;*/
     margin-bottom: 2%;
     border-radius: 5px;
 }
+
 .img-and-text {
-    display: flex; 
+    display: flex;
     flex-direction: row;
     align-items: center;
-}    
+}
+
 .img-and-text p {
     margin-left: 20px;
 }
+
 .info-body {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 10px;
 }
+
 .stats-body {
     border: 1px solid #ccc;
     border-radius: 10px;
 }
+
 .tab-content {
     padding: 10px;
 }
+
 #regMensual {
     text-align: center;
     align-items: center;
     justify-content: center;
 }
+
 #myChart {
     position: absolute;
     width: 100%;
@@ -57,6 +74,7 @@
     justify-content: center;
     align-items: center;
 }
+
 .calendar {
     font-family: Arial, sans-serif;
     width: 450px;
@@ -65,6 +83,7 @@
     border-radius: 5px;
     padding: 0;
 }
+
 .calendar-header {
     display: flex;
     justify-content: space-between;
@@ -72,28 +91,35 @@
     margin-bottom: 10px;
     padding: 10px;
 }
-.prev-month-btn, .next-month-btn {
+
+.prev-month-btn,
+.next-month-btn {
     background-color: transparent;
     border: none;
     font-size: 1.5em;
     cursor: pointer;
     color: #ccc;
 }
-.prev-month-btn:hover, .next-month-btn:hover {
+
+.prev-month-btn:hover,
+.next-month-btn:hover {
     color: #1a1a1a;
 }
+
 .calendar-month {
-  font-size: 1.2em;
-  /*font-weight: bold*/
-  color: #1a1a1a;
+    font-size: 1.2em;
+    /*font-weight: bold*/
+    color: #1a1a1a;
 }
+
 .calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 5px;
     padding: 10px;
 }
-.calendar-days  {
+
+.calendar-days {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -103,6 +129,7 @@
     padding: 15px;
     color: white;
 }
+
 .calendar-day {
     text-align: center;
     font-size: 0.8em;
@@ -125,69 +152,96 @@
 .calendar-day:active {
     transform: scale(0.85);
 }
-  
+
 .calendar-day.today {
     background-color: #188cfc;
     color: white;
 }
+
 .botones-verticales {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-left: 20px; /* Ajuste de la separación entre la foto y los botones */
+    margin-left: 20px;
+    /* Ajuste de la separación entre la foto y los botones */
     /* Alinea los botones al final del contenedor */
     justify-content: flex-end;
     /* Asegúrate de que el contenedor .info-employee tenga suficiente altura */
     height: 100%;
-  }
-  
-  /* Estilos de los botones se mantienen */
-  #BotonVerQR, #BotonEditar, #BotonEliminar {
-    width: 200px; /* Ancho fijo para todos los botones */
-    margin: 5px 0; /* Espacio vertical entre botones */
+}
+
+/* Estilos de los botones se mantienen */
+#BotonVerQR,
+#BotonEditar,
+#BotonEliminar {
+    width: 200px;
+    /* Ancho fijo para todos los botones */
+    margin: 5px 0;
+    /* Espacio vertical entre botones */
     border: none;
     color: white;
     font-size: 1.15rem;
     font-weight: 500;
-    padding: 0.7rem; /* Ajuste del padding para mantener la altura */
+    padding: 0.7rem;
+    /* Ajuste del padding para mantener la altura */
     border-radius: 0.5rem;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
     cursor: pointer;
     transition: transform 225ms, box-shadow 225ms;
-    text-align: center; /* Asegura que el texto esté centrado */
-  }
-  
-  #BotonVerQR, #BotonEditar {
-    background-color: #434242; /* Color de fondo para botones no críticos */
-  }
-  
-  #BotonVerQR:hover, #BotonEditar:hover {
+    text-align: center;
+    /* Asegura que el texto esté centrado */
+}
+
+#BotonVerQR,
+#BotonEditar {
+    background-color: #434242;
+    /* Color de fondo para botones no críticos */
+}
+
+#BotonVerQR:hover,
+#BotonEditar:hover {
     transform: scale(1.05) translate(0, -0.15rem);
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.35);
-  }
-  
-  #BotonVerQR:active, #BotonEditar:active {
+}
+
+#BotonVerQR:active,
+#BotonEditar:active {
     transform: scale(1) translate(0, 0.15rem);
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-  }
-  
-  #BotonEliminar {
-    background-color: red; /* Color de fondo para el botón Eliminar */
-  }
-  
-  #BotonEliminar:hover {
+}
+
+#BotonEliminar {
+    background-color: red;
+    /* Color de fondo para el botón Eliminar */
+}
+
+#BotonEliminar:hover {
     transform: scale(1.05) translate(0, -0.15rem);
-  }
-  
-  #BotonEliminar:active {
+}
+
+#BotonEliminar:active {
     transform: scale(1) translate(0, 0.15rem);
     box-shadow: 0 0.5rem 1rem rgba(255, 0, 0, 0.25);
-  }
+}
 
-@media (max-width:400px){
-    
-    #myTabContent {
+@media (max-width:600px) {
+    .calendar {
         width: 350px;
+    }
+}
+
+@media (max-width:400px) {
+
+    #myTabContent {
         overflow: scroll;
+    }
+
+    .calendar {
+        width: 230px;
+    }
+
+    #BotonVerQR {
+        width: 125px;
+        font-size: 1rem;
     }
 }
