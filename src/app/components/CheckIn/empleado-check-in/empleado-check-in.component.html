@@ -7,7 +7,8 @@
 </nav>
 
 <div class="contenedor">
-  <div class="info-employee">
+
+  <div class="info-employee  m-2">
     <div class="employe_pics">
       <img [src]="emp.foto" alt="" class="placeholder-glow image rounded-circle" height="155px" width="155px">
       <h1 *ngIf="emp" style="text-transform: capitalize;">{{emp.nombreUsuario}}</h1>
@@ -21,8 +22,10 @@
           class="fa-solid fa-trash"></i> Delete account</button>
     </div>
   </div>
+
   <div class="employee-body d-flex flex-row" style="flex-wrap: wrap;">
-    <div class="info-body flex-fill me-4">
+
+    <div class="stats-body flex-fill m-2">
       <p style="text-transform: capitalize;">Name: {{emp.nombreUsuario}}</p>
       <p>Age: {{emp.edad}}</p>
       <p *ngIf="!isClient">Salary: ${{emp.sueldo}}</p>
@@ -31,7 +34,8 @@
       <p>Phone: {{emp.telefono}}</p>
       <p>Type of User: {{emp.roles}}</p>
     </div>
-    <div *ngIf="!isClient" class="stats-body flex-fill">
+
+    <div *ngIf="!isClient" class="stats-body flex-fill m-2">
       <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item" role="presentation">
           <a class="nav-link active" data-bs-toggle="tab" href="#datos" aria-selected="true" role="tab"
@@ -115,6 +119,7 @@
         </div>
       </div>
     </div>
+    
   </div>
 </div>
 
