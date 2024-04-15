@@ -5,6 +5,7 @@ import { ProductoService } from 'src/app/service/producto.service';
 import { TokenService } from 'src/app/service/token.service';
 import * as $ from "jquery";
 import Swal from 'sweetalert2';
+import { ProductosService } from 'src/app/service/productos.service';
 
 @Component({
   selector: 'app-ver-producto',
@@ -16,17 +17,24 @@ export class VerProductoComponent implements OnInit {
   categorias:String[]=[];
   producto:Producto|undefined;
   isAdmin:boolean=false;
+  isUser:boolean=false;
   filterProductos='';
   showModal = false;
   selectedImage!:String;
   selectedNombre!:String;
   selectedcodeBar!:String;
 
-  constructor(private productoService:ProductoService,private toast:ToastrService, private token:TokenService) { }
+  constructor(
+    private productoService:ProductoService,
+    private toast:ToastrService,
+    private token:TokenService,
+    private prodtcutosService:ProductosService
+    ) { }
 
   ngOnInit(): void {
     this.getProductos();
     this.isAdmin = this.token.isAdmin();
+    this.isUser = this.token.isUser();
   }
 
   getProductos():void{
@@ -138,5 +146,9 @@ export class VerProductoComponent implements OnInit {
       }
   }
 
+  onBuy(codeBar:string){
+    this.prodtcutosService.agregarProducto(codeBar);
+    this.prodtcutosService.cargarCarrito();
+  }
  
 }

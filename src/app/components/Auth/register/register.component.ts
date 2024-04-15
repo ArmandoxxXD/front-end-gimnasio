@@ -36,7 +36,6 @@ export class RegisterComponent implements OnInit {
     const dto=new User(this.nombreUsuario,this.foto,this.edad,this.sueldo,this.turno,this.email,this.telefono,this.password,[this.roles]);
     Swal.fire({
       title: 'Loading...',
-      html: 'Creating account', // Mensaje adicional o puedes dejarlo vacío
       allowOutsideClick: false,
       position: 'top',
       didOpen: () => {

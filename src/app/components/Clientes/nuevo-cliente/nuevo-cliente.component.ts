@@ -28,7 +28,6 @@ export class NuevoClienteComponent implements OnInit {
     const dto=new CreateCliente(this.nombreUsuario,this.edad,this.email,this.telefono,this.password,[this.roles]);
     Swal.fire({
       title: 'Loading...',
-      html: 'Creating account', // Mensaje adicional o puedes dejarlo vacío
       allowOutsideClick: false,
       position: 'top',
       didOpen: () => {

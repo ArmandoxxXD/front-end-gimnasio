@@ -11,7 +11,7 @@ import { AuthService } from './auth.service';
 export class AccountExpirationService {
   private timerId: any;
   private countdownId: any;
-  private readonly inactivityTime = 1 * 60 * 1000; // 1 min y 30 segundos de tiempo permitido de inactividad 
+  private readonly inactivityTime = 5 * 60 * 1000; // 5 minutos de tiempo permitido de inactividad 
   private isCountdownShown = false;
   private inactivitySwalVisible = false;
 
@@ -44,11 +44,11 @@ export class AccountExpirationService {
   }
 
   private showCountdown(): void {
-    let counter = 0.5 * 60; // 30 segundos countdown
+    let counter = 1 * 60; // 1 min countdown
     if (this.isCountdownShown) return;
     this.isCountdownShown = true;
     this.inactivitySwalVisible = true;
-    const notificationDto: NotificationPush = { title: 'Session Expired', body: 'Your session will expire in 30 seconds due to inactivity.' };
+    const notificationDto: NotificationPush = { title: 'Session Expired', body: 'Your session will expire in 1 minute due to inactivity.' };
     this.sendNotification(notificationDto);
     Swal.fire({
       title: 'You are about to be logged out due to inactivity!',

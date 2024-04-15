@@ -21,6 +21,7 @@ export class CortesComponent implements OnInit {
 
   mes: String = '';
   anio: number = 0;
+  filtroActual: string = 'all';
 
   constructor(
     private pagoService: PagosService,
@@ -46,6 +47,7 @@ export class CortesComponent implements OnInit {
         // Asigna la respuesta de la petición a la variable 'cortes'
         Swal.close();
         this.cortes = resp;
+        this.filtroActual = 'all';
       },
       // Callback en caso de error de la petición, muestra el error en la consola
       (err) =>{ 
@@ -70,6 +72,7 @@ export class CortesComponent implements OnInit {
         Swal.close();
         // Asigna la respuesta de la petición a la variable 'cortes'
         this.cortes = resp;
+        this.filtroActual = 'today';
       },
       // Callback en caso de error de la petición, muestra el error en la consola
       (err) => {
@@ -96,6 +99,7 @@ export class CortesComponent implements OnInit {
           Swal.close();
           // Asigna la respuesta de la petición a la variable 'cortes'
           this.cortes = resp;
+          this.filtroActual = 'month';
           // Limpia el valor de 'mes'
           this.mes = '';
         },
@@ -128,6 +132,7 @@ export class CortesComponent implements OnInit {
           Swal.close();
           // Asigna la respuesta de la petición a la variable 'cortes'
           this.cortes = resp;
+          this.filtroActual = 'year';
           this.anio = 0;
         },
         // Callback en caso de error de la petición, muestra el error en la consola

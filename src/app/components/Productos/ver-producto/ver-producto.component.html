@@ -60,10 +60,31 @@
         <td>{{producto.tipo}}</td>
         <td>{{producto.nombreProvedor}}</td>
         <td>${{producto.precio}}</td>
-        <td *ngIf="isAdmin"><button class="btn btn-outline-warning m-2" style="margin-right: 2px; width: 100px;"
-            routerLink="/producto/editar/{{producto.id}}"><i class="fa-solid fa-pen-to-square"></i>Edit</button>
-          <button class="btn btn-outline-danger m-2" (click)="onDelete(producto.id)" style="width: 100px;"><i
-              class="fa-solid fa-trash"></i>Delete</button>
+        <td *ngIf="isAdmin">
+              <div class="dropdown">
+                <a class="btn btn-outline-dark" id="opciones" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class='bx bx-dots-horizontal-rounded bx-sm'></i>
+                </a>
+  
+                <ul class="dropdown-menu">
+                  <li>
+                    <button class="btn btn-warning m-1" style="width: 100px;"
+                    routerLink="/producto/editar/{{producto.id}}"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
+                  </li>
+                  <li>
+                    <button class="btn btn-warning m-1" style="width: 100px;"
+                    (click)="onBuy(producto.codeBar)"><i class="fa-solid fa-basket-shopping"></i> Buy</button>
+                  </li>
+                  <li>
+                    <button class="btn btn-danger m-1" (click)="onDelete(producto.id)" style="width: 100px;"><i
+                      class="fa-solid fa-trash"></i> Delete</button>
+                  </li>
+                </ul>
+              </div>
+        </td>
+        <td *ngIf="isUser">
+            <button class="btn btn-warning m-2" style="width: 100px;"
+            (click)="onBuy(producto.codeBar)"><i class="fa-solid fa-basket-shopping"></i> Buy</button>
         </td>
       </tr>
     </tbody>
