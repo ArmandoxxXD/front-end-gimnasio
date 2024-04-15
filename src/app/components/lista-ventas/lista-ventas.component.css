@@ -197,3 +197,9 @@ button.icon {
   background-color: #dc3545; /* Rojo oscuro para un buen contraste sobre blanco */
   color: white; 
 }
+
+.dropdown-item:focus, .dropdown-item:active {
+  background-color: #dc3545; /* Rojo oscuro para foco y activación */
+  color: white;
+  border-color: #dc3545; /* Asegúrate de que el borde también sea rojo si es visible */
+}
