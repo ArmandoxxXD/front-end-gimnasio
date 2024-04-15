@@ -211,7 +211,8 @@ export class NavigationComponent implements OnInit {
         }
         const saleNode = loginNode.children?.find(child => child.label === 'Sale');
         if (saleNode) {
-          saleNode.label = 'Buy';
+          saleNode.label = 'Shopping cart';
+          saleNode.data = {route: '/nuevaVenta', icon: 'fa-solid fa-cart-shopping'}
           delete saleNode.children;
         }
       }
