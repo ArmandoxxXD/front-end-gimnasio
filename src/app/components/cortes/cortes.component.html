@@ -1,11 +1,11 @@
 <div class="content">
-  <!-- Elaboro Victor Garay, Alexis Martinez -->
-  <nav class="ms-5 mb-2 mt-5" aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a routerLink="/nuevaVenta">Sale</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Sales History</li>
-    </ol>
-  </nav>
+<nav class="ms-5 mb-2 mt-5" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/nuevaVenta">Sale</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Cuts History</li>
+  </ol>
+</nav>
+
 
   <div class="container mt-4">
     <div class="input-group mb-4">
@@ -20,13 +20,16 @@
         </a>
 
         <div class="dropdown-menu">
-          <button class="dropdown-item" (click)="corteDiario()">
+          <button class="dropdown-item"  [ngClass]="{'active-filter': filtroActual === 'all'}" (click)="getCortes()">
+            Show All Cuts
+          </button>
+          <button class="dropdown-item" [ngClass]="{'active-filter': filtroActual === 'today'}" (click)="corteDiario()">
             Show Cut Today
           </button>
-          <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#mes">
+          <button class="dropdown-item" [ngClass]="{'active-filter': filtroActual === 'month'}" data-bs-toggle="modal" data-bs-target="#mes">
             Show Cut By Month
           </button>
-          <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#anio">
+          <button class="dropdown-item"  [ngClass]="{'active-filter': filtroActual === 'year'}" data-bs-toggle="modal" data-bs-target="#anio">
             Show Cut By Year
           </button>
         </div>

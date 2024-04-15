@@ -43,10 +43,22 @@
         <td>{{cliente.telefono}}</td>
         <td>{{cliente.subcripcion | currency}}</td>
         <td>{{cliente.totalPagarAlMes | currency}}</td>
-        <td *ngIf="isAdmin"><button class="btn btn-outline-warning me-2" routerLink="/cliente/editar/{{cliente.id}}">
-            <i class="fa-solid fa-pen-to-square"></i>Edit</button>
-          <button class="btn btn-outline-danger" (click)="onDelete(cliente.id)"><i
-              class="fa-solid fa-trash"></i>Detele</button>
+        <td *ngIf="isAdmin">
+              <div class="dropdown">
+                <a class="btn btn-outline-dark" id="opciones" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class='bx bx-dots-horizontal-rounded bx-sm'></i>
+                </a>
+  
+                <ul class="dropdown-menu">
+                  <li> <button class="btn btn-warning m-1" style="width: 100px;" routerLink="/cliente/editar/{{cliente.id}}">
+                    <i class="fa-solid fa-pen-to-square"></i>Edit</button>
+                  </li>
+                  <li>
+                    <button class="btn btn-danger m-1" style="width: 100px;" (click)="onDelete(cliente.id)"><i
+                      class="fa-solid fa-trash"></i>Detele</button>
+                  </li>
+                </ul>
+              </div>
         </td>
       </tr>
     </tbody>
