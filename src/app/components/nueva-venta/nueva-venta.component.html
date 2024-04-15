@@ -41,7 +41,7 @@
       <table class="table table-striped">
         <thead id="tablaBg">
           <tr>
-            <th scope="col"></th>
+            <th scope="col">Image</th>
             <th scope="col">Name</th>
             <th scope="col">Amount</th>
             <th scope="col">Barcode</th>
@@ -52,7 +52,7 @@
         <!-- Lista los productos-->
         <tbody id="buscarTabla">
           <tr *ngFor="let item of productos; let i = index" class="text-capitalize">
-            <td><img src="{{item.img}}" id="imgTablita" class="img-fluid"></td>
+            <td><img src="{{item.img}}" id="imgTablita" class="placeholder-glow image rounded"  height="75px" width="75px"></td>
             <td>
               <p>{{item.nombre}}</p>
             </td>
@@ -69,7 +69,7 @@
               <ul class="dropdown-menu">
                 <li>
                   <button class="btn btn-danger m-1" style="width: 100px;" (click)="removerProducto(i)"><i
-                  class="fa-solid fa-trash"></i>Detele</button>
+                  class="fa-solid fa-trash"></i> Detele</button>
                 </li>
               </ul>
             </div>

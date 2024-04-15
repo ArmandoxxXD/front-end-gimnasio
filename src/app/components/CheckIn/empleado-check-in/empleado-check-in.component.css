@@ -244,4 +244,14 @@
         width: 125px;
         font-size: 1rem;
     }
+
+    #BotonEliminar {
+        width: 125px;
+        font-size: 1rem;
+    }
+
+    #BotonEditar {
+        width: 125px;
+        font-size: 1rem;
+    }
 }
