@@ -117,8 +117,10 @@ export class NuevaVentaComponent implements OnInit {
     // Utiliza el método 'splice' para eliminar un elemento del arreglo en base a su índice
     // El segundo argumento '1' indica que se eliminará solo un elemento
     this.productos.splice(index, 1);
+    this.productosVenta.splice(index, 1);
     const userName = this.token.getDatesUserName();
     localStorage.setItem(userName+'.productos', JSON.stringify(this.productos));
+    localStorage.setItem(userName+'.productosVentas', JSON.stringify(this.productosVenta));
     this.productoService.cargarCarrito();
   }
 
