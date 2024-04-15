@@ -192,3 +192,8 @@ button.icon {
   transform: scale(1) translate(0, 0.15rem);
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
+
+.active-filter {
+  background-color: #dc3545; /* Rojo oscuro para un buen contraste sobre blanco */
+  color: white; 
+}

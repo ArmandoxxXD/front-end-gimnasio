@@ -16,9 +16,18 @@ export class PagosService {
     return this.http.get<Ventas[]>(`${this.API_URI}/Pago`);
   }
 
-  getVenta(fecha: Date) {
-    return this.http.get<Ventas>(`${this.API_URI}/Pago/${fecha}`);
+  getVentaDiario() {
+    return this.http.get<Ventas[]>(`${this.API_URI}/PagoDiario`);
   }
+
+  getVentaMensual(mes: any) {
+    return this.http.get<Ventas[]>(`${this.API_URI}/PagoMes/${mes}`);
+  }
+
+  getVentaAnual(anio: number) {
+    return this.http.get<Ventas[]>(`${this.API_URI}/PagoAnio/${anio}`);
+  }
+  
   saveVentas(ventas: Ventas) {
     return this.http.post(`${this.API_URI}/Pago/`, ventas);
   }
