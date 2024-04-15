@@ -1,11 +1,11 @@
 <div class="content">
-<!-- Elaboro Victor Garay, Alexis Martinez -->
 <nav class="ms-5 mb-2 mt-5" aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a routerLink="/nuevaVenta">Sale</a></li>
     <li class="breadcrumb-item active" aria-current="page">Cuts History</li>
   </ol>
 </nav>
+
 
   <div class="container mt-4">
     <div class="input-group mb-4">
@@ -36,24 +36,26 @@
       </div>
     </div>
     <!-- Tabla de Cortes -->
-    <table class="table table-striped mb-4">
-      <thead id="tablaBg">
-        <tr>
-          <th scope="col" class="text-center">Total Sold</th>
-          <th scope="col" class="text-center">Total Cash</th>
-          <th scope="col" class="text-center">Total Paypal</th>
-          <th scope="col" class="text-center">Date</th>
-        </tr>
-      </thead>
-      <tbody id="buscarTabla">
-        <tr *ngFor="let item of cortes; let i= index" class="text-capitalize">
-          <td class="text-center">$ {{item.total.toFixed(2)}}</td>
-          <td class="text-center">$ {{item.totalEfectivo.toFixed(2)}}</td>
-          <td class="text-center">$ {{item.totalPaypal.toFixed(2)}}</td>
-          <td class="text-center">{{item.fecha | date}}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-responsive">
+      <table class="table table-striped mb-4">
+        <thead id="tablaBg">
+          <tr>
+            <th scope="col" class="text-center">Total Sold</th>
+            <th scope="col" class="text-center">Total Cash</th>
+            <th scope="col" class="text-center">Total Paypal</th>
+            <th scope="col" class="text-center">Date</th>
+          </tr>
+        </thead>
+        <tbody id="buscarTabla">
+          <tr *ngFor="let item of cortes; let i= index" class="text-capitalize">
+            <td class="text-center">$ {{item.total.toFixed(2)}}</td>
+            <td class="text-center">$ {{item.totalEfectivo.toFixed(2)}}</td>
+            <td class="text-center">$ {{item.totalPaypal.toFixed(2)}}</td>
+            <td class="text-center">{{item.fecha | date}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     <div class="pagination">
 
     </div>

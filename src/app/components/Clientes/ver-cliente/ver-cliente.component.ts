@@ -41,7 +41,7 @@ export class VerClienteComponent implements OnInit {
       (data) => {
         Swal.close();
         this.clientes = data;
-        console.log(data);
+
       },
       (err) => {
         Swal.close();

@@ -73,3 +73,16 @@
   .password_requeriment__requeriments div i {
     color: #666;
   }
+
+  .create_Account {
+    width: 350px;
+  }
+
+  @media (max-width: 450px) {
+    
+    .create_Account {
+      width: 150px;
+      font-size: 15px;
+    }
+  
+  }

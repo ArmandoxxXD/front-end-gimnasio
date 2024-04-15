@@ -2,7 +2,7 @@
   width: 98%;
   border-radius: 20px;
   background: #ffffff;
-  box-shadow: 5px 5px 20px rgb(67, 65, 65), -5px -5px 20px rgb(67, 65, 65);
+  /* box-shadow: 5px 5px 20px rgb(67, 65, 65), -5px -5px 20px rgb(67, 65, 65); */
 }
 
 .table {
@@ -154,4 +154,14 @@ button.icon {
   background: rgba(255, 255, 255, 0.8)
     url("https://camaradirecta.com/template/images/loading-full.gif?_=1") center
     no-repeat;
+}
+
+@media (max-width: 400px) { 
+  span i {
+    font-size: 9px;
+  }
+
+  span {
+    font-size: 13px;
+  }
 }

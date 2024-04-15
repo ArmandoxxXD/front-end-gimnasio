@@ -41,11 +41,20 @@
   width: 100px;
 }
 
+#mapa {
+  display: flex;
+  justify-content: center;
+}
+
+iframe {
+  width: 100%;
+}
+
 .table {
   width: 98%;
   border-radius: 20px;
   background: #ffffff;
-  box-shadow: 5px 5px 20px rgb(67, 65, 65), -5px -5px 20px rgb(67, 65, 65);
+  /* box-shadow: 5px 5px 20px rgb(67, 65, 65), -5px -5px 20px rgb(67, 65, 65); */
 }
 
 .table {
@@ -212,4 +221,23 @@ button.icon {
 .employee-card strong {
   font-weight: bold;
   margin-right: 5px;
+}
+
+@media (max-width: 500px) {
+  .employee-card {
+    min-width: 0px;
+  }
+
+  .employee-card2 {
+    min-width: 0px;
+  }
+
+  .imagen {
+
+    min-height: 0px;
+  }
+  
+  .information {
+    min-height: 0px;
+  }
 }

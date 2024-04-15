@@ -8,12 +8,17 @@
 
 <div class="contenedor">
   <div class="info-employee">
-    <img [src]="emp.foto" alt="" class="placeholder-glow image rounded-circle" height="155px" width="155px">
-    <h1 *ngIf="emp" style="text-transform: capitalize;">{{emp.nombreUsuario}}</h1>
+    <div class="employe_pics">
+      <img [src]="emp.foto" alt="" class="placeholder-glow image rounded-circle" height="155px" width="155px">
+      <h1 *ngIf="emp" style="text-transform: capitalize;">{{emp.nombreUsuario}}</h1>
+    </div>
     <div class="botones-verticales">
-      <button id="BotonVerQR" *ngIf="!isClient" (click)="showQR()"><i class="fa-solid fa-pen-to-square"></i> View QR</button>
-      <a *ngIf="loggedUserId===emp.id" id="BotonEditar" routerLink="/empelado/editar/{{emp.id}}" class="btn btn-outline-primary"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
-      <button *ngIf="loggedUserId===emp.id" id="BotonEliminar" (click)="deleteEmployee(emp)"><i class="fa-solid fa-trash"></i> Delete account</button>
+      <button id="BotonVerQR" *ngIf="!isClient" (click)="showQR()"><i class="fa-solid fa-pen-to-square"></i> View
+        QR</button>
+      <a *ngIf="loggedUserId===emp.id" id="BotonEditar" routerLink="/empelado/editar/{{emp.id}}"
+        class="btn btn-outline-primary"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+      <button *ngIf="loggedUserId===emp.id" id="BotonEliminar" (click)="deleteEmployee(emp)"><i
+          class="fa-solid fa-trash"></i> Delete account</button>
     </div>
   </div>
   <div class="employee-body d-flex flex-row" style="flex-wrap: wrap;">
@@ -101,7 +106,8 @@
         <!--<div class="tab-pane fade" id="faltas" role="tabpanel">
                   <p>Faltas</p>
                 </div> -->
-        <div class="tab-pane fade" id="regMensual" role="tabpanel" style="display: flex; align-items: center; flex-wrap: wrap; justify-content: center;">
+        <div class="tab-pane fade" id="regMensual" role="tabpanel"
+          style="display: flex; align-items: center; flex-wrap: wrap; justify-content: center;">
           <!-- <p>Chart</p> -->
           <div class="chart-container" style="position: relative; width: 40vw; height: 40vh;">
             <canvas Id="myChart" #myChart></canvas>

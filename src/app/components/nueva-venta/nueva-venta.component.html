@@ -18,11 +18,13 @@
             Buy</span>
         </button>
       </div>
-      <button *ngIf="isAdmin || isRecepcionista" class="cssbuttons-io ms-5 rounded" id="botonNuevo" routerLink="/listaVentas" style="height: 60px;">
+      <button *ngIf="isAdmin || isRecepcionista" class="cssbuttons-io ms-5 rounded" id="botonNuevo"
+        routerLink="/listaVentas" style="height: 60px;">
         <span><i class='bx bx-show me-2'></i>
           See Sales</span>
       </button>
-      <button *ngIf="isAdmin || isRecepcionista" class="cssbuttons-io ms-5 rounded" id="botonNuevo" routerLink="/cortes" style="height: 60px;">
+      <button *ngIf="isAdmin || isRecepcionista" class="cssbuttons-io ms-5 rounded" id="botonNuevo" routerLink="/cortes"
+        style="height: 60px;">
         <span><i class='bx bx-book-bookmark me-2'></i>
           Cuts</span>
       </button>
@@ -35,34 +37,35 @@
       </select>
     </div>
     <!-- Tabla de Productos -->
-    <table class="table table-striped">
-      <thead id="tablaBg">
-        <tr>
-          <th scope="col"></th>
-          <th scope="col">Name</th>
-          <th scope="col">Amount</th>
-          <th scope="col">Barcode</th>
-          <th scope="col">Subtotal</th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <!-- Lista los productos-->
-      <tbody id="buscarTabla">
-        <tr *ngFor="let item of productos; let i = index" class="text-capitalize">
-          <td><img src="{{item.img}}" id="imgTablita" class="img-fluid"></td>
-          <td>
-            <p>{{item.nombre}}</p>
-          </td>
-          <td>{{item.cantidad}}</td>
-          <td>{{item.codeBar}}</td>
-          <td>$ {{item.total.toFixed(2) }}</td>
-          <td>
-            <!-- Dropdown de opciones RUD -->
-            <div class="dropdown">
-              <a class="btn btn-outline-dark" id="opciones" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class='bx bx-dots-horizontal-rounded bx-sm'></i>
-              </a>
-
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead id="tablaBg">
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Name</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Barcode</th>
+            <th scope="col">Subtotal</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <!-- Lista los productos-->
+        <tbody id="buscarTabla">
+          <tr *ngFor="let item of productos; let i = index" class="text-capitalize">
+            <td><img src="{{item.img}}" id="imgTablita" class="img-fluid"></td>
+            <td>
+              <p>{{item.nombre}}</p>
+            </td>
+            <td>{{item.cantidad}}</td>
+            <td>{{item.codeBar}}</td>
+            <td>$ {{item.total.toFixed(2) }}</td>
+            <td>
+              <!-- Dropdown de opciones RUD -->
+              <div class="dropdown">
+                <a class="btn btn-outline-dark" id="opciones" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  <i class='bx bx-dots-horizontal-rounded bx-sm'></i>
+                </a>
               <ul class="dropdown-menu">
                 <li>
                   <button class="btn btn-danger m-1" style="width: 100px;" (click)="removerProducto(i)"><i
