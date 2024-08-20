@@ -32,7 +32,6 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 import { VerEmpleadoComponent } from './components/Auth/ver-empleado/ver-empleado.component';
 import { EditEmpleadoComponent } from './components/Auth/edit-empleado/edit-empleado.component';
-import { ControlCheckInComponent } from './components/CheckIn/control-check-in/control-check-in.component';
 import { EmpleadoCheckInComponent } from './components/CheckIn/empleado-check-in/empleado-check-in.component';
 import { CheckInComponent } from './components/CheckIn/check-in/check-in.component';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
@@ -46,8 +45,21 @@ import { EditarClasesComponent } from './components/Clases/editar-clases/editar-
 import { NuevaClaseComponent } from './components/Clases/nueva-clase/nueva-clase.component';
 import { FilterClasePipe } from './pipes/filter-clase.pipe';
 import { DetalleClaseComponent } from './components/Clases/detalle-clase/detalle-clase.component';
-import { ListaClientesComponent } from './components/Clases/lista-clientes/lista-clientes.component';
 import { FilterEmployeesPipe } from './pipes/filter-employees.pipe';
+import { RecaptchaModule } from 'ng-recaptcha';
+import { ErrorComponent } from './components/error/error.component';
+import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { SearchComponent } from './components/search/search.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
+
+import { OrganizationChartModule } from 'primeng/organizationchart';
+import { DialogModule } from 'primeng/dialog';
+import { PrivacyPoliciesComponent } from './components/privacy-policies/privacy-policies.component';
+
+import { environment } from '../environments/environment';
+
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
 
 @NgModule({
   declarations: [
@@ -70,7 +82,6 @@ import { FilterEmployeesPipe } from './pipes/filter-employees.pipe';
     FilterProvedorPipe,
     VerEmpleadoComponent,
     EditEmpleadoComponent,
-    ControlCheckInComponent,
     EmpleadoCheckInComponent,
     CheckInComponent,
     NuevaVentaComponent,
@@ -82,8 +93,11 @@ import { FilterEmployeesPipe } from './pipes/filter-employees.pipe';
     NuevaClaseComponent,
     FilterClasePipe,
     DetalleClaseComponent,
-    ListaClientesComponent,
     FilterEmployeesPipe,
+    ErrorComponent,
+    SearchComponent,
+    AboutUsComponent,
+    PrivacyPoliciesComponent
   ],
   imports: [
     BrowserModule,
@@ -94,10 +108,16 @@ import { FilterEmployeesPipe } from './pipes/filter-employees.pipe';
     SweetAlert2Module.forRoot(), //Alertas de confirmacion
     HttpClientModule,
     FormsModule,
-    ZXingScannerModule
+    ZXingScannerModule,
+    RecaptchaModule,
+    OrganizationChartModule,
+    DialogModule,
+    AngularFireMessagingModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ClientesInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass:ErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent],
 })

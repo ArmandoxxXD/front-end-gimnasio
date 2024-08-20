@@ -17,6 +17,7 @@ export class TokenService {
 
   public logOut(): void {
     localStorage.removeItem(TOKEN_KEY);
+    location.reload();
   }
 
   public isLogged(): boolean {
@@ -31,14 +32,18 @@ export class TokenService {
       return false;
     }
     const token = this.getToken();
-    const payload = token!.split('.')[1];
-    const payloadDecoded = atob(payload);
-    const values = JSON.parse(payloadDecoded);
-    const roles = values.roles;
-    if (roles.indexOf('ROLE_ADMIN') < 0) {
-      return false;
+    if (token) {
+      const payload = token.split('.')[1];
+      const payloadDecoded = atob(payload);
+      const values = JSON.parse(payloadDecoded);
+      const roles = values.roles;
+        if (roles.indexOf('ROLE_ADMIN') < 0) {
+          return false;
+        }
+      return true;
+    } else {
+      return false
     }
-    return true;
   }
 
   public isInstructor(): boolean {
@@ -46,14 +51,19 @@ export class TokenService {
       return false;
     }
     const token = this.getToken();
-    const payload = token!.split('.')[1];
-    const payloadDecoded = atob(payload);
-    const values = JSON.parse(payloadDecoded);
-    const roles = values.roles;
-    if (roles.indexOf('ROLE_INSTRUCTOR') < 0) {
+    if (token) {
+      const payload = token.split('.')[1];
+      const payloadDecoded = atob(payload);
+      const values = JSON.parse(payloadDecoded);
+      const roles = values.roles;
+      if (roles.indexOf('ROLE_INSTRUCTOR') < 0) {
+        return false;
+      }
+      return true;
+    } else {
       return false;
     }
-    return true;
+   
   }
 
   public isMantenimeinto(): boolean {
@@ -61,14 +71,19 @@ export class TokenService {
       return false;
     }
     const token = this.getToken();
-    const payload = token!.split('.')[1];
-    const payloadDecoded = atob(payload);
-    const values = JSON.parse(payloadDecoded);
-    const roles = values.roles;
-    if (roles.indexOf('ROLE_MANTENIMIENTO') < 0) {
+    if (token) {
+      const payload = token.split('.')[1];
+      const payloadDecoded = atob(payload);
+      const values = JSON.parse(payloadDecoded);
+      const roles = values.roles;
+      if (roles.indexOf('ROLE_MANTENIMIENTO') < 0) {
+        return false;
+      }
+      return true;
+    } else {
       return false;
     }
-    return true;
+   
   }
 
   public isRecepcionista(): boolean {
@@ -76,17 +91,41 @@ export class TokenService {
       return false;
     }
     const token = this.getToken();
-    const payload = token!.split('.')[1];
-    const payloadDecoded = atob(payload);
-    const values = JSON.parse(payloadDecoded);
-    const roles = values.roles;
-    if (roles.indexOf('ROLE_RECEPCIONISTA') < 0) {
+    if (token) {
+      const payload = token.split('.')[1];
+      const payloadDecoded = atob(payload);
+      const values = JSON.parse(payloadDecoded);
+      const roles = values.roles;
+      if (roles.indexOf('ROLE_RECEPCIONISTA') < 0) {
+        return false;
+      }
+      return true;
+    } else {
       return false;
     }
-    return true;
   }
 
-  public getDatesUser(): string {
+  
+  public isUser(): boolean {
+    if (!this.isLogged) {
+      return false;
+    }
+    const token = this.getToken();
+    if (token) {
+      const payload = token.split('.')[1];
+      const payloadDecoded = atob(payload);
+      const values = JSON.parse(payloadDecoded);
+      const roles = values.roles;
+      if (roles.indexOf('ROLE_USER') < 0) {
+        return false;
+      }
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public getDatesUserName(): string {
     if (!this.isLogged()) {
       return '';
     }
@@ -95,5 +134,38 @@ export class TokenService {
     const payloadDecoded = atob(payload);
     const values = JSON.parse(payloadDecoded);
     return values.sub;
+  }
+
+  public getDatesId(): number|null {
+    if (!this.isLogged()) {
+      return null;
+    }
+    const token = this.getToken();
+    const payload = token!.split('.')[1];
+    const payloadDecoded = atob(payload);
+    const values = JSON.parse(payloadDecoded);
+    return values.id;
+  }
+
+  public getDatesRol(): string {
+    if (!this.isLogged()) {
+      return '';
+    }
+    const token = this.getToken();
+    const payload = token!.split('.')[1];
+    const payloadDecoded = atob(payload);
+    const values = JSON.parse(payloadDecoded);
+    return values.roles.join(', ');
+  }
+
+  public getConfigUser(): Boolean {
+    if (!this.isLogged()) {
+      return false;
+    }
+    const token = this.getToken();
+    const payload = token!.split('.')[1];
+    const payloadDecoded = atob(payload);
+    const values = JSON.parse(payloadDecoded);
+    return values.configuration;
   }
 }

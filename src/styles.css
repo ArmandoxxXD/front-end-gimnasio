@@ -1,1 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+.highlighted {
+    background-color: yellow; /* Usa el color que prefieras */
+    font-weight: bold;
+  }
+
+  .placeholder-glow {
+    position: relative;
+  }
+  .placeholder-glow::before, .placeholder-glow::after {
+    content: "";
+    display: block;
+    left: 0;
+    top: 0;
+    width: 100%;
+    text-align: center;
+  }
+  .placeholder-glow::before {
+    background: #ccc none repeat scroll 0 0;
+    border-radius: 3px;
+    height: 225px;
+  }
+  .placeholder-glow::after {
+    font-size: 49px;
+    opacity: 0.25;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: "FontAwesome";
+  }
+  .placeholder-glow.image::after {
+    content: "\f03e";
+  }
+  .swal2-container {
+    z-index: 2000 !important;
+  }
+  .swal2-loader {
+    border-color: red !important; /* Cambia 'red' por el color que prefieras */
+    border-right-color: transparent !important;
+  }

@@ -1,20 +1,34 @@
+<nav class="ms-5 mb-2 mt-5" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/clase/lista">Classes</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Add</li>
+  </ol>
+</nav>
+
 <div id="formulario" class="row-mt-10">
   <div class="card col-md-4 mx-auto">
     <div class="card-header">
-      <div class="text-header">Class Register</div>
+      <div class="text-header">Add Class</div>
     </div>
     <div class="card-body">
       <form (ngSubmit)="onCreate()" novalidate #f="ngForm">
+        <div class="image-container">
+          <img *ngIf="previewUrl" [src]="previewUrl" alt="Previsualización de la imagen" class="rounded-circle" height="155px" width="155px">
+          <img *ngIf="!previewUrl" [src]="fotoClase" alt="" class="placeholder-glow image rounded-circle" height="155px" width="155px">
+        </div>
+        <!--Foto-->
+        <div class="custom-file-input">
+          <label for="foto">
+            Upload Photo <i class="fa-solid fa-file-image"></i>
+            <input type="file" id="foto" name="foto" accept="image/*" [(ngModel)]="fotoClase" (change)="onFileChange($event)" required>
+          </label>
+          <button *ngIf="previewUrl" class="cancel-btn" (click)="cancelNewImage()"><i class="fa-solid fa-delete-left"></i></button>
+        </div>
         <!--nombre-->
         <div class="input">
           <input autocomplete="off" type="text" id="nombreClase" name="nombreClase" [(ngModel)]="nombreClase"
             required />
           <label for="nombreClase">Class Name</label>
-        </div>
-        <!--Foto-->
-        <div class="input">
-          <input autocomplete="off" type="text" id="fotoClase" name="fotoClase" [(ngModel)]="fotoClase" required />
-          <label for="fotoClase">Photo</label>
         </div>
         <!--Descripción-->
         <div class="input">
@@ -29,27 +43,22 @@
         </div>
         <!--Instructor-->
         <!--selector-->
-        <div aria-label="Default select example">
+        <div class="form-group" style="margin-top: 20px; margin-bottom: 20px;">
           <label>Select an instructor:</label>
-          <select style="border-radius: 20px; border: 2px solid rgb(40, 40, 42)" id="nombreInstructor"
-            name="nombreInstructor" [(ngModel)]="nombreInstructor" required>
-            <option class="form-select" value="" disable selected></option>
-            <option class="form-select" *ngFor="let instructor of instructores">
-              {{ instructor.nombreUsuario }}
-            </option>
+          <select id="nombreInstructor" name="nombreInstructor" [(ngModel)]="nombreInstructor" required>
+            <option value="{{instructor.nombreUsuario}}" *ngFor="let instructor of instructores">{{instructor.nombreUsuario}}</option>
           </select>
         </div>
         <br />
         <!--Fecha-->
-
         <div class="input">
-          <input autocomplete="off" type="date" value="2023-03-08" class="form-control form-control-lg" id="fecha"
+          <input autocomplete="off" type="date" value="2023-03-08"  id="fecha"
             name="fecha" [(ngModel)]="fecha" required />
           <label for="fecha">Date</label>
         </div>
         <!--Hora-->
         <div class="input">
-          <input autocomplete="off" class="form-control form-control-lg" type="time" value="05:00" min="05:00"
+          <input autocomplete="off"  type="time" value="05:00" min="05:00"
             max="09:00" id="hora" name="hora" [(ngModel)]="hora" required />
           <label for="hora">Time</label>
         </div>
@@ -59,11 +68,9 @@
           <label for="cupo">Quota</label>
         </div>
         <br />
-        <div class="botones" style="display: flex; justify-content: space-between">
+        <div class="botones" style="display: flex; justify-content: flex-end">
           <!--Crear-->
-          <input type="submit" class="btn" value="Create" id="BootonCrear" />
-          <!--Salir-->
-          <input type="submit" class="btn" value="Exit" routerLink="/clase/lista" />
+          <input type="submit" class="btn" value="Save" id="BootonCrear" />
         </div>
       </form>
     </div>

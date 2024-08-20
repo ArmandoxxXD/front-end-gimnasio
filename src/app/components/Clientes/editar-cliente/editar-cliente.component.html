@@ -1,3 +1,10 @@
+<nav class="ms-5 mb-2 mt-5" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/cliente/lista">Customers</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Edit</li>
+  </ol>
+</nav>
+
 <div id="formulario" class="row-mt-10">
   <div class="card col-md-4 mx-auto">
     <div class="card-header">
@@ -47,11 +54,9 @@
             required>
           <label for="text">Suscription</label>
         </div>
-        <div class="botones" style="display: flex;justify-content: space-between;">
+        <div class="botones" style="display: flex;justify-content: flex-end;">
           <!--Crear-->
-          <input type="submit" class="btn" value="Edit" id="BootonCrear">
-          <!--Salir-->
-          <input type="submit" class="btn" value="Exit" routerLink="/cliente/lista">
+          <input type="submit" class="btn" value="Save" id="BootonCrear"  [disabled]="!hasChanges()">
         </div>
       </form>
     </div>

@@ -5,6 +5,8 @@ import { CheckInService } from 'src/app/service/check-in.service';
 import Chart from 'chart.js/auto';
 import { CheckIn } from 'src/app/models/check-in';
 import Swal from 'sweetalert2';
+import { TokenService } from 'src/app/service/token.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-empleado-check-in',
@@ -21,6 +23,8 @@ export class EmpleadoCheckInComponent implements OnInit {
   diasVen: string[] = ['12-2-2023', '13-2-2023', '18-2-2023'];
   @ViewChild('myChart', { static: true }) myChart!: ElementRef;
   chart!: Chart;
+  isClient: boolean = false;
+  loggedUserId:number|null = this.token.getDatesId();
 
   private calendar!: HTMLElement;
   private prevBtn!: HTMLElement;
@@ -40,7 +44,10 @@ export class EmpleadoCheckInComponent implements OnInit {
   constructor(
     private capyfit: AuthService,
     private route: ActivatedRoute,
-    private checkin: CheckInService
+    private checkin: CheckInService,
+    private token : TokenService,
+    private authService: AuthService,
+    private toastr: ToastrService
   ) {
     const params = this.route.snapshot.params;
     this.p = params;
@@ -90,6 +97,7 @@ export class EmpleadoCheckInComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isClient = this.token.isUser();
     this.calendar = document.querySelector('.calendar')!;
     this.prevBtn = this.calendar.querySelector('.prev-month-btn')!;
     this.nextBtn = this.calendar.querySelector('.next-month-btn')!;
@@ -321,6 +329,76 @@ export class EmpleadoCheckInComponent implements OnInit {
           },
         },
       },
+    });
+  }
+
+  showQR() {
+    delete this.emp.password;
+    let data = JSON.stringify(this.emp);
+    let encodedData = encodeURIComponent(data);
+    let api =
+      'https://api.qrserver.com/v1/create-qr-code/?data=' +
+      encodedData +
+      '&size=250x250';
+    console.log(api);
+
+    console.log(data);
+    Swal.fire({
+      title: 'Employee QR',
+      html:
+        '<p>' +
+        this.emp.nombreUsuario +
+        '</p><img src="' +
+        api +
+        '" height="250px" width="250px">', // height="50px" width="50px"
+      icon: 'info',
+      confirmButtonText: 'OK',
+      confirmButtonColor: '#1a1a1a',
+    });
+  }
+
+  deleteEmployee(employee: any) {
+    Swal.fire({
+      title: 'Do you want to delete the employee?',
+      text: 'This action can´t be undone.',
+      html: '<p><strong>Employee: </strong>' + employee.nombreUsuario + '</p>',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, do it',
+      confirmButtonColor: '#1a1a1a',
+      cancelButtonText: 'Cancel',
+      cancelButtonColor: '#b9b9b9',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: 'Done!',
+          text: 'You have deleted the employee ' + employee.nombreUsuario,
+          icon: 'success',
+          confirmButtonText: 'OK',
+          confirmButtonColor: '#1a1a1a',
+        });
+        this.authService.delete(employee.id).subscribe(
+          (res) => {
+            this.toastr.success('Employee Deleted', 'OK', {
+              timeOut: 3000,
+            });
+            this.token.logOut();
+          },
+          (err) =>{
+            this.toastr.error(err.error.mensaje, 'Fail', {
+              timeOut: 3000,
+            });
+          }
+        );
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire({
+          title: 'Canceled',
+          text: 'The employee has not been deleted',
+          icon: 'error',
+          confirmButtonText: 'OK',
+          confirmButtonColor: '#1a1a1a',
+        });
+      }
     });
   }
 }

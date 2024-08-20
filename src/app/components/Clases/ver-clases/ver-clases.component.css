@@ -168,7 +168,6 @@ button.icon {
 .noselect {
   width: 150px;
   height: 50px;
-  margin-left: 65px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -223,20 +222,6 @@ button:focus {
 
 button:active .icon svg {
   transform: scale(0.8);
-}
-
-/*Pantalla de carga*/
-#loading {
-  display: none;
-  position: fixed;
-  z-index: 9999;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.8)
-    url("https://camaradirecta.com/template/images/loading-full.gif?_=1") center
-    no-repeat;
 }
 
 .employee-container {
@@ -295,4 +280,38 @@ button:active .icon svg {
 .employee-card strong {
   font-weight: bold;
   margin-right: 5px;
+}
+
+.descripcion {
+  text-align: justify;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 100px; /* Ajusta la altura según el tamaño de tu fuente y el espacio deseado */
+}
+
+.buttons-red {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 500px) {
+  .employee-card {
+    min-width: 0px;
+  }
+
+  #BotonCrear {
+    margin-top: 5px;
+  }
+
+  span i {
+    font-size: 9px;
+  }
+
+  span {
+    font-size: 13px;
+  }
 }

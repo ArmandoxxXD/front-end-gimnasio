@@ -3,7 +3,6 @@ import { ToastrService } from 'ngx-toastr';
 import { Proveedor } from 'src/app/models/proveedor';
 import { ProveedorService } from 'src/app/service/proveedor.service';
 import { TokenService } from 'src/app/service/token.service';
-import * as $ from "jquery";
 import Swal from 'sweetalert2';
 
 @Component({
@@ -18,32 +17,39 @@ export class VerProveedoresComponent implements OnInit {
   constructor(private proveedorService:ProveedorService,private toast:ToastrService, private token:TokenService) { }
 
   ngOnInit(): void {
-    $('#loading').css('display', 'block');
     this.getProveedores();
     this.isAdmin = this.token.isAdmin();
   }
 
   getProveedores():void{
+    Swal.fire({
+      title: 'Loading...',
+      allowOutsideClick: false,
+      position: 'top',
+      didOpen: () => {
+        Swal.showLoading(); // Muestra el spinner de SweetAlert2
+      },
+    });
     this.proveedorService.list().subscribe(
       data=>{
+        Swal.close();
         this.proveedores=data;
-        $('#loading').css('display', 'none');
       },
       err=>{
+        Swal.close();
         this.toast.error(err.error.mensaje,'Error',{timeOut:3000});
-        $('#loading').css('display', 'none');
       }
     )
   }
 
   onDelete(id:number):void{
     Swal.fire({
-      title: '¿Estas Seguro?',
-      text: 'No podras desaser la acción',
+      title: 'Are you sure?',
+      text: 'You will not be able to remove the action',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'OK',
-      cancelButtonText: 'Cancelar'
+      confirmButtonText: 'Accept',
+      cancelButtonText: 'Cancel'
     }).then((result)=>{
         if(result.value){
           this.proveedorService.delete(id).subscribe(
@@ -57,8 +63,8 @@ export class VerProveedoresComponent implements OnInit {
           );
         }else if(result.dismiss===Swal.DismissReason.cancel){
           Swal.fire(
-            'Cancelado',
-            'Proveedor no eliminado',
+            'Cancelled',
+            'Provider not eliminated',
             'error'
           )
         }

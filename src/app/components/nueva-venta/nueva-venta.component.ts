@@ -1,8 +1,5 @@
-// Elaboro Alexis Martinez, Oscar Rojas, Juan de Dios
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ICreateOrderRequest, IPayPalConfig } from 'ngx-paypal';
-import { tap } from 'rxjs';
 import {
   ProductoVenta,
   ProductoVentaData,
@@ -11,18 +8,22 @@ import {
 import { PagosService } from 'src/app/service/pagos.service';
 import { ProductosService } from 'src/app/service/productos.service';
 import { ToastrService } from 'ngx-toastr';
-
+import { TokenService } from 'src/app/service/token.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-nueva-venta',
   templateUrl: './nueva-venta.component.html',
   styleUrls: ['./nueva-venta.component.css'],
 })
 export class NuevaVentaComponent implements OnInit {
-  productos: ProductoVentaData[] = [];
-  productosVenta: ProductoVenta[] = [];
+  productos: ProductoVentaData[] =this.productoService.productos;
+  productosVenta: ProductoVenta[] = this.productoService.productosVenta;
   tipoPago: string = 'Payment Type';
-  codeBar: string = '';
-  cantidad: number = 1;
+  codeBar: string = this.productoService.codeBar;
+  cantidad: number = this.productoService.cantidad;
+  isAdmin: boolean = false;
+  isUser: boolean = false;
+  isRecepcionista: boolean = false;
   productoSeleccionadoModal: ProductoVentaData = {
     nombre: '',
     cantidad: 0,
@@ -38,14 +39,25 @@ export class NuevaVentaComponent implements OnInit {
   constructor(
     private ventaService: PagosService,
     private productoService: ProductosService,
-    private http: HttpClient,
-    private toast: ToastrService
+    private toast: ToastrService,
+    private token: TokenService
   ) {}
 
-  ngOnInit(): void {}
-
+  ngOnInit(): void {
+    this.isAdmin = this.token.isAdmin();
+    this.isUser = this.token.isUser();
+    this.isRecepcionista = this.token.isRecepcionista();
+  }
   // Guarda una venta
   saveVentas() {
+    Swal.fire({
+      title: 'Loading...',
+      allowOutsideClick: false,
+      position: 'top',
+      didOpen: () => {
+        Swal.showLoading(); // Muestra el spinner de SweetAlert2
+      },
+    });
     // Verifica si el tipo de pago es 'Payment Type'
     if (this.tipoPago == 'Payment Type') {
       // Muestra un mensaje de error utilizando una librería de notificaciones llamada 'toast'
@@ -69,11 +81,19 @@ export class NuevaVentaComponent implements OnInit {
           this.ventaService.postCorteDiario().subscribe((resp) => {
             // Muestra un mensaje de éxito utilizando la librería de notificaciones 'toast'
             this.toast.success('Sale Success', 'OK', { timeOut: 3000 });
-            // Recarga la página
-            window.location.reload();
+            Swal.close();
           });
+            this.productos.splice(0,this.productos.length);
+            this.productosVenta.splice(0,this.productosVenta.length);
+            const userName = this.token.getDatesUserName();
+            localStorage.setItem(userName+'.productos', JSON.stringify(this.productos));
+            localStorage.setItem(userName+'.productosVentas', JSON.stringify(this.productosVenta));
+            this.productoService.cargarCarrito();
         },
-        (err) => console.error(err)
+        (err) => {
+          Swal.close();
+          console.error(err)
+        }
       );
     }
   }
@@ -97,94 +117,11 @@ export class NuevaVentaComponent implements OnInit {
     // Utiliza el método 'splice' para eliminar un elemento del arreglo en base a su índice
     // El segundo argumento '1' indica que se eliminará solo un elemento
     this.productos.splice(index, 1);
-  }
-
-  /**
-   * Agrega un producto a dos arreglos diferentes en base a la cantidad y disponibilidad del producto.
-   * @param producto - El código de barras o identificador del producto a ser agregado.
-   */
-  agregarProducto(producto: string) {
-    // Crear objetos vacíos para el producto y la venta
-    const product: ProductoVentaData = {
-      nombre: '',
-      cantidad: 0,
-      codeBar: '',
-      img: '',
-      total: 0,
-    };
-    const venta: ProductoVenta = {
-      nombre: '',
-      cantidad: 0,
-    };
-    // Verificar que la cantidad sea mayor a 0
-    if (this.cantidad > 0) {
-      // Llamar al servicio para obtener los datos del producto
-      this.productoService
-        .getProduct(producto)
-        .pipe(
-          // Utilizar el operador 'tap' para manejar errores y mostrar mensajes
-          tap((data) => {
-            if (!data || data instanceof HttpErrorResponse) {
-              this.toast.error('Product Not Found', 'Error', { timeOut: 3000 });
-              this.codeBar = '';
-              this.cantidad = 1;
-            }
-          })
-        )
-        .subscribe((data) => {
-          // Verificar que la cantidad del producto sea mayor a la cantidad deseada
-          if (data.cantidad > this.cantidad - 1) {
-            // Verificar que el producto no exista ya en el arreglo 'this.productos'
-            if (!this.productos.find((item) => item.codeBar === data.codeBar)) {
-              // Calcular el total del producto en base a la cantidad y precio
-              product.total = this.cantidad * data.precio;
-              product.cantidad = this.cantidad;
-              product.codeBar = data.codeBar;
-              product.img = data.imagen;
-              product.nombre = data.nombreProducto;
-              venta.nombre = data.nombreProducto;
-              venta.cantidad = this.cantidad;
-              // Agregar el producto y la venta a los arreglos correspondientes
-
-              this.productos.push(product);
-              this.productosVenta.push(venta);
-
-              this.codeBar = '';
-              this.cantidad = 1;
-            } else {
-              // Actualizar la cantidad y total del producto y venta si el producto ya existe en el arreglo
-              const product: any = this.productos.find(
-                (item: ProductoVentaData) => {
-                  return item.nombre == data.nombreProducto;
-                }
-              );
-              const productVenta: any = this.productosVenta.find(
-                (item: ProductoVenta) => {
-                  return item.nombre == data.nombreProducto;
-                }
-              );
-              const index = this.productos.indexOf(product);
-              const indexVenta = this.productosVenta.indexOf(productVenta);
-              this.productos[index].cantidad += this.cantidad;
-              this.productos[index].total =
-                this.productos[index].cantidad * data.precio;
-              this.productosVenta[indexVenta].cantidad += this.cantidad;
-              this.codeBar = '';
-              this.cantidad = 1;
-            }
-          } else {
-            // Mostrar mensaje de error si no hay suficiente inventario
-            this.toast.error('No inventory', 'Error', { timeOut: 3000 });
-            this.codeBar = '';
-            this.cantidad = 1;
-          }
-        });
-    } else {
-      // Mostrar mensaje de error si la cantidad no es válida
-      this.toast.error('Insert a Valid Number', 'Error', { timeOut: 3000 });
-      this.codeBar = '';
-      this.cantidad = 1;
-    }
+    this.productosVenta.splice(index, 1);
+    const userName = this.token.getDatesUserName();
+    localStorage.setItem(userName+'.productos', JSON.stringify(this.productos));
+    localStorage.setItem(userName+'.productosVentas', JSON.stringify(this.productosVenta));
+    this.productoService.cargarCarrito();
   }
 
   payPalConfig: IPayPalConfig = {

@@ -1,97 +1,115 @@
-<section class="h-100 gradient-form">
-  <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-xl-10">
-        <div class="card rounded-3 text-black">
-          <div class="row g-0">
-            <div class="col-lg-6">
-              <div class="card-body p-md-5 mx-md-4">
+<nav class="ms-5 mb-2 mt-5" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/empelado/lista">Employees</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Add</li>
+  </ol>
+</nav>
 
-                <form #f="ngForm" novalidate (ngSubmit)="onRegister()">
-                  <div class="form-outline mb-4">
-                    <input type="text" name="nombreUsuario" id="nombreUsuario" class="form-control" placeholder="User"
-                      [(ngModel)]="nombreUsuario" autocomplete="off" />
-                  </div>
+<div id="formulario" class="row-mt-10 ">
+  <div class="card col-md-4 mx-auto">
+    <div class="card-header">
+      <div class="text-header">Add Employee</div>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="onCreate()" novalidate #f="ngForm">
 
-                  <div class="form-outline mb-4">
-                    <input type="text" name="foto" id="foto" class="form-control" placeholder="Picture"
-                      [(ngModel)]="foto" autocomplete="off" />
-                  </div>
+        <div class="image-container">
+          <img *ngIf="previewUrl" [src]="previewUrl" alt="Previsualización de la imagen" class="rounded-circle" height="155px" width="155px">
+          <img *ngIf="!previewUrl" [src]="foto" alt="" class="placeholder-glow image rounded-circle" height="155px" width="155px">
+        </div>
+        <!--Foto-->
+        <div class="custom-file-input">
+          <label for="foto">
+            Upload Photo <i class="fa-solid fa-file-image"></i>
+            <input type="file" id="foto" name="foto" accept="image/*" [(ngModel)]="foto" (change)="onFileChange($event)" required>
+          </label>
+          <button *ngIf="previewUrl" class="cancel-btn" (click)="cancelNewImage()"><i class="fa-solid fa-delete-left"></i></button>
+        </div>
 
-                  <div class="form-outline mb-4">
-                    <input type="number" name="edad" id="edad" class="form-control" placeholder="Age" [(ngModel)]="edad"
-                      autocomplete="off" />
-                  </div>
+        <!--NombreEmpleado-->
+        <div class="input">
+          <input autocomplete="off" type="text" id="nombreCliente" name="nombreUsuario" [(ngModel)]="nombreUsuario"
+            required>
+          <label for="text">User </label>
+        </div>
 
-                  <div class="form-outline mb-4">
-                    <input type="number" name="sueldo" id="sueldo" class="form-control" placeholder="Salary"
-                      [(ngModel)]="sueldo" autocomplete="off" />
-                  </div>
+        <!--Edad-->
+        <div class="input">
+          <input autocomplete="off" type="number" id="edad" name="edad" [(ngModel)]="edad" required>
+          <label for="text">Age</label>
+        </div>
 
-                  <div class="form-group" style="margin-top: 20px; margin-bottom: 20px;">
+        <!--Sueldo-->
+        <div class="input">
+          <input autocomplete="off" type="number" id="sueldo" name="sueldo" [(ngModel)]="sueldo" required>
+          <label for="text">Salary</label>
+        </div>
 
-                    <label>Select an Turn:</label>
-                    <select id="roles" name="roles" [(ngModel)]="turno" required>
-                      <option value="Matutino">Morning</option>
-                      <option value="Vespertino">Evening</option>
-                    </select>
-                  </div>
+        <div class="form-group" style="margin-top: 20px; margin-bottom: 20px;">
+          <label>Select an Turn:</label>
+          <select id="roles" name="roles" [(ngModel)]="turno" required>
+            <option value="Matutino">Morning</option>
+            <option value="Vespertino">Evening</option>
+          </select>
+        </div>
 
-                  <div class="form-outline mb-4">
-                    <input type="email" name="email" id="email" class="form-control" placeholder="Email"
-                      [(ngModel)]="email" autocomplete="off" />
-                  </div>
+        <!--Email-->
+        <div class="input">
+          <input autocomplete="off" type="email" id="email" name="email" [(ngModel)]="email" required>
+          <label for="text">Email</label>
+        </div>
 
-                  <div class="form-outline mb-4">
-                    <input type="tel" name="telefono" id="telefono" class="form-control" placeholder="Phone"
-                      [(ngModel)]="telefono" autocomplete="off" />
-                  </div>
+        <!--Telefono-->
+        <div class="input">
+          <input autocomplete="off" type="number" id="telefono" name="telefono" [(ngModel)]="telefono" required>
+          <label for="text">Phone</label>
+        </div>
 
-                  <div class="form-outline mb-4">
-                    <input type="password" name="password" id="password" placeholder="Password" [(ngModel)]="password"
-                      autocomplete="off" required required="required" class="form-control" />
-                  </div>
+        <!--Password-->
+        <div class="input">
+          <input autocomplete="off" type="password" id="password" name="password" [(ngModel)]="password" (ngModelChange)="evaluarPassword($event)"
+            required>
+          <label for="text">Password </label>
+          <div class="password_requeriment">
+            <p class="password_requeriment__level_text">Level: <strong id="password_requeriment__level">Empty</strong> </p>
+            <p><strong>Your password must contain:</strong></p>
 
-                  <div class="form-group" style="margin-top: 20px;">
-
-                    <label>Select an Role:</label>
-                    <select id="roles" name="roles" [(ngModel)]="roles" required>
-                      <option value="ROLE_ADMIN">Admin</option>
-                      <option value="ROLE_INSTRUCTOR">Instructor</option>
-                      <option value="ROLE_RECEPCIONISTA">Recepcionista</option>
-                      <option value="ROLE_USER">User</option>
-                    </select>
-                  </div>
-                  <br>
-                  <div class="text-center pt-1 mb-5 pb-1">
-                    <button [disabled]="!f.valid" class="btn btn-primary
-                        btn-block fa-lg gradient-custom-2 mb-3" type="button" type="submit">Create User</button>
-                  </div>
-                </form>
+            <div class="password_requeriment__requeriments">
+              <div id="requeriment_1">
+                <i class="fa-solid fa-xmark"></i> <p>Minimum number of characters is 6.</p>
               </div>
-            </div>
-            <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
-
-              <div class="text-white px-3 py-4 p-md-5 mx-md-4">
-                <div class="text-center">
-                  <img src="../../../../assets/img/logo.jfif" style="width: 185px;" alt="logo">
-                  <h4 class="mt-1 mb-5 pb-1">Spartacus</h4>
-                </div>
-                <h4 class="mb-4">Sistema de Proveedores</h4>
-                <p class="small mb-0">Proyecto para la administracion y
-                  la gestion de lo que serian los proveedores de un
-                  gimnacio contando con sus productos y su informacion</p>
-                <br>
-                <p class="small mb-0">Registro de usuarios para el sistema
-                  donde puedes insertar 4 tipos de roles pero solo el
-                  administrador puede
-                  insertar,borrar y actualizar
-                </p>
+              <div id="requeriment_2">
+                <i class="fa-solid fa-xmark"></i> <p> Should contain lowercase. </p>
+              </div>
+              <div id="requeriment_3">
+               <i class="fa-solid fa-xmark"></i> <p> Should contain uppercase. </p>
+              </div>
+              <div id="requeriment_4">
+                <i class="fa-solid fa-xmark"></i> <p> Should contain numbers. </p>
+              </div>
+              <div id="requeriment_5">
+                <i class="fa-solid fa-xmark"></i> <p> Should contain special characters. </p>
               </div>
             </div>
           </div>
         </div>
-      </div>
+
+        <div class="form-group" style="margin-top: 20px;">
+
+          <label>Select an Role:</label>
+          <select id="roles" name="roles" [(ngModel)]="roles" required>
+            <option value="ROLE_ADMIN">Admin</option>
+            <option value="ROLE_INSTRUCTOR">Instructor</option>
+            <option value="ROLE_RECEPCIONISTA">Recepcionista</option>
+          </select>
+        </div>
+     
+        <div class="botones" style="display: flex;justify-content: flex-end;">
+          <!--Crear-->
+          <input type="submit" class="btn" value="Save" id="BootonCrear">
+        </div>
+      </form>
     </div>
   </div>
-</section>
+</div>
+<br>

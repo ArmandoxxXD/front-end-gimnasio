@@ -12,46 +12,6 @@ header h1 {
   margin: 0;
 }
 
-.search-container {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 15px;
-}
-
-.search-container input[type="text"] {
-  background-color: white;
-  padding: 10px;
-  margin-right: 10px;
-  border: none;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  font-size: 16px;
-  width: 300px;
-  min-width: 200px;
-}
-
-.search-container input[type="text"]:focus {
-  outline: none;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-}
-
-.search-container button {
-  background-color: transparent;
-  color: #007bff;
-  border: 1px solid #007bff;
-  padding: 10px 20px;
-  border-radius: 20px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-}
-
-.search-container button:hover {
-  background-color: #007bff;
-  color: white;
-}
-
 .employee-container {
   width: 90%;
   padding: 20px 0;
@@ -63,6 +23,7 @@ header h1 {
   /*border: 1px solid black;*/
   cursor: pointer;
 }
+
 .employee-card {
   display: flex;
   background-color: #eee;
@@ -137,7 +98,6 @@ header h1 {
 .noselect {
   width: 150px;
   height: 50px;
-  margin-left: 65px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -147,6 +107,12 @@ header h1 {
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
   background: #e62222;
   margin-top: 1em;
+}
+
+.buttons-red {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 button,
@@ -194,26 +160,10 @@ button:active .icon svg {
   transform: scale(0.8);
 }
 
-/*Pantalla de carga*/
-#loading {
-  display: none;
-  position: fixed;
-  z-index: 9999;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.8)
-    url("https://camaradirecta.com/template/images/loading-full.gif?_=1") center
-    no-repeat;
-}
-
 .cssbuttons-io {
   position: relative;
   font-family: inherit;
-  font-weight: 500px;
-  height: 45px;
-  text-align: center;
+  font-weight: 500;
   font-size: 18px;
   letter-spacing: 0.05em;
   border-radius: 0.8em;
@@ -235,6 +185,7 @@ button:active .icon svg {
   transition: color 0.4s;
   display: inline-flex;
   align-items: center;
+  padding: 0.8em 1.2em 0.8em 1.05em;
 }
 
 .cssbuttons-io::before,
@@ -268,34 +219,89 @@ button.icon {
   background-color: rgb(67, 65, 65);
 }
 
-/* .employee-card button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-  }
+.search {
+  margin: 0 auto;
+  width: 95%;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
 
-  .employee-card .buttons {
-    display: flex;
-    justify-content: center;
-  }
+.inputbox {
+  position: relative;
+  width: 196px;
+}
 
-  .employee-card .buttons button:first-child {
-    margin-right: 10px;
-  } */
-#loading {
-  display: none;
-  position: fixed;
-  z-index: 9999;
-  top: 0;
-  left: 0;
-  height: 100%;
+.inputbox input {
+  position: relative;
   width: 100%;
-  background: rgba(255, 255, 255, 0.8)
-    url("https://camaradirecta.com/template/images/loading-full.gif?_=1") center
-    no-repeat;
+  padding: 20px 10px 10px;
+  background: transparent;
+  outline: none;
+  box-shadow: none;
+  border: none;
+  color: #23242a;
+  font-size: 1em;
+  letter-spacing: 0.05em;
+  transition: 0.5s;
+  z-index: 10;
+  color: aliceblue;
+}
+
+.inputbox span {
+  position: absolute;
+  left: 0;
+  padding: 20px 10px 10px;
+  font-size: 1em;
+  color: #8f8f8f;
+  letter-spacing: 00.05em;
+  transition: 0.5s;
+  pointer-events: none;
+}
+
+.inputbox input:valid ~ span,
+.inputbox input:focus ~ span {
+  color: rgb(67, 65, 65);
+  transform: translateX(-10px) translateY(-34px);
+  font-size: 0, 75em;
+}
+
+.inputbox i {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: rgb(67, 65, 65);
+  border-radius: 4px;
+  transition: 0.5s;
+  pointer-events: none;
+  z-index: 9;
+}
+
+.inputbox input:valid ~ i,
+.inputbox input:focus ~ i {
+  height: 44px;
+}
+
+
+@media (max-width: 400px) { 
+  .employee-card {
+    min-width: 0px;
+  }
+
+  .employee-card p {
+    font-size: 10px;
+  }
+
+  #BotonCrear {
+    margin-top: 5px;
+  }
+
+  span i {
+    font-size: 9px;
+  }
+
+  span {
+    font-size: 13px;
+  }
 }

@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { CheckInService } from '../../../service/check-in.service';
 import Swal from 'sweetalert2';
 import { AuthService } from 'src/app/service/auth.service';
-import { CreateUser } from 'src/app/models/create-user';
+import { User } from 'src/app/models/users';
 import { CheckIn } from 'src/app/models/check-in';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import * as $ from 'jquery';
 
 @Component({
   selector: 'app-check-in',
@@ -20,24 +19,15 @@ export class CheckInComponent implements OnInit {
   public scannerEnabled = false;
   public results: string[] = [];
 
-  checkin = {
-    idEmpleado: 0,
-    fecha: '',
-    hora: '',
-    tipo: '',
-    estado: '',
-  };
-
-  empleado!: CreateUser;
+  checkin!:CheckIn
+  empleado!: User;
   reviewCheckIn: any;
   turno?: any;
   succes: boolean = false;
 
   constructor(
     private checkInService: CheckInService,
-    private empledadoService: AuthService,
-    private toast: ToastrService,
-    private router: Router
+    private empledadoService: AuthService
   ) {}
 
   ngOnInit(): void {}

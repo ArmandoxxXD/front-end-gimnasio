@@ -1,3 +1,10 @@
+<nav class="ms-5 mb-2 mt-5" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/producto/lista">Inventory</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Edit</li>
+  </ol>
+</nav>
+
 <div id="formulario" class="row-mt-10">
   <div class="card col-md-4 mx-auto">
     <div class="card-header">
@@ -5,6 +12,19 @@
     </div>
     <div class="card-body">
       <form (ngSubmit)="onUpdate()" novalidate #f="ngForm">
+        <div class="image-container">
+          <img *ngIf="previewUrl" [src]="previewUrl" alt="Previsualización de la imagen" class="rounded" height="155px" width="155px">
+          <img *ngIf="!previewUrl" [src]="producto.imagen" alt="" class="placeholder-glow image rounded" height="155px" width="155px">
+        </div>
+        <!--Foto-->
+        <div class="custom-file-input">
+          <label for="foto">
+            Upload Photo <i class="fa-solid fa-file-image"></i>
+            <input type="file" id="foto" name="foto" accept="image/*" [(ngModel)]="producto.imagen" (change)="onFileChange($event)" required>
+          </label>
+          <button *ngIf="previewUrl" class="cancel-btn" (click)="cancelNewImage()"><i class="fa-solid fa-delete-left"></i></button>
+          <button *ngIf="producto.imagen && !previewUrl && !isPhotoDeleted" class="cancel-btn" (click)="deleteImage()"><i class="fa-solid fa-trash"></i></button>
+        </div>
         <!--nombre-->
         <div class="input">
           <input autocomplete="off" type="text" id="nombre" name="nombre" [(ngModel)]="producto.nombreProducto"
@@ -15,11 +35,6 @@
         <div class="input">
           <input autocomplete="off" type="text" id="codeBar" name="codeBar" [(ngModel)]="producto.codeBar" required>
           <label for="nombre">Product Code</label>
-        </div>
-        <!--imagen-->
-        <div class="input">
-          <input autocomplete="off" type="url" id="logo" name="logo" [(ngModel)]="producto.imagen" required>
-          <label for="nombre">Image</label>
         </div>
         <!--Cantidad-->
         <div class="input">
@@ -44,20 +59,16 @@
           <label for="text">Type</label>
         </div>
         <!--selector-->
-        <div aria-label="Default select example">
+        <div class="form-group" style="margin-top: 20px; margin-bottom: 20px;">
           <label>Select an Provider:</label>
-          <select style="border-radius: 20px;border: 2px solid rgb(40, 40, 42);" id="nombreProvedor"
-            name="nombreProvedor" [(ngModel)]="producto.nombreProvedor" required>
-
-            <option class="form-select" *ngFor="let prove of proveedores">{{prove.nombreProvedor}}</option>
+          <select id="producto.nombreProvedor" name="producto.nombreProvedor" [(ngModel)]="producto.nombreProvedor" required>
+            <option value="{{prove.nombreProvedor}}" *ngFor="let prove of proveedores">{{prove.nombreProvedor}}</option>
           </select>
         </div>
         <br>
-        <div class="botones" style="display: flex;justify-content: space-between;">
+        <div class="botones" style="display: flex;justify-content: flex-end;">
           <!--actualizar-->
-          <input type="submit" class="btn" value="Update" id="BootonCrear" [disabled]="!f.valid">
-          <!--Salir-->
-          <input type="submit" class="btn" value="Exit" routerLink="/producto/lista">
+          <input type="submit" class="btn" value="Save" id="BootonCrear"[disabled]="!hasChanges()">
         </div>
       </form>
     </div>

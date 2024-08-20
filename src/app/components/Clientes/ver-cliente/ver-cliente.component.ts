@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Clientes } from 'src/app/models/clientes';
 import { ClienteService } from 'src/app/service/cliente.service';
 import { TokenService } from 'src/app/service/token.service';
-import * as $ from 'jquery';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -23,25 +21,31 @@ export class VerClienteComponent implements OnInit {
     private clienteService: ClienteService,
     private toastr: ToastrService,
     private token: TokenService,
-    private router: Router
   ) {}
 
   ngOnInit(): void {
-    $('#loading').css('display', 'block');
     this.listaClientes();
     this.isAdmin = this.token.isAdmin();
   }
 
   listaClientes(): void {
+    Swal.fire({
+      title: 'Loading...',
+      allowOutsideClick: false,
+      position: 'top',
+      didOpen: () => {
+        Swal.showLoading(); // Muestra el spinner de SweetAlert2
+      },
+    });
     this.clienteService.list().subscribe(
       (data) => {
+        Swal.close();
         this.clientes = data;
-        console.log(data);
-        $('#loading').css('display', 'none');
+
       },
       (err) => {
+        Swal.close();
         console.log(err);
-        $('#loading').css('display', 'none');
       }
     );
   }

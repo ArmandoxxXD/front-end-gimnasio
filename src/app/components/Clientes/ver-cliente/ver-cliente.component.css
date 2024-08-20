@@ -2,7 +2,7 @@
   width: 98%;
   border-radius: 20px;
   background: #ffffff;
-  box-shadow: 5px 5px 20px rgb(67, 65, 65), -5px -5px 20px rgb(67, 65, 65);
+  /* box-shadow: 5px 5px 20px rgb(67, 65, 65), -5px -5px 20px rgb(67, 65, 65); */
   margin: 0 auto; /* Ajusta la tabla al centro de la página */
   color: rgb(0, 0, 0); /* Pone las letras en blanco */
 }
@@ -138,17 +138,4 @@ button.icon {
 
 .dropdown {
   margin-top: 20px;
-}
-
-#loading {
-  display: none;
-  position: fixed;
-  z-index: 9999;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.8)
-    url("https://camaradirecta.com/template/images/loading-full.gif?_=1") center
-    no-repeat;
 }

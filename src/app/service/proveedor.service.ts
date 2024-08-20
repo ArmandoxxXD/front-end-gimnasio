@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Proveedor } from '../models/proveedor';
+import { EditProveedor, Proveedor } from '../models/proveedor';
 
 @Injectable({
   providedIn: 'root'
@@ -25,11 +25,11 @@ export class ProveedorService {
   }
 
   public create(proveedor:Proveedor):Observable<any>{
-    return this.http.post<any>(this.proveedorURL,proveedor)
+    return this.http.post<any>(this.proveedorURL,proveedor.toFormData())
   }
 
-  public update(id:number,proveedor:Proveedor):Observable<any>{
-    return this.http.put<any>(this.proveedorURL+`/${id}`,proveedor)
+  public update(id:number,proveedor:EditProveedor):Observable<any>{
+    return this.http.put<any>(this.proveedorURL+`/${id}`,proveedor.toFormData())
   }
 
   public delete(id:number):Observable<any>{

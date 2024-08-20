@@ -1,92 +1,157 @@
-<section class="h-100 gradient-form">
-  <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-xl-10">
-        <div class="card rounded-3 text-black">
-          <div class="row g-0">
-            <div class="col-lg-6">
-              <div class="card-body p-md-5 mx-md-4">
+<nav class="ms-5 mb-2 mt-5" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li *ngIf="fromListaEmpleado" class="breadcrumb-item"><a routerLink="/empelado/lista">Employees</a></li>
+    <li *ngIf="!fromListaEmpleado" class="breadcrumb-item"><a
+        routerLink="/checkIn-empleado/{{loggedUserId}}">Profile</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Edit</li>
+  </ol>
+</nav>
 
-                <form #f="ngForm" novalidate (ngSubmit)="onEdit()">
-                  <div class="form-outline mb-4">
-                    <input type="text" name="nombreUsuario" id="nombreUsuario" class="form-control" placeholder="User"
-                      [(ngModel)]="empleado.nombreUsuario" autocomplete="off" />
-                  </div>
+<div id="formulario" class="row-mt-10 ">
+  <div class="card col-md-4 mx-auto">
+    <div class="card-header">
+      <div class="text-header">Edit Employee</div>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="onEdit()" novalidate #f="ngForm">
 
-                  <div class="form-outline mb-4">
-                    <input type="text" name="foto" id="foto" class="form-control" placeholder="Picture"
-                      [(ngModel)]="empleado.foto" autocomplete="off" />
-                  </div>
+        <div class="image-container">
+          <img *ngIf="previewUrl" [src]="previewUrl" alt="Previsualización de la imagen" class="rounded-circle"
+            height="155px" width="155px">
+          <img *ngIf="!previewUrl" [src]="empleado.foto" alt="" class="placeholder-glow image rounded-circle"
+            height="155px" width="155px">
+        </div>
+        <!--Foto-->
+        <div class="custom-file-input">
+          <label for="foto">
+            Upload Photo <i class="fa-solid fa-file-image"></i>
+            <input type="file" id="foto" name="foto" accept="image/*" [(ngModel)]="empleado.foto"
+              (change)="onFileChange($event)" required>
+          </label>
+          <button *ngIf="previewUrl" class="cancel-btn" (click)="cancelNewImage()"><i
+              class="fa-solid fa-delete-left"></i></button>
+          <button *ngIf="empleado.foto && !previewUrl && !isPhotoDeleted" class="cancel-btn" (click)="deleteImage()"><i
+              class="fa-solid fa-trash"></i></button>
+        </div>
 
-                  <div class="form-outline mb-4">
-                    <input type="number" name="edad" id="edad" class="form-control" placeholder="Age"
-                      [(ngModel)]="empleado.edad" autocomplete="off" />
-                  </div>
+        <!--NombreEmpleado-->
+        <div class="input">
+          <input autocomplete="off" type="text" id="nombreCliente" name="nombreUsuario"
+            [(ngModel)]="empleado.nombreUsuario" required>
+          <label for="text">User </label>
+        </div>
 
-                  <div class="form-outline mb-4">
-                    <input type="number" name="sueldo" id="sueldo" class="form-control" placeholder="Salary"
-                      [(ngModel)]="empleado.sueldo" autocomplete="off" />
-                  </div>
+        <!--Edad-->
+        <div class="input">
+          <input autocomplete="off" type="number" id="edad" name="edad" [(ngModel)]="empleado.edad" required>
+          <label for="text">Age</label>
+        </div>
 
-                  <div class="form-group" style="margin-top: 20px; margin-bottom: 20px;">
+        <!--Sueldo-->
+        <div *ngIf="!isUser" class="input">
+          <input autocomplete="off" type="number" id="sueldo" name="sueldo" [(ngModel)]="empleado.sueldo" required>
+          <label for="text">Salary</label>
+        </div>
 
-                    <label>Select an Turn:</label>
-                    <select id="roles" name="roles" [(ngModel)]="empleado.turno" required>
-                      <option value="Matutino">Morning</option>
-                      <option value="Vespertino">Evening</option>
-                    </select>
-                  </div>
+        <div *ngIf="!isUser" class="form-group" style="margin-top: 20px; margin-bottom: 30px;">
+          <label>Select an Turn:</label>
+          <select id="turno" name="turno" [(ngModel)]="empleado.turno" required>
+            <option value="Matutino">Morning</option>
+            <option value="Vespertino">Evening</option>
+          </select>
+        </div>
 
-                  <div class="form-outline mb-4">
-                    <input type="email" name="email" id="email" class="form-control" placeholder="Email"
-                      [(ngModel)]="empleado.email" autocomplete="off" />
-                  </div>
+        <!--Email-->
+        <div class="input">
+          <input autocomplete="off" type="email" id="email" name="email" [(ngModel)]="empleado.email" required>
+          <label for="text">Email</label>
+        </div>
 
-                  <div class="form-outline mb-4">
-                    <input type="tel" name="telefono" id="telefono" class="form-control" placeholder="Phone"
-                      [(ngModel)]="empleado.telefono" autocomplete="off" />
-                  </div>
+        <!--Telefono-->
+        <div class="input">
+          <input autocomplete="off" type="number" id="telefono" name="telefono" [(ngModel)]="empleado.telefono"
+            required>
+          <label for="text">Phone</label>
+        </div>
 
-                  <div class="form-group" style="margin-top: 20px;">
+        <div *ngIf="!isUser" class="form-group" style="margin-top: 20px;  margin-bottom: 30px;">
 
-                    <label>Select an Rol:</label>
-                    <select id="roles" name="roles" [(ngModel)]="empleado.roles" required>
-                      <option value="ROLE_ADMIN">Admin</option>
-                      <option value="ROLE_INSTRUCTOR">Instructor</option>
-                      <option value="ROLE_RECEPCIONISTA">Recepcionista</option>
-                      <option value="ROLE_USER">User</option>
-                    </select>
-                  </div>
-                  <br>
-                  <div class="text-center pt-1 mb-5 pb-1">
-                    <button [disabled]="!f.valid" class="btn btn-primary
-                        btn-block fa-lg gradient-custom-2 mb-3" type="button" type="submit">Edit User</button>
-                  </div>
-                </form>
+          <label>Select an Role:</label>
+          <select id="roles" name="roles" [(ngModel)]="empleado.roles" required>
+            <option value="ROLE_ADMIN">Admin</option>
+            <option value="ROLE_INSTRUCTOR">Instructor</option>
+            <option value="ROLE_RECEPCIONISTA">Recepcionista</option>
+          </select>
+        </div>
+
+        <div>
+          <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+            data-bs-target="#changePasswordModal">Edit Password</button>
+        </div>
+
+        <div class="botones" style="display: flex;justify-content: flex-end;">
+          <!--Crear-->
+          <button type="submit" class="btn" id="BootonCrear" [disabled]="!hasChanges()">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<br>
+
+<div class="modal fade custom-modal" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel"
+  aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="changePasswordModalLabel">Change Password</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #changePasswordForm="ngForm" (ngSubmit)="changePassword()">
+          <div class="form-group">
+          <label for="currentPassword">Current password</label>
+            <input autocomplete="off" type="password" class="form-control" id="currentPassword"
+              [(ngModel)]="currentPassword" name="currentPassword" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="newPassword">New Password</label>
+            <input autocomplete="off" type="password" class="form-control" id="newPassword" [(ngModel)]="newPassword"
+              name="newPassword" (ngModelChange)="evaluarPassword($event)" required>
+          </div>
+          <div class="password_requeriment mb-2">
+            <p class="password_requeriment__level_text">Level: <strong id="password_requeriment__level">Empty</strong>
+            </p>
+            <p><strong>Your password must contain:</strong></p>
+
+            <div class="password_requeriment__requeriments">
+              <div id="requeriment_1">
+                <i class="fa-solid fa-xmark"></i>
+                <p>Minimum number of characters is 6.</p>
               </div>
-            </div>
-            <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
-
-              <div class="text-white px-3 py-4 p-md-5 mx-md-4">
-                <div class="text-center">
-                  <img src="../../../../assets/img/logo.jfif" style="width: 185px;" alt="logo">
-                  <h4 class="mt-1 mb-5 pb-1">Spartacus</h4>
-                </div>
-                <h4 class="mb-4">Administration System</h4>
-                <p class="small mb-0">Project for the administration and
-                  the management of a gym which has a sale of
-                  products, supplier management, checkin and class management.</p>
-                <br>
-                <p class="small mb-0">User registration for the system
-                  where you can insert 4 types of roles but only the
-                  admin can
-                  insert, delete and update
-                </p>
+              <div id="requeriment_2">
+                <i class="fa-solid fa-xmark"></i>
+                <p> Should contain lowercase. </p>
+              </div>
+              <div id="requeriment_3">
+                <i class="fa-solid fa-xmark"></i>
+                <p> Should contain uppercase. </p>
+              </div>
+              <div id="requeriment_4">
+                <i class="fa-solid fa-xmark"></i>
+                <p> Should contain numbers. </p>
+              </div>
+              <div id="requeriment_5">
+                <i class="fa-solid fa-xmark"></i>
+                <p> Should contain special characters. </p>
               </div>
             </div>
           </div>
-        </div>
+          <div class="modal-footer">
+          <button type="submit" class="btn btn-primary save">Save</button>
+         </div>
+        </form>
       </div>
     </div>
   </div>
-</section>
+</div>

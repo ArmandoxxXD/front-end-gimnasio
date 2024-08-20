@@ -1,50 +1,159 @@
-<section class="h-100 gradient-form">
-  <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-xl-10">
-        <div class="card rounded-3 text-black">
-          <div class="row g-0">
-            <div class="col-lg-6">
-              <div class="card-body p-md-5 mx-md-4">
-                <div class="text-center">
-                  <img src="../../../../assets/img/logo.jfif" style="width: 185px;" alt="logo">
-                  <h4 class="mt-1 mb-5 pb-1">Spartacus</h4>
+<div class="content">
+  <nav class="ms-5 mt-5" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Login</li>
+    </ol>
+  </nav>
+  <section class="h-100 gradient-form">
+    <div class="container py-0 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-xl-10">
+          <div class="card rounded-3 text-black">
+            <div class="row g-0">
+              <div class="col-lg-6">
+                <div class="card-body p-md-5 mx-md-4">
+                  <div class="text-center">
+                    <img src="../../../../assets/img/logo.jfif" style="width: 185px;" alt="logo">
+                    <h4 class="mt-1 mb-5 pb-1">Spartacus</h4>
+                  </div>
+                  <form #f="ngForm" novalidate (ngSubmit)="onLogin()">
+                    <div class="form-outline mb-4">
+                      <label class="form-label" for="form2Example11">User</label>
+                      <input type="text" name="username" id="username" class="form-control" placeholder="User"
+                        [(ngModel)]="nombreUsuario" autocomplete="off" />
+                    </div>
+                    <div class="form-outline mb-4">
+                      <label class="form-label" for="form2Example22">Password</label>
+                      <input type="password" name="password" id="password" placeholder="Password" [(ngModel)]="password"
+                        autocomplete="off" required required="required" class="form-control" />
+                        <div class="text-center mt-2">
+                          <a href="javascript:void(0);" (click)="showIdentificationModal()" class="forgot-password-link">Forgot password?</a>
+                        </div>
+                    </div>
+                    <div id="captcha" class="mb-4">
+                      <re-captcha [siteKey]="keyCaptcha" (resolved)="onCaptchaResolved($event)"></re-captcha>
+                    </div>
+                    <div class="text-center pt-1 mb-5 pb-1">
+                      <button [disabled]="!f.valid" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 login_button"
+                         type="submit">Login</button>
+                        <p>You do not have an account <a routerLink="/register">Sign up here.</a></p>
+                    </div>
+                  </form>
                 </div>
-                <form #f="ngForm" novalidate (ngSubmit)="onLogin()">
-                  <div class="form-outline mb-4">
-                    <label class="form-label" for="form2Example11">User</label>
-                    <input type="text" name="username" id="username" class="form-control" placeholder="User"
-                      [(ngModel)]="nombreUsuario" autocomplete="off" />
-                  </div>
-                  <div class="form-outline mb-4">
-                    <label class="form-label" for="form2Example22">Password</label>
-                    <input type="password" name="password" id="password" placeholder="Password" [(ngModel)]="password"
-                      autocomplete="off" required required="required" class="form-control" />
-                  </div>
-                  <div class="text-center pt-1 mb-5 pb-1">
-                    <button [disabled]="!f.valid" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
-                      type="button" type="submit" (click)="onLogin()">Login</button>
-                  </div>
-                </form>
               </div>
-            </div>
-            <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
-              <div class="text-white px-3 py-4 p-md-5 mx-md-4">
-                <h4 class="mb-4">Administration System</h4>
-                <p class="small mb-0">Project for the administration and
-                  the management of a gym which has a sale of
-                  products, supplier management, checkin and class management.</p>
+              <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+                <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                  <h4 class="mb-4">GYM  System</h4>
+                  <p class="small mb-0">Project for the administration and
+                    the management of a gym which has a sale of
+                    products, supplier management, checkin and class management.</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </section>
+</div>
+
+<div class="modal fade custom-modal" id="twoFactorModal" tabindex="-1" aria-labelledby="twoFactorModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="twoFactorModalLabel">Two Factor Verification</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="twoFactorCode" class="form-label">Verification code:</label>
+            <input type="text" class="form-control" id="twoFactorCode" [(ngModel)]="twoFactorCode" name="twoFactorCode" required autofocus>
+          </div>
+          <p class="text-muted">The code will expire in <span id="countdown">03:00</span> minutes.</p>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="resendCode()">Resend Code</button>
+        <button type="button" class="btn btn-primary" (click)="verifyTwoFactorCode()">Verify</button>
+      </div>
+    </div>
   </div>
-</section>
+</div>
 
 
-<!-- Cargando -->
-<div id="loader-container">
-  <div id="loader"></div>
+<div class="modal fade custom-modal" id="identificationModal" tabindex="-1" aria-labelledby="identificationModal" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="identificationModal">Recover password</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="identificator" class="form-label">Enter your email or username with which you registered:</label>
+            <input type="text" class="form-control" id="identificator" [(ngModel)]="identificator" name="identificator" required autofocus>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="sendTokenPasswordReset()">Verificar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade custom-modal" id="resetPasswordModal" tabindex="-1" aria-labelledby="resetPasswordModal"
+  aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="resetPasswordModal">Change Password</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #changePasswordForm="ngForm" (ngSubmit)="changePassword()">
+          <div class="form-group">
+            <label class="form-label" for="newPassword">New Password</label>
+            <input autocomplete="off" type="password" class="form-control" id="newPassword" [(ngModel)]="newPassword"
+              name="newPassword" (ngModelChange)="evaluarPassword($event)" required>
+          </div>
+          <div class="password_requeriment mb-2">
+            <p class="password_requeriment__level_text">Level: <strong id="password_requeriment__level">Empty</strong>
+            </p>
+            <p><strong>Your password must contain:</strong></p>
+
+            <div class="password_requeriment__requeriments">
+              <div id="requeriment_1">
+                <i class="fa-solid fa-xmark"></i>
+                <p>Minimum number of characters is 6.</p>
+              </div>
+              <div id="requeriment_2">
+                <i class="fa-solid fa-xmark"></i>
+                <p> Should contain lowercase. </p>
+              </div>
+              <div id="requeriment_3">
+                <i class="fa-solid fa-xmark"></i>
+                <p> Should contain uppercase. </p>
+              </div>
+              <div id="requeriment_4">
+                <i class="fa-solid fa-xmark"></i>
+                <p> Should contain numbers. </p>
+              </div>
+              <div id="requeriment_5">
+                <i class="fa-solid fa-xmark"></i>
+                <p> Should contain special characters. </p>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Save</button>
+         </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,0 +1,15 @@
+<div class="search"> 
+  <div class="container-input">
+    <!-- <i class="fa-solid fa-magnifying-glass ico" ></i> -->
+    <input type="text" class="input" [(ngModel)]="searchText" (input)="search()" placeholder="Search...">
+    <ul *ngIf="searchResults.length > 0; else noResults" [@fadeInOut]="searchResults.length" class="search-results">
+      <li *ngFor="let result of searchResults" (click)="onResultClick(result)">
+        <a class="search-result">
+          <div class="label">{{ result.label }}</div>
+          <!-- <div class="text">{{ result.text }}</div> -->
+        </a>
+      </li>
+    </ul>
+    <ng-template #noResults></ng-template>
+  </div>
+</div>

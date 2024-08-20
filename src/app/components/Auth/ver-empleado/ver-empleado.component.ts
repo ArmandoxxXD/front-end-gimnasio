@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/service/auth.service';
 import { TokenService } from 'src/app/service/token.service';
 import Swal from 'sweetalert2';
@@ -14,41 +14,30 @@ export class VerEmpleadoComponent implements OnInit {
   filterPost = '';
   employees: any = [];
   roles: any = [];
+  loggedUserId:number|null = this.token.getDatesId();
 
   constructor(
     private authService: AuthService,
-    private router: Router,
-    private token: TokenService
-  ) {
-    this.authService.list().subscribe(
-      (resp) => {
-        console.log(resp);
-        this.employees = resp;
-        // this.capyfit.getOneRol(this.employees.IdEmpleado).subscribe(res => {
-        //   console.log(res);
-        // })
-      },
-      (err) => console.error(err)
-    );
-  }
+    private token: TokenService,
+    private toastr: ToastrService,
+  ) {}
 
   ngOnInit(): void {
     this.isAdmin = this.token.isAdmin();
+    this.listarEmployees();
   }
 
   deleteEmployee(employee: any) {
-    console.log(employee);
-    console.log(employee.IdEmpleado);
     Swal.fire({
-      title: 'Do you want to delete the employee?', //+this.selectedRol.Nombre,//Estás seguro?
-      text: 'This action can´t be undone.', //+this.selectedRol.Nombre,
+      title: 'Do you want to delete the employee?',
+      text: 'This action can´t be undone.',
       html: '<p><strong>Employee: </strong>' + employee.nombreUsuario + '</p>',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Yes, do it',
-      confirmButtonColor: '#1a1a1a',
+      // confirmButtonColor: '#1a1a1a',
       cancelButtonText: 'Cancel',
-      cancelButtonColor: '#b9b9b9',
+      // cancelButtonColor: '#b9b9b9',
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire({
@@ -56,23 +45,28 @@ export class VerEmpleadoComponent implements OnInit {
           text: 'You have deleted the employee ' + employee.nombreUsuario,
           icon: 'success',
           confirmButtonText: 'OK',
-          confirmButtonColor: '#1a1a1a',
+          // confirmButtonColor: '#1a1a1a',
         });
-        //this.deleteRol(rol);
         this.authService.delete(employee.id).subscribe(
           (res) => {
-            console.log(res);
+            this.toastr.success('Employee Deleted', 'OK', {
+              timeOut: 3000,
+            });
+            this.listarEmployees();
           },
-          (err) => console.error(err)
+          (err) =>{
+            this.toastr.error(err.error.mensaje, 'Fail', {
+              timeOut: 3000,
+            });
+          }
         );
-        window.location.reload();
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire({
           title: 'Canceled',
           text: 'The employee has not been deleted',
           icon: 'error',
           confirmButtonText: 'OK',
-          confirmButtonColor: '#1a1a1a',
+          // confirmButtonColor: '#1a1a1a',
         });
       }
     });
@@ -101,5 +95,26 @@ export class VerEmpleadoComponent implements OnInit {
       confirmButtonText: 'OK',
       confirmButtonColor: '#1a1a1a',
     });
+  }
+
+  listarEmployees(){
+    Swal.fire({
+      title: 'Loading...',
+      allowOutsideClick: false,
+      position: 'top',
+      didOpen: () => {
+        Swal.showLoading(); // Muestra el spinner de SweetAlert2
+      },
+    });
+    this.authService.list().subscribe(
+      (resp) => {
+        Swal.close();
+        this.employees =  resp.filter(employee => employee.roles != 'ROLE_USER')
+      },
+      (err) => {
+        Swal.close();
+        console.error(err)
+      }
+    );
   }
 }

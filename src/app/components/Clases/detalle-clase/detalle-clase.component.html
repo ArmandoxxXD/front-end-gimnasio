@@ -1,11 +1,18 @@
-<h1 style="text-align: center">Class Details</h1>
+<h1 class="mt-2" style="text-align: center">Class Details</h1>
+
+<nav class="ms-5 mb-2" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/clase/lista">Classes</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Details</li>
+  </ol>
+</nav>
 
 <div class="employee-container">
   <div class="employee-card">
     <div class="titulobello">
       <h1>{{ listClases.nombreClase }}</h1>
     </div>
-    <img src="{{ listClases.fotoClase }}" class="card-img-top img" width="300px" height="300px"
+    <img src="{{ listClases.fotoClase }}" class="img-fluid placeholder-glow image rounded" width="320px" height="220px"
       style="margin-top: 40px" />
   </div>
   <div class="employee-card2">
@@ -30,22 +37,24 @@
     <br />
     <br />
     <!--tabla-->
-    <table class="table table-borderless table-hover" style="text-align: center">
-      <thead>
-        <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Age</th>
-          <th scope="col">Phone</th>
-          <th scope="col">Suscription</th>
+    <div class="table-responsive">
+      <table class="table table-borderless table-hover" style="text-align: center">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Suscription</th>
+          </tr>
+        </thead>
+        <tr *ngFor="let customer of listClientes">
+          <td>{{customer.nombreCliente}}</td>
+          <td>{{customer.edad}}</td>
+          <td>{{customer.telefono}}</td>
+          <td>{{customer.subcripcion | currency}}</td>
         </tr>
-      </thead>
-      <tr *ngFor="let customer of listClientes">
-        <td>{{customer.nombreCliente}}</td>
-        <td>{{customer.edad}}</td>
-        <td>{{customer.telefono}}</td>
-        <td>{{customer.subcripcion | currency}}</td>
-      </tr>
-    </table>
+      </table>
+    </div>
     <br />
   </div>
 </ng-template>

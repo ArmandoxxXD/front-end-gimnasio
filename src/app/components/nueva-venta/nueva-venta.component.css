@@ -23,8 +23,6 @@ li :disabled {
   width: 98%;
   border-radius: 20px;
   background: #ffffff;
-  box-shadow: 5px 5px 20px rgb(67, 65, 65),
-    -5px -5px 20px rgb(67, 65, 65);
 }
 
 .table {
@@ -147,7 +145,7 @@ button.icon {
   content: "";
   background: #000;
   width: 120%;
-  left: -10%;
+  left: -5%;
   transform: skew(30deg);
   transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
 }

@@ -1,19 +1,41 @@
+<nav class="ms-5 mt-5" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item" *ngIf="!isClient"><a routerLink="/empelado/lista">Employees</a></li>
+    <li class="breadcrumb-item" *ngIf="isClient"><a routerLink="/home">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{emp.nombreUsuario}}</li>
+  </ol>
+</nav>
+
 <div class="contenedor">
-  <div class="info-employee">
-    <img [src]="emp.foto" alt="" class="bd-placeholder-img rounded-circle" height="155px" width="155px">
-    <h1 *ngIf="emp" style="text-transform: capitalize;">{{emp.nombreUsuario}}</h1>
+
+  <div class="info-employee  m-2">
+    <div class="employe_pics">
+      <img [src]="emp.foto" alt="" class="placeholder-glow image rounded-circle" height="155px" width="155px">
+      <h1 *ngIf="emp" style="text-transform: capitalize;">{{emp.nombreUsuario}}</h1>
+    </div>
+    <div class="botones-verticales">
+      <button id="BotonVerQR" *ngIf="!isClient" (click)="showQR()"><i class="fa-solid fa-pen-to-square"></i> View
+        QR</button>
+      <a *ngIf="loggedUserId===emp.id" id="BotonEditar" routerLink="/empelado/editar/{{emp.id}}"
+        class="btn btn-outline-primary"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+      <button *ngIf="loggedUserId===emp.id" id="BotonEliminar" (click)="deleteEmployee(emp)"><i
+          class="fa-solid fa-trash"></i> Delete account</button>
+    </div>
   </div>
-  <div class="employee-body d-flex flex-row">
-    <div class="info-body flex-fill me-4">
+
+  <div class="employee-body d-flex flex-row" style="flex-wrap: wrap;">
+
+    <div class="stats-body flex-fill m-2">
       <p style="text-transform: capitalize;">Name: {{emp.nombreUsuario}}</p>
       <p>Age: {{emp.edad}}</p>
-      <p>Salary: ${{emp.sueldo}}</p>
-      <p>Turn: {{emp.turno}}</p>
+      <p *ngIf="!isClient">Salary: ${{emp.sueldo}}</p>
+      <p *ngIf="!isClient">Turn: {{emp.turno}}</p>
       <p>Email: {{emp.email}}</p>
       <p>Phone: {{emp.telefono}}</p>
-      <p>Employee Number: {{emp.id}}</p>
+      <p>Type of User: {{emp.roles}}</p>
     </div>
-    <div class="stats-body flex-fill">
+
+    <div *ngIf="!isClient" class="stats-body flex-fill m-2">
       <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item" role="presentation">
           <a class="nav-link active" data-bs-toggle="tab" href="#datos" aria-selected="true" role="tab"
@@ -36,24 +58,26 @@
       <div id="myTabContent" class="tab-content">
         <div class="tab-pane fade active show" id="datos" role="tabpanel">
           <p>Datos</p>
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>Id</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Type</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let ch of checks">
-                <td>{{ch.id}}</td>
-                <td>{{ch.fecha }}</td>
-                <td>{{ch.hora}}</td>
-                <td>{{ch.tipo}}</td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Type</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let ch of checks">
+                  <td>{{ch.id}}</td>
+                  <td>{{ch.fecha }}</td>
+                  <td>{{ch.hora}}</td>
+                  <td>{{ch.tipo}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
         <div class="tab-pane fade" id="horaE" role="tabpanel">
           <div class="img-and-text">
@@ -78,7 +102,7 @@
                 <div class="calendar-grid"></div>
               </div>
             </div>
-            <p>Entry time</p>
+            <!-- <p>Entry time</p> -->
             <p #entry id="entry"></p>
           </div>
         </div>
@@ -86,14 +110,16 @@
         <!--<div class="tab-pane fade" id="faltas" role="tabpanel">
                   <p>Faltas</p>
                 </div> -->
-        <div class="tab-pane fade" id="regMensual" role="tabpanel">
-          <p>Chart</p>
-          <div class="chart-container">
+        <div class="tab-pane fade" id="regMensual" role="tabpanel"
+          style="display: flex; align-items: center; flex-wrap: wrap; justify-content: center;">
+          <!-- <p>Chart</p> -->
+          <div class="chart-container" style="position: relative; width: 40vw; height: 40vh;">
             <canvas Id="myChart" #myChart></canvas>
           </div>
         </div>
       </div>
     </div>
+    
   </div>
 </div>
 
