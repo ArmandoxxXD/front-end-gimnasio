@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Clase } from 'src/app/models/clase';
 import { ClienteService } from 'src/app/service/cliente.service';
 import { ClaseService } from 'src/app/service/clase.service';
-import { TokenService } from 'src/app/service/token.service';
-import { ToastrService } from 'ngx-toastr';
-import { ActivatedRoute, Router } from '@angular/router';
-import { DomSanitizer } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-detalle-clase',
   templateUrl: './detalle-clase.component.html',
@@ -18,12 +14,7 @@ export class DetalleClaseComponent implements OnInit {
   constructor(
     private claseService: ClaseService,
     private clienteService: ClienteService,
-    private token: TokenService,
-    private toast: ToastrService,
-    private router: Router,
     private route: ActivatedRoute,
-    private activateRoute: ActivatedRoute,
-    private sanitizer: DomSanitizer
   ) {
     document.body.style.height = '100vh';
   }
@@ -56,11 +47,9 @@ export class DetalleClaseComponent implements OnInit {
           this.listClientes = data;
           console.log('Clientes:');
           console.log(this.listClientes);
-          $('#loading').css('display', 'none');
         },
         (err) => {
           console.log(err);
-          $('#loading').css('display', 'none');
         }
       );
   }
