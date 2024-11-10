@@ -94,11 +94,11 @@ export class VerProductoComponent implements OnInit {
       this.productoService.detail(id).subscribe(
         data=>{
           this.producto=data;
-          if(this.producto.existencia==true && this.producto.porAgotarse==false){
+          if(this.producto.cantidad >= 10){
             $('#stock' + id).css('background-color', '#9FE49A');
-          }else if(this.producto.existencia==true && this.producto.porAgotarse==true){
+          }else if(this.producto.cantidad < 10 && this.producto.cantidad > 1){
             $('#stock' + id).css('background-color', '#F7BE93');
-          }else if(this.producto.existencia==false){
+          }else if(this.producto.cantidad <= 0){
             $('#stock' + id).css('background-color', '#EC6F6F');
           }
         },
