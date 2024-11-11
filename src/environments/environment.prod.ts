@@ -1,7 +1,11 @@
 export const environment = {
   production: true,
-  apiRestURL: 'https://api-rest-3.onrender.com',
-  apiRestURLPagos: 'https://api-rest-3-pagos.onrender.com/api',
+  // Docker
+  apiRestURL: 'http://localhost:8080',
+  apiRestURLPagos: 'http://localhost:3001/api',
+  // Render
+  // apiRestURL: 'https://api-rest-3.onrender.com',
+  // apiRestURLPagos: 'https://api-rest-3-pagos.onrender.com/api',
   firebaseConfig : {
     apiKey: "AIzaSyDtRPsD502knR9IjeqIeGp-BJo6LpqyScY",
     authDomain: "sga-gimnasio.firebaseapp.com",
